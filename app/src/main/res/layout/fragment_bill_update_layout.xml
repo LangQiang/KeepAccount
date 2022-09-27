@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.godq.keepaccounts.mgrbg.update.BillUpdateVm"/>
+        <variable
+            name="vm"
+            type="BillUpdateVm" />
+    </data>
+
+    <RelativeLayout
+        android:background="@color/main_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.lazylite.mod.widget.KwTitleBar
+            android:id="@+id/title_bar"
+            style="@style/LRLiteBase_TitleBar"
+            android:tag="titleBar"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"/>
+
+        <LinearLayout
+            android:layout_below="@+id/title_bar"
+            android:layout_above="@+id/commit_tv"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="选择店铺"
+                    tools:text="选择店铺"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+                <org.angmarch.views.NiceSpinner
+                    android:id="@+id/nice_spinner"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="日期"
+                    tools:text="日期"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="@{vm.date}"
+                        tools:text="选择日期"
+                        android:onClick="@{()->vm.onDateSelectClick()}"
+                        android:id="@+id/date_picker_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                    <ImageView
+                        android:layout_marginEnd="15dp"
+                        android:layout_gravity="end|center_vertical"
+                        android:src="@drawable/lrlite_base_right_arrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </FrameLayout>
+
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="银行卡"
+                    tools:text="银行卡"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+                <EditText
+                    android:inputType="numberDecimal"
+                    android:text="@={vm.bankAmount}"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:hint="输入金额"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="支付宝"
+                    tools:text="支付宝"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+                <EditText
+                    android:inputType="numberDecimal"
+                    android:text="@={vm.aliAmount}"
+
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:hint="输入金额"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="微信"
+                    tools:text="微信"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+                <EditText
+                    android:inputType="numberDecimal"
+                    android:text="@={vm.wxAmount}"
+
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:hint="输入金额"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="现金"
+                    tools:text="现金"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+                <EditText
+                    android:inputType="numberDecimal"
+                    android:text="@={vm.cashAmount}"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:hint="输入金额"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="美团"
+                    tools:text="美团"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+                <EditText
+                    android:inputType="numberDecimal"
+                    android:text="@={vm.meituanAmount}"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:hint="输入金额"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="抖音"
+                    tools:text="抖音"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+                <EditText
+                    android:text="@={vm.douyinAmount}"
+                    android:inputType="numberDecimal"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:hint="输入金额"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="外卖"
+                    tools:text="外卖"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+                <EditText
+                    android:inputType="numberDecimal"
+                    android:text="@={vm.waimaiAmount}"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:hint="输入金额"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="免单"
+                    tools:text="免单"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+                <EditText
+                    android:inputType="numberDecimal"
+                    android:text="@={vm.freeAmount}"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:hint="输入金额"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="桌次"
+                    tools:text="桌次"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+                <EditText
+                    android:inputType="numberDecimal"
+                    android:text="@={vm.tableTimes}"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:hint="输入金额"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/commit_tv"
+            android:onClick="@{() -> vm.onCommitClick()}"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:text="提交"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="30dp"
+            android:background="@drawable/base_round_high_color_btn_bg"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"/>
+
+    </RelativeLayout>
+</layout>

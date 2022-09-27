@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="com.godq.keepaccounts.mgrbg.update.DateSelectDialog"/>
+        <variable
+            name="dialog"
+            type="DateSelectDialog" />
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <DatePicker
+            android:id="@+id/date_picker_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <TextView
+                android:onClick="@{() -> dialog.dismiss()}"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:text="取消"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+            </TextView>
+            <TextView
+                android:onClick="@{() -> dialog.confirm()}"
+                android:textColor="@color/skin_high_blue_color"
+                android:gravity="center"
+                android:text="选择"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.godq.keepaccounts.utils.GlobalConstantRes"/>
+        <import type="com.godq.keepaccounts.billdetail.BillSubEntity"/>
+        <variable
+            name="itemData"
+            type="BillSubEntity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@color/black6"
+        android:paddingEnd="15dp"
+        android:paddingStart="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_line"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+        <TextView
+            app:layout_constraintEnd_toEndOf="@+id/guide_line"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="18dp"
+            android:textColor="@color/black60"
+            android:text="@{itemData.payType}"
+            tools:text="2022-09-17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:textColor="@color/black60"
+            android:text="@{itemData.payAmount}"
+            tools:text="222"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

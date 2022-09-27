@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:background="@color/main_bg"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/guide_user_tv"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:background="@drawable/base_round_high_color_btn_bg"
+        android:text="用户界面"
+        android:layout_width="120dp"
+        android:layout_height="50dp"/>
+
+    <TextView
+        android:id="@+id/guide_mgr_tv"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:background="@drawable/ka_mgr_join_btn_bg"
+        android:gravity="center"
+        android:text="管理后台"
+        android:layout_width="120dp"
+        android:layout_height="50dp"/>
+</LinearLayout>
