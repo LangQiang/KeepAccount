@@ -37,18 +37,21 @@ class BillUpdateFragment: BaseFragment() {
             setSelectedTextFormatter { item -> SpannableString((item as? ShopEntity)?.name ?: "未知") }
             setBackgroundColor(ContextCompat.getColor(context, R.color.transparent))
             setOnSpinnerItemSelectedListener { parent, _, position, _ ->
-                vm.shopId.set((parent.getItemAtPosition(position) as? ShopEntity)?.id ?: "")
+                vm.billInfo.shopId = (parent.getItemAtPosition(position) as? ShopEntity)?.id ?: ""
             }
         }
 
         vm.onShopListDataCallback = {
             if (!it.isNullOrEmpty()) {
-                vm.shopId.set(it[0].id)
+                vm.billInfo.shopId = it[0].id
                 binding?.niceSpinner?.attachDataSource(it)
             }
         }
 
         vm.requestShopList()
+        binding?.root?.post {
+            vm.initInfoFromClipBoard()
+        }
     }
 
 }

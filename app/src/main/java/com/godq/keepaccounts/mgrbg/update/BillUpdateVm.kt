@@ -1,6 +1,8 @@
 package com.godq.keepaccounts.mgrbg.update
 
-import androidx.databinding.ObservableField
+import android.app.AlertDialog
+import android.content.ClipboardManager
+import android.content.Context
 import com.godq.keepaccounts.constants.getShopListUrl
 import com.godq.keepaccounts.constants.getUpdateBillUrl
 import com.godq.keepaccounts.shop.ShopEntity
@@ -16,17 +18,7 @@ import timber.log.Timber
 
 class BillUpdateVm {
 
-    val shopId = ObservableField("")
-    val date = ObservableField("")
-    val bankAmount = ObservableField("0")
-    val aliAmount = ObservableField("")
-    val wxAmount = ObservableField("")
-    val cashAmount = ObservableField("")
-    val meituanAmount = ObservableField("")
-    val douyinAmount = ObservableField("0")
-    val waimaiAmount = ObservableField("0")
-    val freeAmount = ObservableField("0")
-    val tableTimes = ObservableField("")
+    val billInfo = BillInfo()
 
     var onShopListDataCallback : ((List<ShopEntity>?) -> Unit)? = null
 
@@ -42,50 +34,50 @@ class BillUpdateVm {
         header["Content-Type"] = "application/json"
 
         val json = JSONObject()
-        json.putOpt("shop_id", shopId.get())
-        json.putOpt("date", date.get())
+        json.putOpt("shop_id", billInfo.shopId)
+        json.putOpt("date", billInfo.date)
         json.putOpt("opt_by", "GodQ")
-        json.putOpt("table_times", tableTimes.get())
+        json.putOpt("table_times", billInfo.tableTimes)
         val array = JSONArray()
 
         val bankJson = JSONObject()
         bankJson.putOpt("type", "银行卡")
-        bankJson.putOpt("amount", bankAmount.get())
+        bankJson.putOpt("amount", billInfo.bankAmount)
         array.put(bankJson)
 
         val aliJson = JSONObject()
         aliJson.putOpt("type", "支付宝")
-        aliJson.putOpt("amount", aliAmount.get())
+        aliJson.putOpt("amount", billInfo.aliAmount)
         array.put(aliJson)
 
         val wxJson = JSONObject()
         wxJson.putOpt("type", "微信")
-        wxJson.putOpt("amount", wxAmount.get())
+        wxJson.putOpt("amount", billInfo.wxAmount)
         array.put(wxJson)
 
         val cashJson = JSONObject()
         cashJson.putOpt("type", "现金")
-        cashJson.putOpt("amount", cashAmount.get())
+        cashJson.putOpt("amount", billInfo.cashAmount)
         array.put(cashJson)
 
         val mtJson = JSONObject()
         mtJson.putOpt("type", "美团")
-        mtJson.putOpt("amount", meituanAmount.get())
+        mtJson.putOpt("amount", billInfo.meituanAmount)
         array.put(mtJson)
 
         val dyJson = JSONObject()
         dyJson.putOpt("type", "抖音")
-        dyJson.putOpt("amount", douyinAmount.get())
+        dyJson.putOpt("amount", billInfo.douyinAmount)
         array.put(dyJson)
 
         val wmJson = JSONObject()
         wmJson.putOpt("type", "外卖")
-        wmJson.putOpt("amount", waimaiAmount.get())
+        wmJson.putOpt("amount", billInfo.waimaiAmount)
         array.put(wmJson)
 
         val freeJson = JSONObject()
         freeJson.putOpt("type", "免单")
-        freeJson.putOpt("amount", freeAmount.get())
+        freeJson.putOpt("amount", billInfo.freeAmount)
         array.put(freeJson)
 
         json.putOpt("type_list", array)
@@ -104,25 +96,14 @@ class BillUpdateVm {
     }
 
     private fun invalid(): Boolean {
-        return shopId.get().isNullOrEmpty()
-                || date.get().isNullOrEmpty()
-                || bankAmount.get().isNullOrEmpty()
-                || aliAmount.get().isNullOrEmpty()
-                || wxAmount.get().isNullOrEmpty()
-                || cashAmount.get().isNullOrEmpty()
-                || meituanAmount.get().isNullOrEmpty()
-                || douyinAmount.get().isNullOrEmpty()
-                || waimaiAmount.get().isNullOrEmpty()
-                || freeAmount.get().isNullOrEmpty()
-                || tableTimes.get().isNullOrEmpty()
-
+        return billInfo.invalid()
     }
 
     fun onDateSelectClick() {
         App.getMainActivity()?.apply {
             with(DateSelectDialog(this)) {
                 onSelectCallback = {
-                    date.set(it)
+                    billInfo.date = it
                 }
                 showDialog()
             }
@@ -134,6 +115,33 @@ class BillUpdateVm {
             val data = it.dataToString()
             Timber.tag("shopppp").e(data)
             onShopListDataCallback?.invoke(parseShopList(data))
+        }
+    }
+
+    fun initInfoFromClipBoard() {
+        val clipBoard = (App.getInstance().getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager) ?: return
+
+        if (clipBoard.hasPrimaryClip() && clipBoard.primaryClip?.itemCount ?: 0 > 0) {
+            val text = clipBoard.primaryClip?.getItemAt(0)?.text ?: return
+            initInfo(text.toString())
+        }
+    }
+
+
+    private fun initInfo(text: String) {
+        formatBillInfoFromClipBoard(text)?.apply {
+            val activity = App.getMainActivity()?: return@apply
+            with(AlertDialog.Builder(activity)) {
+                setTitle("提醒")
+                setMessage("检测到剪切板中含有营业额报表信息，是否自动录入？")
+                setPositiveButton("确认录入") { _, _ ->
+                    billInfo.setInfoWithoutId(this@apply)
+                }
+                setNegativeButton("取消") { _, _ ->
+
+                }
+                create().show()
+            }
         }
     }
 }

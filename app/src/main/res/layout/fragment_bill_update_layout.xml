@@ -82,7 +82,7 @@
                         android:gravity="center"
                         android:textSize="18dp"
                         android:textColor="@color/black80"
-                        android:text="@{vm.date}"
+                        android:text="@{vm.billInfo.date}"
                         tools:text="选择日期"
                         android:onClick="@{()->vm.onDateSelectClick()}"
                         android:id="@+id/date_picker_tv"
@@ -125,7 +125,7 @@
 
                 <EditText
                     android:inputType="numberDecimal"
-                    android:text="@={vm.bankAmount}"
+                    android:text="@={vm.billInfo.bankAmount}"
                     android:gravity="center"
                     android:textSize="18dp"
                     android:textColor="@color/black80"
@@ -160,7 +160,7 @@
 
                 <EditText
                     android:inputType="numberDecimal"
-                    android:text="@={vm.aliAmount}"
+                    android:text="@={vm.billInfo.aliAmount}"
 
                     android:gravity="center"
                     android:textSize="18dp"
@@ -196,7 +196,7 @@
 
                 <EditText
                     android:inputType="numberDecimal"
-                    android:text="@={vm.wxAmount}"
+                    android:text="@={vm.billInfo.wxAmount}"
 
                     android:gravity="center"
                     android:textSize="18dp"
@@ -232,7 +232,7 @@
 
                 <EditText
                     android:inputType="numberDecimal"
-                    android:text="@={vm.cashAmount}"
+                    android:text="@={vm.billInfo.cashAmount}"
                     android:gravity="center"
                     android:textSize="18dp"
                     android:textColor="@color/black80"
@@ -267,7 +267,7 @@
 
                 <EditText
                     android:inputType="numberDecimal"
-                    android:text="@={vm.meituanAmount}"
+                    android:text="@={vm.billInfo.meituanAmount}"
                     android:gravity="center"
                     android:textSize="18dp"
                     android:textColor="@color/black80"
@@ -301,7 +301,7 @@
                     android:layout_height="match_parent"/>
 
                 <EditText
-                    android:text="@={vm.douyinAmount}"
+                    android:text="@={vm.billInfo.douyinAmount}"
                     android:inputType="numberDecimal"
                     android:gravity="center"
                     android:textSize="18dp"
@@ -337,7 +337,7 @@
 
                 <EditText
                     android:inputType="numberDecimal"
-                    android:text="@={vm.waimaiAmount}"
+                    android:text="@={vm.billInfo.waimaiAmount}"
                     android:gravity="center"
                     android:textSize="18dp"
                     android:textColor="@color/black80"
@@ -372,7 +372,7 @@
 
                 <EditText
                     android:inputType="numberDecimal"
-                    android:text="@={vm.freeAmount}"
+                    android:text="@={vm.billInfo.freeAmount}"
                     android:gravity="center"
                     android:textSize="18dp"
                     android:textColor="@color/black80"
@@ -407,7 +407,7 @@
 
                 <EditText
                     android:inputType="numberDecimal"
-                    android:text="@={vm.tableTimes}"
+                    android:text="@={vm.billInfo.tableTimes}"
                     android:gravity="center"
                     android:textSize="18dp"
                     android:textColor="@color/black80"

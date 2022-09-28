@@ -13,6 +13,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.godq.keepaccounts.mgrbg.BillMgrHomeFragment
+import com.godq.keepaccounts.mgrbg.update.formatBillInfoFromClipBoard
 import com.godq.keepaccounts.shop.ShopListFragment
 import com.lazylite.mod.App
 import com.lazylite.mod.fragmentmgr.FragmentOperation
@@ -47,6 +48,21 @@ class MainActivity : AppCompatActivity() {
         setAdapter(pairs)
 
         switchMode()
+
+        val text = "9月22号营业额报表\n" +
+                "桌数:10桌\n" +
+                "银行卡:1  ,1.2，4。4元\n" +
+                "支付宝:379元\n" +
+                "微信:619元\n" +
+                "现金: 1  ,1.2，4。4元\n" +
+                "美团:39张1472元\n" +
+                "抖音:1  ,1.2，4。4张1  ,1.2，4。4元\n" +
+                "外卖:1  ,1.2，4。4单1  ,1.2，4。4元\n" +
+                "免单：1  ,1.2，4。4元\n" +
+                "其他:1  ,1.2，4。4元\n" +
+                "支出:826元\n" +
+                "营业额:2470元"
+        formatBillInfoFromClipBoard(text)
     }
 
     fun switchMode(opt:String = GuideController.OPT_INIT) {
