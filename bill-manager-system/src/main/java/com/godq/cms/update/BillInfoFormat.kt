@@ -1,4 +1,4 @@
-package com.godq.keepaccounts.mgrbg.update
+package com.godq.cms.update
 
 import timber.log.Timber
 import java.lang.Exception

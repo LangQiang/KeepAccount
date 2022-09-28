@@ -1,13 +1,8 @@
-package com.godq.keepaccounts.utils
+package com.godq.portal.utils
 
-import com.godq.keepaccounts.billdetail.BillDetailFragment
-import com.godq.keepaccounts.mgrbg.update.BillUpdateFragment
+import com.godq.portal.billdetail.BillDetailFragment
 import com.lazylite.mod.fragmentmgr.FragmentOperation
 
 fun jumpToBillDetail(shopId: String) {
     FragmentOperation.getInstance().showFullFragment(BillDetailFragment.getInstance(shopId))
-}
-
-fun jumpToBillUpdateFragment() {
-    FragmentOperation.getInstance().showFullFragment(BillUpdateFragment())
 }

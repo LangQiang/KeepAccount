@@ -1,4 +1,4 @@
-package com.godq.keepaccounts.shop
+package com.godq.portal.shop
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.godq.keepaccounts.GuideController
-import com.godq.keepaccounts.MainActivity
-import com.godq.keepaccounts.R
-import com.godq.keepaccounts.databinding.FragmentShopListLayoutBinding
-import com.lazylite.mod.App
+import com.godq.deeplink.DeepLinkUtils
+import com.godq.portal.R
+import com.godq.portal.databinding.FragmentShopListLayoutBinding
 import com.lazylite.mod.widget.BaseFragment
 
 class ShopListFragment : BaseFragment() {
@@ -36,7 +34,7 @@ class ShopListFragment : BaseFragment() {
         binding?.titleBar?.setRightTextBtn("切换")
         binding?.titleBar?.setRightColor(R.color.skin_official_blue)
         binding?.titleBar?.setRightListener {
-            (App.getMainActivity() as? MainActivity)?.switchMode(GuideController.OPT_SWITCH)
+            DeepLinkUtils.load("test://open/main/switch").execute()
         }
         binding?.shopListRv?.apply {
             layoutManager = LinearLayoutManager(context)

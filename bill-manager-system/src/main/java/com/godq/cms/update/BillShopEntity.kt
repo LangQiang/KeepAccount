@@ -1,6 +1,6 @@
-package com.godq.cms
+package com.godq.cms.update
 
-data class ShopEntity(
+data class BillShopEntity(
     val id: String,
     val name: String,
     val img: String,

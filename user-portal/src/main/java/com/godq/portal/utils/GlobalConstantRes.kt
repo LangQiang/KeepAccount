@@ -1,4 +1,4 @@
-package com.godq.keepaccounts.utils
+package com.godq.portal.utils
 
 import com.lazylite.mod.imageloader.fresco.config.ImageLoadConfig
 

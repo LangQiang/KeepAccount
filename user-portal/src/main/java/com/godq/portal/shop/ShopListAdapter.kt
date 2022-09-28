@@ -1,8 +1,8 @@
-package com.godq.keepaccounts.shop
+package com.godq.portal.shop
 
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.godq.keepaccounts.R
-import com.godq.keepaccounts.databinding.FragmentItemShopListLayoutBinding
+import com.godq.portal.R
+import com.godq.portal.databinding.FragmentItemShopListLayoutBinding
 import com.lazylite.mod.utils.DataBindBaseViewHolder
 
 class ShopListAdapter(data: List<ShopEntity>?): BaseQuickAdapter<ShopEntity, DataBindBaseViewHolder>(

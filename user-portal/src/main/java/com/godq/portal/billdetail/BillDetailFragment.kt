@@ -1,4 +1,4 @@
-package com.godq.keepaccounts.billdetail
+package com.godq.portal.billdetail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.godq.keepaccounts.R
-import com.lazylite.mod.utils.toast.KwToast
+import com.godq.portal.R
 import com.lazylite.mod.widget.BaseFragment
 import com.lazylite.mod.widget.KwTitleBar
 

@@ -1,8 +1,8 @@
-package com.godq.keepaccounts.mgrbg.update
+package com.godq.cms.update
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import com.godq.keepaccounts.BR
+import com.godq.cms.BR
 
 class BillInfo: BaseObservable() {
 

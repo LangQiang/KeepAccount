@@ -1,4 +1,4 @@
-package com.godq.keepaccounts.shop
+package com.godq.portal.shop
 
 import org.json.JSONObject
 

@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-        <import type="com.godq.keepaccounts.mgrbg.update.DateSelectDialog"/>
+        <import type="com.godq.cms.update.DateSelectDialog"/>
         <variable
             name="dialog"
             type="DateSelectDialog" />

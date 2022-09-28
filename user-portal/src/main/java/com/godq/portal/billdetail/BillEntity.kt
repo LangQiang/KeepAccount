@@ -1,4 +1,4 @@
-package com.godq.keepaccounts.billdetail
+package com.godq.portal.billdetail
 
 import com.chad.library.adapter.base.entity.MultiItemEntity
 

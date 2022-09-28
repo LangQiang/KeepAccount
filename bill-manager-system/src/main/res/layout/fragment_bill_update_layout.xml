@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.godq.keepaccounts.mgrbg.update.BillUpdateVm"/>
+        <import type="com.godq.cms.update.BillUpdateVm"/>
         <variable
             name="vm"
             type="BillUpdateVm" />

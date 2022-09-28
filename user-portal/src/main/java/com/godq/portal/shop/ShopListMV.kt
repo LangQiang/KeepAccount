@@ -1,7 +1,7 @@
-package com.godq.keepaccounts.shop
+package com.godq.portal.shop
 
-import com.godq.keepaccounts.constants.getShopListUrl
-import com.godq.keepaccounts.utils.jumpToBillDetail
+import com.godq.portal.constants.getShopListUrl
+import com.godq.portal.utils.jumpToBillDetail
 import com.lazylite.mod.http.mgr.KwHttpMgr
 import com.lazylite.mod.http.mgr.model.RequestInfo
 import timber.log.Timber

@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.godq.keepaccounts.utils.GlobalConstantRes"/>
-        <import type="com.godq.keepaccounts.shop.ShopEntity"/>
+        <import type="com.godq.portal.utils.GlobalConstantRes"/>
+        <import type="com.godq.portal.shop.ShopEntity"/>
         <variable
             name="itemData"
-            type="ShopEntity" />
+            type="com.godq.portal.shop.ShopEntity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

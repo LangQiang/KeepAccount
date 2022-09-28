@@ -1,4 +1,4 @@
-package com.godq.keepaccounts.mgrbg.update
+package com.godq.cms.update
 
 import android.os.Bundle
 import android.text.SpannableString
@@ -6,9 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import com.godq.keepaccounts.R
-import com.godq.keepaccounts.databinding.FragmentBillUpdateLayoutBinding
-import com.godq.keepaccounts.shop.ShopEntity
+import com.godq.cms.R
+import com.godq.cms.databinding.FragmentBillUpdateLayoutBinding
 import com.lazylite.mod.widget.BaseFragment
 
 class BillUpdateFragment: BaseFragment() {
@@ -33,11 +32,11 @@ class BillUpdateFragment: BaseFragment() {
         binding?.titleBar?.setMainTitle("上传")
 
         binding?.niceSpinner?.apply {
-            setSpinnerTextFormatter { item -> SpannableString((item as? ShopEntity)?.name ?: "未知") }
-            setSelectedTextFormatter { item -> SpannableString((item as? ShopEntity)?.name ?: "未知") }
+            setSpinnerTextFormatter { item -> SpannableString((item as? BillShopEntity)?.name ?: "未知") }
+            setSelectedTextFormatter { item -> SpannableString((item as? BillShopEntity)?.name ?: "未知") }
             setBackgroundColor(ContextCompat.getColor(context, R.color.transparent))
             setOnSpinnerItemSelectedListener { parent, _, position, _ ->
-                vm.billInfo.shopId = (parent.getItemAtPosition(position) as? ShopEntity)?.id ?: ""
+                vm.billInfo.shopId = (parent.getItemAtPosition(position) as? BillShopEntity)?.id ?: ""
             }
         }
 

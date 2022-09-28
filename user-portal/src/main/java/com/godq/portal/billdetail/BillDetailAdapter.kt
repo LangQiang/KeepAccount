@@ -1,9 +1,9 @@
-package com.godq.keepaccounts.billdetail
+package com.godq.portal.billdetail
 
 import com.chad.library.adapter.base.MultipleItemRvAdapter
 import com.chad.library.adapter.base.entity.MultiItemEntity
-import com.godq.keepaccounts.billdetail.provider.BillDetailProvider
-import com.godq.keepaccounts.billdetail.provider.BillGeneralProvider
+import com.godq.portal.billdetail.provider.BillDetailProvider
+import com.godq.portal.billdetail.provider.BillGeneralProvider
 import com.lazylite.mod.utils.DataBindBaseViewHolder
 
 class BillDetailAdapter(data: List<BillEntity>?): MultipleItemRvAdapter<MultiItemEntity, DataBindBaseViewHolder>(

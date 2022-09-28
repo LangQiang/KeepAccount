@@ -1,15 +1,11 @@
-package com.godq.keepaccounts.mgrbg
+package com.godq.cms
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.godq.keepaccounts.GuideController
-import com.godq.keepaccounts.MainActivity
-import com.godq.keepaccounts.R
-import com.godq.keepaccounts.databinding.FragmentBgMgrHomeLayoutBinding
-import com.godq.keepaccounts.utils.jumpToBillUpdateFragment
-import com.lazylite.mod.App
+import com.godq.cms.databinding.FragmentBgMgrHomeLayoutBinding
+import com.godq.deeplink.DeepLinkUtils
 import com.lazylite.mod.widget.BaseFragment
 
 class BillMgrHomeFragment: BaseFragment() {
@@ -31,11 +27,11 @@ class BillMgrHomeFragment: BaseFragment() {
         binding?.titleBar?.setRightTextBtn("切换")
         binding?.titleBar?.setRightColor(R.color.skin_official_blue)
         binding?.titleBar?.setRightListener {
-            (App.getMainActivity() as? MainActivity)?.switchMode(GuideController.OPT_SWITCH)
+            DeepLinkUtils.load("test://open/main/switch").execute()
         }
     }
 
     fun update() {
-        jumpToBillUpdateFragment()
+        DeepLinkUtils.load("test://open/cms/update").execute()
     }
 }

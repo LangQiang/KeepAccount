@@ -1,10 +1,10 @@
-package com.godq.keepaccounts.billdetail.provider
+package com.godq.portal.billdetail.provider
 
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.chad.library.adapter.base.provider.BaseItemProvider
-import com.godq.keepaccounts.R
-import com.godq.keepaccounts.billdetail.BillEntity
-import com.godq.keepaccounts.databinding.FragmentItemBillListLayoutBinding
+import com.godq.portal.billdetail.BillEntity
+import com.godq.portal.R
+import com.godq.portal.databinding.FragmentItemBillListLayoutBinding
 import com.lazylite.mod.utils.DataBindBaseViewHolder
 
 class BillGeneralProvider : BaseItemProvider<MultiItemEntity, DataBindBaseViewHolder>() {

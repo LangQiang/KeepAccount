@@ -1,4 +1,4 @@
-package com.godq.keepaccounts.billdetail
+package com.godq.portal.billdetail
 
 import android.graphics.Canvas
 import android.graphics.Rect

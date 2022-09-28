@@ -1,12 +1,10 @@
-package com.godq.keepaccounts.mgrbg.update
+package com.godq.cms.update
 
 import android.app.AlertDialog
 import android.content.ClipboardManager
 import android.content.Context
-import com.godq.keepaccounts.constants.getShopListUrl
-import com.godq.keepaccounts.constants.getUpdateBillUrl
-import com.godq.keepaccounts.shop.ShopEntity
-import com.godq.keepaccounts.shop.parseShopList
+import com.godq.cms.getShopListUrl
+import com.godq.cms.getUpdateBillUrl
 import com.lazylite.mod.App
 import com.lazylite.mod.fragmentmgr.FragmentOperation
 import com.lazylite.mod.http.mgr.KwHttpMgr
@@ -20,7 +18,7 @@ class BillUpdateVm {
 
     val billInfo = BillInfo()
 
-    var onShopListDataCallback : ((List<ShopEntity>?) -> Unit)? = null
+    var onShopListDataCallback : ((List<BillShopEntity>?) -> Unit)? = null
 
 
     fun onCommitClick() {

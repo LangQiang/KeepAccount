@@ -3,6 +3,10 @@ package com.godq.keepaccounts
 import android.app.Application
 import android.content.Context
 import android.os.Process
+import com.godq.deeplink.DeepLinkConfig
+import com.godq.deeplink.DeepLinkUtils
+import com.godq.deeplink.inject.IExecutor
+import com.godq.threadpool.ThreadPool
 import com.lazylite.mod.global.CommonInit
 import com.lazylite.mod.utils.KwDebug
 import com.lazylite.mod.utils.KwLifecycleCallback
@@ -35,6 +39,14 @@ class KAApp : Application() {
         context = this
         CommonInit.initOnAppCreate(this.applicationContext)
 
+        val config = DeepLinkConfig()
+        config.schemeName = "test"
+        config.iExecutor = IExecutor {
+            ThreadPool.exec {
+                it.run()
+            }
+        }
+        DeepLinkUtils.init(config)
 
 //        ComponentInit.initOnAppCreate(this)
 //        isAgreeProtocolWhenStart = ProtocolUtil.isProtocolDialogAgreed

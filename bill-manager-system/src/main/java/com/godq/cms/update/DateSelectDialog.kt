@@ -1,4 +1,4 @@
-package com.godq.keepaccounts.mgrbg.update
+package com.godq.cms.update
 
 import android.app.Activity
 import android.app.Dialog
@@ -6,13 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
-import com.godq.keepaccounts.R
-import com.godq.keepaccounts.databinding.DialogDateSelectLayoutBinding
+import com.godq.cms.R
+import com.godq.cms.databinding.DialogDateSelectLayoutBinding
 import com.lazylite.mod.dialogqueue.IDialogQueue
 import com.lazylite.mod.dialogqueue.OnDialogQueueDismissListener
 import com.lazylite.mod.utils.DeviceInfo
 import com.lazylite.mod.utils.ScreenUtility
-import com.lazylite.mod.utils.UIHelper
 import timber.log.Timber
 import java.util.*
 
@@ -27,7 +26,7 @@ class DateSelectDialog (private val activity: Activity)
         super.onCreate(savedInstanceState)
         setCancelable(true)
         setCanceledOnTouchOutside(true)
-        initView()?.apply {
+        initView().apply {
             setContentView(this)
         }
 
@@ -36,7 +35,7 @@ class DateSelectDialog (private val activity: Activity)
         }
     }
 
-    private fun initView(): View? {
+    private fun initView(): View {
         val binding =  DialogDateSelectLayoutBinding.inflate(LayoutInflater.from(context))
         binding.dialog = this
 
@@ -81,12 +80,6 @@ class DateSelectDialog (private val activity: Activity)
         } catch (e:Exception) {
 
         }
-    }
-
-
-
-    fun onCloseViewClick() {
-        UIHelper.safeDismissDialog(this)
     }
 
     override fun showDialog() {

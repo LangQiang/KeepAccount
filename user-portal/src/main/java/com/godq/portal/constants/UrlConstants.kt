@@ -1,4 +1,4 @@
-package com.godq.keepaccounts.constants
+package com.godq.portal.constants
 
 const val HOST = "http://150.158.55.208"
 

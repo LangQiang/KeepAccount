@@ -1,8 +1,8 @@
-package com.godq.keepaccounts.billdetail
+package com.godq.portal.billdetail
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
-import com.godq.keepaccounts.constants.getBillListUrl
+import com.godq.portal.constants.getBillListUrl
 import com.lazylite.mod.http.mgr.KwHttpMgr
 import com.lazylite.mod.http.mgr.model.RequestInfo
 import timber.log.Timber
@@ -32,7 +32,8 @@ class BillDetailMV {
         adapter: BaseQuickAdapter<Any, BaseViewHolder>,
         dataList: MutableList<Any>,
         position: Int,
-        itemData: BillEntity) {
+        itemData: BillEntity
+    ) {
         for (i in itemData.subList.indices) {
             dataList.removeAt(position + 1)
         }
