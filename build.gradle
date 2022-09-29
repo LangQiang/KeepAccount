@@ -1,16 +1,17 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from:'version-config.gradle'
 buildscript {
     repositories {
+        maven {
+            url uri('https://s01.oss.sonatype.org/content/repositories/snapshots/')
+        }
         google()
         mavenCentral()
-        maven {
-            url uri('./repo')
-        }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:7.0.0"
+        classpath 'io.github.langqiang:component-plugin:1.1.0-SNAPSHOT'
+        classpath "com.android.tools.build:gradle:7.0.2"
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10'
-        classpath 'com.lq.plugin.init:InitPlugin:1.0.1'
 
 
         // NOTE: Do not place your application dependencies here; they belong
