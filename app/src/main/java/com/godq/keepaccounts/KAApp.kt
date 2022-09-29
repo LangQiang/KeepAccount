@@ -38,7 +38,6 @@ class KAApp : Application() {
     override fun onCreate() {
         super.onCreate()
         context = this
-        CommonInit.initOnAppCreate(this.applicationContext)
 
         val baseConfig = BaseConfig()
         baseConfig.allowProxy = true

@@ -13,10 +13,10 @@
         android:layout_weight="1"
         tools:context=".MainActivity">
 
-        <com.lazylite.mod.widget.vp.NoScrollViewPager
-            android:id="@+id/app_main_vp"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
 
         <FrameLayout
             android:id="@+id/app_fragment_container"

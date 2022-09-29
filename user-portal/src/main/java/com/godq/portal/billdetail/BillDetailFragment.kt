@@ -44,7 +44,6 @@ class BillDetailFragment : BaseFragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.bill_detail_rv)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
-        recyclerView.addItemDecoration(BillDecoration())
 
         adapter.onItemClickListener =
             BaseQuickAdapter.OnItemClickListener { adapter, _, position ->

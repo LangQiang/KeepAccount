@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
 import com.lazylite.mod.App
 import com.lazylite.mod.fragmentmgr.FragmentOperation
 import com.lazylite.mod.fragmentmgr.IHostActivity
@@ -23,7 +24,7 @@ import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
-    private var mViewPager: NoScrollViewPager? = null
+    private var viewPager2: ViewPager2? = null
 
     private val guideController = GuideController()
 
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         bindFragmentOperation()
 
-        mViewPager = findViewById(R.id.app_main_vp)
+        viewPager2 = findViewById(R.id.view_pager2)
 
         navHolder = findViewById(R.id.nav_holder)
 
@@ -51,23 +52,23 @@ class MainActivity : AppCompatActivity() {
         guideController.attachAndChoose(findViewById(R.id.main_guide_view_container), opt) {
             when (it) {
                 GuideController.TYPE_USER -> {
-                    mViewPager?.currentItem = 0
+                    viewPager2?.setCurrentItem(0, false)
                 }
                 GuideController.TYPE_MGR -> {
-                    mViewPager?.currentItem = 1
+                    viewPager2?.setCurrentItem(1, false)
                 }
                 else -> {
-                    mViewPager?.currentItem = 0
+                    viewPager2?.setCurrentItem(0, false)
                 }
             }
         }
     }
 
     private fun setAdapter(fragments: List<Pair<String, Fragment>>) {
-        val mAdapter = HomePageAdapter(supportFragmentManager, fragments)
-        mViewPager?.setCanScroll(false)
-        mViewPager?.offscreenPageLimit = 4
-        mViewPager?.adapter = mAdapter
+        val mAdapter = HomePageAdapter(this, fragments)
+        viewPager2?.isUserInputEnabled = false
+        viewPager2?.offscreenPageLimit = 4
+        viewPager2?.adapter = mAdapter
     }
 
     private fun requestAdapterData(): List<Pair<String, Fragment>> {
