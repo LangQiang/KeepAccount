@@ -38,11 +38,13 @@ class KAApp : Application() {
     override fun onCreate() {
         super.onCreate()
         context = this
+        CommonInit.initOnAppCreate(this.applicationContext)
 
         val baseConfig = BaseConfig()
         baseConfig.allowProxy = true
         baseConfig.deepLinkScheme = "test"
         CommonInit.initOnAppCreate(this.applicationContext, baseConfig)
+
 
 //        ComponentInit.initOnAppCreate(this)
 //        isAgreeProtocolWhenStart = ProtocolUtil.isProtocolDialogAgreed
