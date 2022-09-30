@@ -6,6 +6,7 @@ import android.content.Context
 import com.godq.cms.getShopListUrl
 import com.godq.cms.getUpdateBillUrl
 import com.lazylite.mod.App
+import com.lazylite.mod.config.ConfMgr
 import com.lazylite.mod.fragmentmgr.FragmentOperation
 import com.lazylite.mod.http.mgr.KwHttpMgr
 import com.lazylite.mod.http.mgr.model.RequestInfo
@@ -34,7 +35,7 @@ class BillUpdateVm {
         val json = JSONObject()
         json.putOpt("shop_id", billInfo.shopId)
         json.putOpt("date", billInfo.date)
-        json.putOpt("opt_by", "GodQ")
+        json.putOpt("opt_by", ConfMgr.getStringValue("", "opt_by", ""))
         json.putOpt("table_times", billInfo.tableTimes)
         val array = JSONArray()
 

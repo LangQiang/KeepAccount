@@ -38,6 +38,24 @@
                 android:layout_height="50dp" />
 
         </LinearLayout>
+
+        <EditText
+            android:layout_marginTop="80dp"
+            android:id="@+id/opt_et"
+            android:hint="请输入操作人"
+            android:layout_marginEnd="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+        <TextView
+            android:layout_marginTop="80dp"
+            android:gravity="center"
+            android:text="确认"
+            android:layout_marginEnd="20dp"
+            android:layout_gravity="end"
+            android:id="@+id/opt_comfirm"
+            android:layout_width="60dp"
+            android:layout_height="50dp"/>
     </FrameLayout>
 
 

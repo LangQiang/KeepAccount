@@ -1,6 +1,7 @@
 package com.godq.portal.billdetail
 
 import com.chad.library.adapter.base.entity.MultiItemEntity
+import com.godq.statisticwidget.histogram.IHistogramEntity
 
 class BillEntity(
     val type:Int,
@@ -8,7 +9,7 @@ class BillEntity(
     val date: String,
     val total: Double,
     val tableTimes: Int,
-    val subList:List<BillSubEntity>) : MultiItemEntity {
+    val subList:List<BillSubEntity>) : MultiItemEntity, IHistogramEntity {
 
     companion object {
         const val TYPE_GENERAL = 100
@@ -21,5 +22,13 @@ class BillEntity(
     operator fun not(): BillEntity {
         expand = !expand
         return this
+    }
+
+    override fun getAbscissaText(): String {
+        return date
+    }
+
+    override fun getHistogramProgress(totalLength: Float): Float {
+        return (total / 15000f * totalLength).toFloat()
     }
 }

@@ -49,4 +49,7 @@ dependencies {
     implementation rootProject.ext.base_core
 
     kapt rootProject.ext.base_core_processor
+
+
+    implementation 'io.github.langqiang:StatisticView:1.0.0-SNAPSHOT'
 }
