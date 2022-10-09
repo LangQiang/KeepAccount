@@ -42,19 +42,26 @@ class BillMgrHomeFragment: BaseFragment() {
                 binding?.optEt?.visibility = View.GONE
             }
         }
+        updateOptUI()
     }
 
     fun update() {
         val optBy = ConfMgr.getStringValue("", "opt_by", "")
         if (optBy.isNullOrEmpty()) {
             KwToast.show("未检测到操作人，无法上传")
+        } else {
+            DeepLinkUtils.load("test://open/cms/update").execute()
+        }
+        updateOptUI(optBy)
+    }
+
+    private fun updateOptUI(optBy: String? = ConfMgr.getStringValue("", "opt_by", "")) {
+        if (optBy.isNullOrEmpty()) {
             binding?.optComfirm?.visibility = View.VISIBLE
             binding?.optEt?.visibility = View.VISIBLE
         } else {
             binding?.optComfirm?.visibility = View.GONE
             binding?.optEt?.visibility = View.GONE
-
-            DeepLinkUtils.load("test://open/cms/update").execute()
         }
     }
 }
