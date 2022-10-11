@@ -3,12 +3,8 @@ package com.godq.keepaccounts
 import android.app.Application
 import android.content.Context
 import android.os.Process
-import com.godq.deeplink.DeepLinkConfig
-import com.godq.deeplink.DeepLinkUtils
-import com.godq.deeplink.inject.IExecutor
-import com.godq.threadpool.ThreadPool
+import com.lazylite.bridge.init.ComponentInit
 import com.lazylite.mod.global.BaseConfig
-import com.lazylite.mod.global.CommonInit
 import com.lazylite.mod.utils.KwDebug
 import com.lazylite.mod.utils.KwLifecycleCallback
 
@@ -42,7 +38,7 @@ class KAApp : Application() {
         val baseConfig = BaseConfig()
         baseConfig.allowProxy = true
         baseConfig.deepLinkScheme = "test"
-        CommonInit.initOnAppCreate(this.applicationContext, baseConfig)
+        ComponentInit.initOnAppCreate(this.applicationContext, baseConfig)
 
 
 //        ComponentInit.initOnAppCreate(this)

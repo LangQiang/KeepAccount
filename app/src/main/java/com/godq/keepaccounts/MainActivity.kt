@@ -13,12 +13,14 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
+import com.godq.accountsa.IAccountService
+import com.godq.deeplink.DeepLinkUtils
+import com.lazylite.bridge.router.ServiceImpl
 import com.lazylite.mod.App
 import com.lazylite.mod.fragmentmgr.FragmentOperation
 import com.lazylite.mod.fragmentmgr.IHostActivity
 import com.lazylite.mod.fragmentmgr.OnFragmentStackChangeListener
 import com.lazylite.mod.utils.KwSystemSettingUtils
-import com.lazylite.mod.widget.vp.NoScrollViewPager
 import timber.log.Timber
 
 
@@ -46,6 +48,8 @@ class MainActivity : AppCompatActivity() {
         setAdapter(pairs)
 
         switchMode()
+
+        DeepLinkUtils.load("test://open/account?type=register").execute()
     }
 
     fun switchMode(opt:String = GuideController.OPT_INIT) {

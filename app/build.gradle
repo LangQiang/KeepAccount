@@ -69,6 +69,8 @@ dependencies {
 
     implementation project(':bill-manager-system')
     implementation project(':user-portal')
+    implementation project(':account')
+    implementation project(':account-service-api')
 
     implementation rootProject.ext.base_core
 

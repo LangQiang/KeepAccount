@@ -14,6 +14,6 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="app_AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="app_AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
     </style>
 </resources>

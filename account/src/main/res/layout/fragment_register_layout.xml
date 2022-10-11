@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="com.godq.account.register.RegisterUIState"/>
+        <import type="com.godq.account.register.RegistrationVM"/>
+        <variable
+            name="vm"
+            type="RegistrationVM" />
+    </data>
+
+    <FrameLayout
+        android:background="@color/main_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_marginStart="15dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.lazylite.mod.widget.KwTitleBar
+                android:id="@+id/title_bar"
+                style="@style/LRLiteBase_TitleBar"
+                android:tag="titleBar"
+                android:layout_width="match_parent"/>
+            <ImageView
+                android:onClick="@{() -> vm.close()}"
+                android:padding="15dp"
+                android:src="@drawable/account_close_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="30dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="注册"
+                android:textSize="28dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:hint="用户名"
+                        android:text="@={vm.registerUIState.accountName}"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginTop="10dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:passwordToggleEnabled="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:text="@={vm.registerUIState.password}"
+                        android:hint="密码"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginTop="10dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:passwordToggleEnabled="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:hint="确认密码"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginTop="10dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:text="@={vm.registerUIState.nickName}"
+                        android:hint="昵称"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:text="注册"
+                android:onClick="@{()->vm.register()}"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"/>
+        </LinearLayout>
+
+
+        <com.lazylite.mod.widget.loading.CommonLoadingView
+            android:background="@color/black20"
+            android:clickable="true"
+            android:visibility="@{vm.registerUIState.pageState == RegisterUIState.PAGE_TYPE_LOADING ? View.VISIBLE : View.GONE}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </FrameLayout>
+</layout>
