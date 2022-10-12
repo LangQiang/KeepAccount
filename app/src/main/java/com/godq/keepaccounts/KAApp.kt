@@ -3,6 +3,8 @@ package com.godq.keepaccounts
 import android.app.Application
 import android.content.Context
 import android.os.Process
+import com.godq.compose.UICompose
+import com.godq.compose.UIComposeConfig
 import com.lazylite.bridge.init.ComponentInit
 import com.lazylite.mod.global.BaseConfig
 import com.lazylite.mod.utils.KwDebug
@@ -39,6 +41,8 @@ class KAApp : Application() {
         baseConfig.allowProxy = true
         baseConfig.deepLinkScheme = "test"
         ComponentInit.initOnAppCreate(this.applicationContext, baseConfig)
+
+
 
 
 //        ComponentInit.initOnAppCreate(this)

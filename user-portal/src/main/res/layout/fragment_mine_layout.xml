@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <View
+            android:id="@+id/title_bar"
+            android:tag="titleBar"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"/>
+
+        <LinearLayout
+            android:layout_alignParentEnd="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp">
+            <com.godq.compose.iconview.IconView
+                android:padding="5dp"
+                android:id="@+id/iv_setting"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/icon_setting"
+                android:textSize="27dp"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

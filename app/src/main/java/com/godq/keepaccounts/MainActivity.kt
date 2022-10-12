@@ -13,9 +13,10 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import com.godq.accountsa.IAccountService
-import com.godq.deeplink.DeepLinkUtils
-import com.lazylite.bridge.router.ServiceImpl
+import com.godq.compose.botnav.BottomItemData
+import com.godq.compose.botnav.BottomLayoutView
+import com.godq.compose.botnav.BottomNavAdapter
+import com.godq.compose.botnav.wrapper.ViewPager2Wrapper
 import com.lazylite.mod.App
 import com.lazylite.mod.fragmentmgr.FragmentOperation
 import com.lazylite.mod.fragmentmgr.IHostActivity
@@ -28,9 +29,10 @@ class MainActivity : AppCompatActivity() {
 
     private var viewPager2: ViewPager2? = null
 
-    private val guideController = GuideController()
-
     private var navHolder: View? = null
+
+    private var bottomLayoutView: BottomLayoutView? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,41 +46,47 @@ class MainActivity : AppCompatActivity() {
 
         navHolder = findViewById(R.id.nav_holder)
 
-        val pairs: List<Pair<String, Fragment>> = requestAdapterData()
-        setAdapter(pairs)
+        bottomLayoutView= findViewById(R.id.bottom_layout)
 
-        switchMode()
 
-        DeepLinkUtils.load("test://open/account?type=register").execute()
-    }
+        val pairs: List<Pair<BottomItemData, Fragment>> = requestAdapterData()
 
-    fun switchMode(opt:String = GuideController.OPT_INIT) {
-        guideController.attachAndChoose(findViewById(R.id.main_guide_view_container), opt) {
-            when (it) {
-                GuideController.TYPE_USER -> {
-                    viewPager2?.setCurrentItem(0, false)
+
+        if (!pairs.isNullOrEmpty()) {
+            bottomLayoutView?.mAdapter = BottomNavAdapter(pairs)
+            bottomLayoutView?.bind(ViewPager2Wrapper(viewPager2))
+            viewPager2?.offscreenPageLimit = 4
+            setAdapter(pairs)
+            bottomLayoutView?.setOnTabClickListener(object : BottomLayoutView.OnTabClickListener{
+                override fun onClick(view: View,pos:Int) {
+                    viewPager2?.setCurrentItem(pos, false)
                 }
-                GuideController.TYPE_MGR -> {
-                    viewPager2?.setCurrentItem(1, false)
-                }
-                else -> {
-                    viewPager2?.setCurrentItem(0, false)
-                }
-            }
+
+            })
         }
+
+//        DeepLinkUtils.load("test://open/account?type=register").execute()
     }
 
-    private fun setAdapter(fragments: List<Pair<String, Fragment>>) {
+    private fun setAdapter(fragments: List<Pair<BottomItemData, Fragment>>) {
         val mAdapter = HomePageAdapter(this, fragments)
         viewPager2?.isUserInputEnabled = false
         viewPager2?.offscreenPageLimit = 4
         viewPager2?.adapter = mAdapter
     }
 
-    private fun requestAdapterData(): List<Pair<String, Fragment>> {
-        val data = ArrayList<Pair<String, Fragment>>()
-        data.add(Pair("shop_list",MainLinkHelper.getUserHomeFragment()))
-        data.add(Pair("bg_mgr_home",MainLinkHelper.getCMSHomeFragment()))
+    private fun requestAdapterData(): List<Pair<BottomItemData, Fragment>> {
+        val data = ArrayList<Pair<BottomItemData, Fragment>>()
+        MainLinkHelper.getUserHomeFragment()?.apply {
+            data.add(Pair(BottomItemData("first",R.string.bottom_index_select_icon,
+                R.string.bottom_index_normal_icon),this))
+        }
+
+        MainLinkHelper.getMineFragment()?.apply {
+            data.add(Pair(BottomItemData("last",R.string.bottom_mine_select_icon,
+                R.string.bottom_mine_normal_icon), this))
+        }
+
         return data
     }
 

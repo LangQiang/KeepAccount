@@ -4,11 +4,12 @@ import android.util.Pair
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.godq.compose.botnav.BottomItemData
 
-class HomePageAdapter(parent: FragmentActivity, fragments: List<Pair<String, Fragment>>) :
+class HomePageAdapter(parent: FragmentActivity, fragments: List<Pair<BottomItemData, Fragment>>) :
     FragmentStateAdapter(parent) {
 
-    private val mFragments: List<Pair<String, Fragment>> = fragments
+    private val mFragments: List<Pair<BottomItemData, Fragment>> = fragments
 
     override fun getItemCount(): Int {
         return mFragments.size

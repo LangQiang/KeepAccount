@@ -26,11 +26,6 @@ class BillMgrHomeFragment: BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.titleBar?.setRightTextBtn("切换")
-        binding?.titleBar?.setRightColor(R.color.skin_official_blue)
-        binding?.titleBar?.setRightListener {
-            DeepLinkUtils.load("test://open/main/switch").execute()
-        }
 
         binding?.optComfirm?.setOnClickListener {
             val text = binding?.optEt?.text?.toString()

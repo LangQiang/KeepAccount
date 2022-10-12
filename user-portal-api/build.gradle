@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
-    id 'kotlin-kapt'
 }
 
 android {
@@ -13,7 +12,6 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -30,24 +28,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    dataBinding { // 开启 DataBinding
-        enabled true
-    }
 }
 
 dependencies {
-
-    implementation rootProject.ext.core_ktx
-
-    implementation rootProject.ext.appcompat
-
-    implementation rootProject.ext.material
-
-    kapt rootProject.ext.databinding_compiler // DataBinding 注解处理依赖
-
-    implementation project(':ComposeResource')
-
-    kapt rootProject.ext.base_core_processor
-
-    implementation project(':account-service-api')
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.3.0'
 }

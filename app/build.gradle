@@ -69,10 +69,12 @@ dependencies {
 
     implementation project(':bill-manager-system')
     implementation project(':user-portal')
+    implementation project(':user-portal-api')
     implementation project(':account')
     implementation project(':account-service-api')
+    implementation project(':ComposeResource')
 
-    implementation rootProject.ext.base_core
+
 
     kapt rootProject.ext.base_core_processor
 

@@ -45,9 +45,7 @@ dependencies {
     kapt rootProject.ext.databinding_compiler // DataBinding 注解处理依赖
 
     implementation project(':nice-spinner')
-
-
-    implementation rootProject.ext.base_core
+    implementation project(':ComposeResource')
 
     kapt rootProject.ext.base_core_processor
 }

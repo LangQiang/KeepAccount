@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">双门洞</string>
+
+    <!--    首页底部icon-->
+    <string name="bottom_index_select_icon">&#xe6e0;</string>
+    <string name="bottom_index_normal_icon">&#xe6e1;</string>
+    <string name="bottom_mine_select_icon">&#xe6d8;</string>
+    <string name="bottom_mine_normal_icon">&#xe6dc;</string>
 </resources>

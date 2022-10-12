@@ -31,11 +31,6 @@ class ShopListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.titleBar?.setMainTitle("店铺列表")
-        binding?.titleBar?.setRightTextBtn("切换")
-        binding?.titleBar?.setRightColor(R.color.skin_official_blue)
-        binding?.titleBar?.setRightListener {
-            DeepLinkUtils.load("test://open/main/switch").execute()
-        }
         binding?.shopListRv?.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = this@ShopListFragment.adapter

@@ -15,20 +15,21 @@
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager2"
+            android:layout_marginBottom="@dimen/lrlite_base_bottom_height"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+
+        <com.godq.compose.botnav.BottomLayoutView
+            android:layout_gravity="bottom"
+            android:background="@color/bottom_bg"
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/lrlite_base_bottom_height"/>
 
         <FrameLayout
             android:id="@+id/app_fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
-        <FrameLayout
-            android:id="@+id/main_guide_view_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </FrameLayout>
-
 
     </FrameLayout>
 

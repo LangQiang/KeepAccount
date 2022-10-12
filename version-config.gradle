@@ -35,5 +35,6 @@ ext {
 
     base_core = 'io.github.langqiang:base-core:1.5.2-SNAPSHOT'
     base_core_processor = 'io.github.langqiang:processor:1.0.0-SNAPSHOT'
+    ui_compose = 'io.github.langqiang:UICompose:1.0.0-SNAPSHOT'
 
 }
