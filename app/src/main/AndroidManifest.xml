@@ -15,7 +15,7 @@
         android:theme="@style/Theme.KeepAccounts">
         <activity
             android:theme="@style/app_AppTheme"
-            android:name=".MainActivity"
+            android:name=".main.MainActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"
             android:exported="true">
             <intent-filter>

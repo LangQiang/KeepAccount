@@ -20,7 +20,7 @@
             android:id="@+id/img_iv"
             android:layout_marginStart="10dp"
             frescoImgUrl="@{itemData.img}"
-            frescoConfig="@{GlobalConstantRes.commonImageConfig}"
+            frescoConfig="@{GlobalConstantRes.INSTANCE.commonImageConfig}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -1,33 +1,34 @@
-package com.godq.account.register.inject
+package com.godq.account.login.repository.inject
 
+import com.godq.account.AccountInfo
 import com.godq.account.getRegisterUrl
-import com.godq.account.register.repository.RegisterInfo
-import com.godq.account.register.repository.RegisterRemoteDataSource
+import com.godq.account.login.repository.LoginInfo
+import com.godq.account.login.repository.LoginLocalDataSource
 import com.lazylite.mod.http.mgr.KwHttpMgr
 import com.lazylite.mod.http.mgr.model.RequestInfo
 import org.json.JSONObject
 import timber.log.Timber
 
-class RegisterApiImpl: RegisterRemoteDataSource.IRegisterApi {
+class LoginLocalApiImpl: LoginLocalDataSource.ILoginApi {
 
-    override fun register(registerInfo: RegisterInfo): Boolean {
+    override fun login(loginInfo: LoginInfo): AccountInfo {
         val header = mapOf("Content-Type" to "application/json")
         val json = JSONObject()
-        json.putOpt("account_name", registerInfo.accountName)
-        json.putOpt("pass_word", registerInfo.password)
-        json.putOpt("nick_name", registerInfo.nickName)
+        json.putOpt("account_name", loginInfo.accountName)
+        json.putOpt("pass_word", loginInfo.password)
         val req = RequestInfo.newPost(getRegisterUrl(), header, json.toString().toByteArray())
 
         KwHttpMgr.getInstance().kwHttpFetch.post(req)?.apply {
-            if (!isSuccessful) return false
+            if (!isSuccessful) return AccountInfo()
             return try {
                 val retData = dataToString()
-                Timber.tag("account").d(retData)
+                Timber.tag("login").d(retData)
                 JSONObject(retData).optInt("code") == 200
+                AccountInfo()
             } catch (e: Exception) {
-                false
+                AccountInfo()
             }
         }
-        return false
+        return AccountInfo()
     }
 }

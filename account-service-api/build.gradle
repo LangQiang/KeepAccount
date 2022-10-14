@@ -31,5 +31,6 @@ android {
 }
 
 dependencies {
+    compileOnly project(':ComposeResource')
 
 }

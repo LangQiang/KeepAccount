@@ -1,4 +1,4 @@
-package com.godq.keepaccounts
+package com.godq.keepaccounts.main
 
 import android.annotation.TargetApi
 import android.graphics.Color
@@ -17,6 +17,8 @@ import com.godq.compose.botnav.BottomItemData
 import com.godq.compose.botnav.BottomLayoutView
 import com.godq.compose.botnav.BottomNavAdapter
 import com.godq.compose.botnav.wrapper.ViewPager2Wrapper
+import com.godq.keepaccounts.MainLinkHelper
+import com.godq.keepaccounts.R
 import com.lazylite.mod.App
 import com.lazylite.mod.fragmentmgr.FragmentOperation
 import com.lazylite.mod.fragmentmgr.IHostActivity
@@ -43,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         bindFragmentOperation()
 
         viewPager2 = findViewById(R.id.view_pager2)
+        viewPager2?.isSaveEnabled = false
 
         navHolder = findViewById(R.id.nav_holder)
 
@@ -78,13 +81,15 @@ class MainActivity : AppCompatActivity() {
     private fun requestAdapterData(): List<Pair<BottomItemData, Fragment>> {
         val data = ArrayList<Pair<BottomItemData, Fragment>>()
         MainLinkHelper.getUserHomeFragment()?.apply {
-            data.add(Pair(BottomItemData("first",R.string.bottom_index_select_icon,
-                R.string.bottom_index_normal_icon),this))
+            data.add(Pair(BottomItemData("首页", R.string.bottom_index_select_icon,
+                R.string.bottom_index_normal_icon
+            ),this))
         }
 
         MainLinkHelper.getMineFragment()?.apply {
-            data.add(Pair(BottomItemData("last",R.string.bottom_mine_select_icon,
-                R.string.bottom_mine_normal_icon), this))
+            data.add(Pair(BottomItemData("我的", R.string.bottom_mine_select_icon,
+                R.string.bottom_mine_normal_icon
+            ), this))
         }
 
         return data

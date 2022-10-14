@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="com.godq.portal.utils.GlobalConstantRes"/>
+        <import type="com.godq.portal.mine.MineHomeVM"/>
+        <variable
+            name="vm"
+            type="MineHomeVM" />
     </data>
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <View
@@ -15,19 +21,64 @@
             android:layout_width="match_parent"/>
 
         <LinearLayout
-            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="45dp">
             <com.godq.compose.iconview.IconView
                 android:padding="5dp"
+                android:layout_marginEnd="15dp"
                 android:id="@+id/iv_setting"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/icon_setting"
+                android:text="@string/mine_header_setting_icon"
                 android:textSize="27dp"/>
         </LinearLayout>
 
-    </RelativeLayout>
+        <LinearLayout
+
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="110dp">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                frescoImgUrl="@{vm.mineHomeUIState.mineHomeTitleImg}"
+                frescoConfig="@{GlobalConstantRes.INSTANCE.mineHeadImageConfig}"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_gravity="center_vertical"
+                android:layout_width="90dp"
+                android:layout_height="90dp"/>
+
+            <LinearLayout
+                android:onClick="@{()->vm.openLoginPage()}"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    tools:text="点击登录"
+                    android:textSize="26dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:text="@{vm.mineHomeUIState.mineHomeTitleName}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    tools:text="id:未知"
+                    android:textSize="18dp"
+                    android:text="@{vm.mineHomeUIState.mineHomeTitleID}"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black60"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
 </layout>

@@ -17,6 +17,7 @@ class LoginFragment: BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentLoginLayoutBinding.inflate(LayoutInflater.from(context))
+        binding?.vm = LoginVM()
         return binding?.root
     }
 }
