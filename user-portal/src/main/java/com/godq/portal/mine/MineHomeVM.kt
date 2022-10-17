@@ -13,12 +13,12 @@ class MineHomeVM : LifecycleEventObserver {
 
     private val accountObserver = object : IAccountService.IAccountObserver {
         override fun onLogin() {
-            Timber.tag("test").e("onLogin")
+            Timber.tag("account").e("onLogin")
             updateLoginUI()
         }
 
         override fun onLogout() {
-            Timber.tag("test").e("onLogout")
+            Timber.tag("account").e("onLogout")
             updateLoginUI()
         }
 
@@ -58,10 +58,17 @@ class MineHomeVM : LifecycleEventObserver {
             Lifecycle.Event.ON_DESTROY -> {
                 MessageManager.getInstance().detachMessage(IAccountService.IAccountObserver.EVENT_ID, accountObserver)
             }
+//            Lifecycle.Event.ON_RESUME -> {
+//                updateLoginUI()
+//            }
             else -> {
                 //ignore
             }
         }
+    }
+
+    fun gotoSettingPage() {
+        DeepLinkUtils.load("test://open/cms/update").execute()
     }
 
 }

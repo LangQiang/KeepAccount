@@ -26,6 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="45dp">
             <com.godq.compose.iconview.IconView
+                android:onClick="@{()->vm.gotoSettingPage()}"
                 android:padding="5dp"
                 android:layout_marginEnd="15dp"
                 android:id="@+id/iv_setting"

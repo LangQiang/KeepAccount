@@ -12,6 +12,7 @@ class AccountInit : Init() {
 
     override fun init(p0: Context?) {
         Timber.tag("test").e("AccountInit#init invoke!")
+        RepositorySFactory.getLoginRepository().autoLogin()
     }
 
     override fun initAfterAgreeProtocol(p0: Context?) {

@@ -22,7 +22,7 @@ class RegisterApiImpl: RegisterRemoteDataSource.IRegisterApi {
             if (!isSuccessful) return false
             return try {
                 val retData = dataToString()
-                Timber.tag("account").d(retData)
+                Timber.tag("account").e(retData)
                 JSONObject(retData).optInt("code") == 200
             } catch (e: Exception) {
                 false

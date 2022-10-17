@@ -22,7 +22,7 @@ class LoginRemoteApiImpl: LoginRemoteDataSource.ILoginApi {
         KwHttpMgr.getInstance().kwHttpFetch.post(req)?.apply {
             if (!isSuccessful) return null
             val retData = dataToString()
-            Timber.tag("account").d(retData)
+            Timber.tag("account").e(retData)
             //{"code": 200, "msg": "success", "data": {"token": "96ace6adf2c14683aa3d35aea64eade6", "nick_name": "GOD-Q", "user_id": "49152011"}}
             try {
                 val jsonObj = JSONObject(retData)

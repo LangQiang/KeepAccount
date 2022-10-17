@@ -5,11 +5,11 @@ import com.godq.accountsa.IAccountService
 
 class AccountService : IAccountService{
     override fun isLogin(): Boolean {
-        return false
+        return RepositorySFactory.getLoginRepository().getAccountInfoCache().isLogin()
     }
 
     override fun getAccountInfo(): IAccountInfo {
-        return AccountInfo()
+        return RepositorySFactory.getLoginRepository().getAccountInfoCache()
     }
 
 

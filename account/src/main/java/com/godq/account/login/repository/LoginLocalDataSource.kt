@@ -4,9 +4,9 @@ import com.godq.account.AccountInfo
 
 class LoginLocalDataSource(private val api: ILoginApi) {
 
-    fun login(loginInfo: LoginInfo): AccountInfo = api.login(loginInfo)
+    fun login(): AccountInfo = api.login()
 
     interface ILoginApi {
-        fun login(loginInfo: LoginInfo): AccountInfo
+        fun login(): AccountInfo
     }
 }
