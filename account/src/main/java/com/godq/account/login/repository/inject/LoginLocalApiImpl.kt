@@ -12,4 +12,8 @@ class LoginLocalApiImpl: LoginLocalDataSource.ILoginApi {
             return this
         }
     }
+
+    override fun save(accountInfo: AccountInfo) {
+        ConfMgr.setStringValue("", "account_info", accountInfo.toJson(), false)
+    }
 }

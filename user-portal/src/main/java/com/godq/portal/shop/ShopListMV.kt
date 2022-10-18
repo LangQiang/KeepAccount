@@ -13,7 +13,7 @@ class ShopListMV {
     fun requestShopList() {
         KwHttpMgr.getInstance().kwHttpFetch.asyncGet(RequestInfo.newGet(getShopListUrl())) {
             val data = it.dataToString()
-            Timber.tag("shopppp").e(data)
+            Timber.tag("shopppp").e("url:${it.finalRequestUrl}\n$data")
             onShopListDataCallback?.invoke(parseShopList(data))
         }
     }

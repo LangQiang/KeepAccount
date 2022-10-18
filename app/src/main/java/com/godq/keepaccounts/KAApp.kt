@@ -9,6 +9,7 @@ import com.lazylite.bridge.init.ComponentInit
 import com.lazylite.mod.global.BaseConfig
 import com.lazylite.mod.utils.KwDebug
 import com.lazylite.mod.utils.KwLifecycleCallback
+import kotlin.system.exitProcess
 
 class KAApp : Application() {
 
@@ -29,7 +30,7 @@ class KAApp : Application() {
         @JvmStatic fun exitApp() {
             KwDebug.mustMainThread()
             Process.killProcess(Process.myPid())
-            System.exit(0)
+            exitProcess(0)
         }
     }
 

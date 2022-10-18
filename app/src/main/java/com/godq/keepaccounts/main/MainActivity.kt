@@ -25,6 +25,7 @@ import com.lazylite.mod.fragmentmgr.IHostActivity
 import com.lazylite.mod.fragmentmgr.OnFragmentStackChangeListener
 import com.lazylite.mod.utils.KwSystemSettingUtils
 import timber.log.Timber
+import java.security.MessageDigest
 
 
 class MainActivity : AppCompatActivity() {
@@ -35,10 +36,38 @@ class MainActivity : AppCompatActivity() {
 
     private var bottomLayoutView: BottomLayoutView? = null
 
+    fun getMD5(salt:String, data: String): String {
+        try {
+            val messageDigest = MessageDigest.getInstance("MD5")
+            messageDigest.update(salt.toByteArray())
+            messageDigest.update(data.toByteArray())
+            val byteArray = messageDigest.digest()
+            val md5StrBuff = StringBuffer()
+            for (i in byteArray.indices) {
+                if (Integer.toHexString(0xFF and byteArray[i].toInt()).length == 1) md5StrBuff.append(
+                    "0"
+                ).append(
+                    Integer.toHexString(0xFF and byteArray[i].toInt())
+                ) else md5StrBuff.append(
+                    Integer.toHexString(
+                        0xFF and byteArray[i]
+                            .toInt()
+                    )
+                )
+            }
+            Timber.tag("md5").e(md5StrBuff.toString())
+            return md5StrBuff.toString()
+        } catch (e: Exception) {
 
+        }
+        return ""
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(null)
+        getMD5("857", "1668764268000#1234")
+        getMD5("857", "1668764268000#1234")
+        getMD5("857", "1668764268000#1234")
         App.setMainActivity(this)
         setCustomTheme()
         setContentView(R.layout.activity_main)

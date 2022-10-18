@@ -5,6 +5,7 @@ import android.util.Pair
 import com.godq.accountsa.IAccountService
 import com.lazylite.annotationlib.AutoInit
 import com.lazylite.bridge.init.Init
+import com.lazylite.mod.http.mgr.KwHttpMgr
 import timber.log.Timber
 
 @AutoInit
@@ -12,6 +13,7 @@ class AccountInit : Init() {
 
     override fun init(p0: Context?) {
         Timber.tag("test").e("AccountInit#init invoke!")
+        KwHttpMgr.getInstance().addCommonParamProvider(HttpCommonParamProvider)
         RepositorySFactory.getLoginRepository().autoLogin()
     }
 

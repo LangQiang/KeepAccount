@@ -6,7 +6,10 @@ class LoginLocalDataSource(private val api: ILoginApi) {
 
     fun login(): AccountInfo = api.login()
 
+    fun save(accountInfo: AccountInfo) = api.save(accountInfo)
+
     interface ILoginApi {
         fun login(): AccountInfo
+        fun save(accountInfo: AccountInfo)
     }
 }

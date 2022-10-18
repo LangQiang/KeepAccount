@@ -1,8 +1,8 @@
 package com.godq.account.login.repository
 
 import com.godq.account.AccountInfo
+import com.godq.account.HttpCommonParamProvider
 import com.godq.accountsa.IAccountService
-import com.lazylite.mod.config.ConfMgr
 import com.lazylite.mod.messagemgr.MessageManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -16,9 +16,14 @@ class LoginRepository (
     private val accountInfo = AccountInfo()
 
     fun autoLogin() {
+        //更新内存中账号信息
         accountInfo.set(loginLocalDataSource.login())
         if (!accountInfo.isLogin()) return
-
+        //设置通用header
+        HttpCommonParamProvider.updateHeader("token", accountInfo.mToken)
+        //设置通用queryParam
+        HttpCommonParamProvider.updateQueryParam("user_id", accountInfo.mUserId)
+        //全局广播登录消息
         MessageManager.getInstance().asyncNotify(IAccountService.IAccountObserver.EVENT_ID,
             object : MessageManager.Caller<IAccountService.IAccountObserver>() {
                 override fun call() {
@@ -32,9 +37,16 @@ class LoginRepository (
             loginRemoteDataSource.login(loginInfo)
         }?.apply {
             Timber.tag("account").e(this.mToken)
+            //更新内存中账号信息
             accountInfo.set(this)
             if (!accountInfo.isLogin()) return@apply
-            ConfMgr.setStringValue("", "account_info", accountInfo.toJson(), false)
+            //设置通用header
+            HttpCommonParamProvider.updateHeader("token", accountInfo.mToken)
+            //设置通用queryParam
+            HttpCommonParamProvider.updateQueryParam("user_id", accountInfo.mUserId)
+            //本地持久化
+            loginLocalDataSource.save(accountInfo)
+            //全局广播登录消息
             MessageManager.getInstance().asyncNotify(
                 IAccountService.IAccountObserver.EVENT_ID,
                 object : MessageManager.Caller<IAccountService.IAccountObserver>() {
