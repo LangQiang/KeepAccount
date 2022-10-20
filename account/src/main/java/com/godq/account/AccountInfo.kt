@@ -17,6 +17,10 @@ class AccountInfo: IAccountInfo {
         return mNickname
     }
 
+    override fun getToken(): String {
+        return mToken
+    }
+
     override fun isLogin(): Boolean = mUserId.isNotEmpty() && mToken.isNotEmpty()
 
     fun set(accountInfo: AccountInfo) {

@@ -7,6 +7,7 @@ import com.godq.compose.UICompose
 import com.godq.compose.UIComposeConfig
 import com.lazylite.bridge.init.ComponentInit
 import com.lazylite.mod.global.BaseConfig
+import com.lazylite.mod.http.mgr.KwHttpMgr
 import com.lazylite.mod.utils.KwDebug
 import com.lazylite.mod.utils.KwLifecycleCallback
 import kotlin.system.exitProcess
@@ -42,6 +43,7 @@ class KAApp : Application() {
         baseConfig.allowProxy = true
         baseConfig.deepLinkScheme = "test"
         ComponentInit.initOnAppCreate(this.applicationContext, baseConfig)
+        KwHttpMgr.getInstance().addCommonParamProvider(AppCommonParamProvider)
 
 
 

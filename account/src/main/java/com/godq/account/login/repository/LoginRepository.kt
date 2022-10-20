@@ -1,7 +1,7 @@
 package com.godq.account.login.repository
 
 import com.godq.account.AccountInfo
-import com.godq.account.HttpCommonParamProvider
+import com.godq.account.AccountCommonParamProvider
 import com.godq.accountsa.IAccountService
 import com.lazylite.mod.messagemgr.MessageManager
 import kotlinx.coroutines.Dispatchers
@@ -20,9 +20,9 @@ class LoginRepository (
         accountInfo.set(loginLocalDataSource.login())
         if (!accountInfo.isLogin()) return
         //设置通用header
-        HttpCommonParamProvider.updateHeader("token", accountInfo.mToken)
+        AccountCommonParamProvider.updateHeader("token", accountInfo.mToken)
         //设置通用queryParam
-        HttpCommonParamProvider.updateQueryParam("user_id", accountInfo.mUserId)
+        AccountCommonParamProvider.updateQueryParam("user_id", accountInfo.mUserId)
         //全局广播登录消息
         MessageManager.getInstance().asyncNotify(IAccountService.IAccountObserver.EVENT_ID,
             object : MessageManager.Caller<IAccountService.IAccountObserver>() {
@@ -41,9 +41,9 @@ class LoginRepository (
             accountInfo.set(this)
             if (!accountInfo.isLogin()) return@apply
             //设置通用header
-            HttpCommonParamProvider.updateHeader("token", accountInfo.mToken)
+            AccountCommonParamProvider.updateHeader("token", accountInfo.mToken)
             //设置通用queryParam
-            HttpCommonParamProvider.updateQueryParam("user_id", accountInfo.mUserId)
+            AccountCommonParamProvider.updateQueryParam("user_id", accountInfo.mUserId)
             //本地持久化
             loginLocalDataSource.save(accountInfo)
             //全局广播登录消息

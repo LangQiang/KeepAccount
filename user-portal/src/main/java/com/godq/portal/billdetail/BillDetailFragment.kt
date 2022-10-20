@@ -1,5 +1,6 @@
 package com.godq.portal.billdetail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +10,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.godq.deeplink.DeepLinkUtils
 import com.godq.portal.R
 import com.godq.statisticwidget.histogram.HistogramView
 import com.lazylite.mod.widget.BaseFragment
@@ -45,6 +45,7 @@ class BillDetailFragment : BaseFragment() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -81,6 +82,10 @@ class BillDetailFragment : BaseFragment() {
         vm.onBillListDataCallback = {
             adapter.setNewData(it)
             histogramView?.data = it
+        }
+
+        vm.onHolidayCallback = {
+            adapter.notifyDataSetChanged()
         }
 
         vm.requestShopList(shopId)

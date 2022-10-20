@@ -9,6 +9,8 @@ class BillEntity(
     val date: String,
     val total: Double,
     val tableTimes: Int,
+    val optBy: String,
+    val week: String,
     val subList:List<BillSubEntity>) : MultiItemEntity, IHistogramEntity {
 
     companion object {

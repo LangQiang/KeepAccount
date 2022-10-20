@@ -3,20 +3,40 @@ package com.godq.portal.billdetail
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.godq.portal.constants.getBillListUrl
+import com.godq.portal.utils.HolidayRepo
 import com.lazylite.mod.http.mgr.KwHttpMgr
 import com.lazylite.mod.http.mgr.model.RequestInfo
+import kotlinx.coroutines.*
 import timber.log.Timber
 
 class BillDetailMV {
 
+    private val scope = CoroutineScope(Job() + Dispatchers.Main)
+
     var onBillListDataCallback : ((List<BillEntity>?) -> Unit)? = null
+    var onHolidayCallback : (() -> Unit)? = null
 
     fun requestShopList(shopId: String?) {
         shopId?: return
-        KwHttpMgr.getInstance().kwHttpFetch.asyncGet(RequestInfo.newGet(getBillListUrl(shopId))) {
-            val data = it.dataToString()
-            Timber.tag("shopppp").e(data)
-            onBillListDataCallback?.invoke(parseBillDetailList(data))
+        scope.launch {
+            val billDetailList = withContext(Dispatchers.IO) {
+                val response = KwHttpMgr.getInstance().kwHttpFetch.get(RequestInfo.newGet(getBillListUrl(shopId)))
+                if (response?.isSuccessful == false) return@withContext null
+                val data = response.dataToString()
+                Timber.tag("shopppp").e(data)
+                parseBillDetailList(data)
+            }
+            if (billDetailList.isNullOrEmpty()) return@launch
+            onBillListDataCallback?.invoke(billDetailList)
+
+            //获取holiday信息
+            val startDate = billDetailList.first().date
+            val endDate = billDetailList.last().date
+            val holidayStateSuccess = withContext(Dispatchers.IO) {
+                HolidayRepo.fetchHolidayStateList(startDate, endDate)
+            }
+            if (!holidayStateSuccess) return@launch
+            onHolidayCallback?.invoke()
         }
     }
 

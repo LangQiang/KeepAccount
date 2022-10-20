@@ -13,7 +13,7 @@ class AccountInit : Init() {
 
     override fun init(p0: Context?) {
         Timber.tag("test").e("AccountInit#init invoke!")
-        KwHttpMgr.getInstance().addCommonParamProvider(HttpCommonParamProvider)
+        KwHttpMgr.getInstance().addCommonParamProvider(AccountCommonParamProvider)
         RepositorySFactory.getLoginRepository().autoLogin()
     }
 
