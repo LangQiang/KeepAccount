@@ -16,7 +16,7 @@ dependencyResolutionManagement {
 rootProject.name = "KeepAccounts"
 include ':app'
 include ':nice-spinner'
-include ':bill-manager-system'
+include ':manager-system'
 include ':user-portal'
 include ':account'
 include ':account-service-api'

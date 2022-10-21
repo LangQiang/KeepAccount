@@ -80,9 +80,11 @@ class MineHomeVM : LifecycleEventObserver {
             Lifecycle.Event.ON_DESTROY -> {
                 MessageManager.getInstance().detachMessage(IAccountService.IAccountObserver.EVENT_ID, accountObserver)
             }
-//            Lifecycle.Event.ON_RESUME -> {
-//                updateLoginUI()
-//            }
+            Lifecycle.Event.ON_RESUME -> {
+                if (UserPortalLinkHelper.isLogin()) {
+                    requestTurnoverData()
+                }
+            }
             else -> {
                 //ignore
             }

@@ -67,7 +67,7 @@ dependencies {
     kapt rootProject.ext.databinding_compiler // DataBinding 注解处理依赖
 
 
-    implementation project(':bill-manager-system')
+    implementation project(':manager-system')
     implementation project(':user-portal')
     implementation project(':user-portal-api')
     implementation project(':account')
