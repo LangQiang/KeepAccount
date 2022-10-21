@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <import type="com.godq.portal.utils.GlobalConstantRes"/>
@@ -11,6 +12,7 @@
     </data>
 
     <LinearLayout
+        android:background="@color/main_bg"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -80,6 +82,141 @@
 
 
         </LinearLayout>
+
+        <FrameLayout
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/ka_mine_item_round_white_bg"
+            android:layout_width="match_parent"
+            android:layout_height="185dp">
+
+            <TextView
+                app:drawableStartCompat="@drawable/ka_mine_icon_total_data"
+                android:gravity="center_vertical"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:drawablePadding="6dp"
+                android:text="数据总览"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"/>
+
+            <View
+                android:layout_marginTop="45dp"
+                android:background="@color/line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="1px"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="140dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="15dp"
+                        android:text="总流水"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:text="0"
+                        android:text="@{String.valueOf(vm.mineHomeDataUIState.mineHomeTotalTurnover)}"
+                        android:layout_marginBottom="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:textColor="@color/black60"
+                        android:textSize="14sp"
+                        tools:text="昨日0"
+                        android:text='@{"昨日" + vm.mineHomeDataUIState.mineHomeLastDayTurnover}'
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="15dp"
+                        android:text="本月"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:text="0"
+                        android:text="@{String.valueOf(vm.mineHomeDataUIState.mineHomeCurrentMonthTurnover)}"
+                        android:layout_marginBottom="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:textColor="@color/black60"
+                        android:textSize="14sp"
+                        tools:text="上月0"
+                        android:text='@{"上月" + vm.mineHomeDataUIState.mineHomeLastMonthTurnover}'
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="15dp"
+                        android:text="本周"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:text="0"
+                        android:text="@{String.valueOf(vm.mineHomeDataUIState.mineHomeCurrentWeekTurnover)}"
+                        android:layout_marginBottom="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:textColor="@color/black60"
+                        android:textSize="14sp"
+                        tools:text="上周0"
+                        android:text='@{"上周" + vm.mineHomeDataUIState.mineHomeLastWeekTurnover}'
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
 
     </LinearLayout>
 </layout>
