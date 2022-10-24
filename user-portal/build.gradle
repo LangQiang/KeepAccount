@@ -47,6 +47,7 @@ dependencies {
     implementation project(':user-portal-api')
     implementation project(':ComposeResource')
     implementation project(':account-service-api')
+    implementation project(':manager-system-api')
 
     kapt rootProject.ext.base_core_processor
 

@@ -5,11 +5,13 @@ import android.content.ClipboardManager
 import android.content.Context
 import com.godq.cms.getShopListUrl
 import com.godq.cms.getUpdateBillUrl
+import com.godq.msa.IManagerSystemObserver
 import com.lazylite.mod.App
 import com.lazylite.mod.config.ConfMgr
 import com.lazylite.mod.fragmentmgr.FragmentOperation
 import com.lazylite.mod.http.mgr.KwHttpMgr
 import com.lazylite.mod.http.mgr.model.RequestInfo
+import com.lazylite.mod.messagemgr.MessageManager
 import com.lazylite.mod.utils.toast.KwToast
 import org.json.JSONArray
 import org.json.JSONObject
@@ -89,6 +91,12 @@ class BillUpdateVm {
         KwHttpMgr.getInstance().kwHttpFetch.asyncPost(req) {
             if (it.code == 200) {
                 FragmentOperation.getInstance().close()
+                MessageManager.getInstance().asyncNotify(IManagerSystemObserver.EVENT_ID, object : MessageManager.Caller<IManagerSystemObserver>() {
+                    override fun call() {
+                        ob.onBillUpdate()
+                    }
+
+                })
                 KwToast.show("上传成功！")
             }
         }

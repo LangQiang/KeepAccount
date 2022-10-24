@@ -46,6 +46,7 @@ dependencies {
 
     implementation project(':nice-spinner')
     implementation project(':ComposeResource')
+    implementation project(':manager-system-api')
 
     kapt rootProject.ext.base_core_processor
 }

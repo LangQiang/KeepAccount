@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.godq.accountsa.IAccountInfo
 import com.godq.accountsa.IAccountService
 import com.godq.deeplink.DeepLinkUtils
+import com.godq.msa.IManagerSystemObserver
 import com.godq.portal.UserPortalLinkHelper
 import com.lazylite.mod.http.mgr.KwHttpMgr
 import com.lazylite.mod.http.mgr.model.RequestInfo
@@ -28,6 +29,13 @@ class MineHomeVM : LifecycleEventObserver {
 
     }
 
+    private val managerSystemObserver = object : IManagerSystemObserver {
+        override fun onBillUpdate() {
+            requestAndUpdateUI()
+        }
+
+    }
+
     fun requestAndUpdateUI() {
         if (UserPortalLinkHelper.isLogin()) {
             setUIStateByAccountInfo(UserPortalLinkHelper.getAccountInfo())
@@ -40,7 +48,9 @@ class MineHomeVM : LifecycleEventObserver {
     private fun requestTurnoverData() {
         KwHttpMgr.getInstance().kwHttpFetch.asyncGet(RequestInfo.newGet("http://150.158.55.208/bill/statistics")) {
             try {
-                JSONObject(it.dataToString()).optJSONObject("data")?.apply {
+                val data = it.dataToString()
+                Timber.tag("statistic").e(data)
+                JSONObject(data).optJSONObject("data")?.apply {
                     mineHomeDataUIState.mineHomeTotalTurnover = optDouble("totalTurnover")
                     mineHomeDataUIState.mineHomeLastDayTurnover = optDouble("yesterdayTurnover")
                     mineHomeDataUIState.mineHomeCurrentWeekTurnover = optDouble("currentWeekTotalTurnover")
@@ -76,9 +86,11 @@ class MineHomeVM : LifecycleEventObserver {
         when (event) {
             Lifecycle.Event.ON_CREATE -> {
                 MessageManager.getInstance().attachMessage(IAccountService.IAccountObserver.EVENT_ID, accountObserver)
+                MessageManager.getInstance().attachMessage(IManagerSystemObserver.EVENT_ID, managerSystemObserver)
             }
             Lifecycle.Event.ON_DESTROY -> {
                 MessageManager.getInstance().detachMessage(IAccountService.IAccountObserver.EVENT_ID, accountObserver)
+                MessageManager.getInstance().detachMessage(IManagerSystemObserver.EVENT_ID, managerSystemObserver)
             }
             Lifecycle.Event.ON_RESUME -> {
                 if (UserPortalLinkHelper.isLogin()) {
