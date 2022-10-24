@@ -4,6 +4,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.godq.portal.constants.getBillListUrl
 import com.godq.portal.utils.HolidayRepo
+import com.godq.portal.utils.WeatherRepo
 import com.lazylite.mod.http.mgr.KwHttpMgr
 import com.lazylite.mod.http.mgr.model.RequestInfo
 import kotlinx.coroutines.*
@@ -35,7 +36,10 @@ class BillDetailMV {
             val holidayStateSuccess = withContext(Dispatchers.IO) {
                 HolidayRepo.fetchHolidayStateList(startDate, endDate)
             }
-            if (!holidayStateSuccess) return@launch
+            val weatherStateSuc = withContext(Dispatchers.IO) {
+                WeatherRepo.fetchHolidayStateList(startDate, endDate)
+            }
+            if (!holidayStateSuccess || !weatherStateSuc) return@launch
             onHolidayCallback?.invoke()
         }
     }

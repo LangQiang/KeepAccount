@@ -19,6 +19,14 @@
         android:layout_width="match_parent"
         android:layout_height="80dp">
 
+        <ImageView
+            android:alpha="0.4"
+            app:setWeatherIcon="@{itemData}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="60dp"
+            android:layout_height="60dp"/>
+
         <TextView
             android:id="@+id/date_tv"
             app:layout_constraintStart_toStartOf="parent"

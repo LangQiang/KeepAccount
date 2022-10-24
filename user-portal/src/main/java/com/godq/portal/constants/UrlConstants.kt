@@ -15,6 +15,10 @@ fun getHolidayStateUrl(startDate: String, endDate: String): String {
     return "$HOST/tool/holiday?start_date=$startDate&end_date=$endDate"
 }
 
+fun getWeatherUrl(startDate: String, endDate: String): String {
+    return "$HOST/tool/weather?start_date=$startDate&end_date=$endDate"
+}
+
 fun getUpdateBillUrl(): String {
     return "$HOST/bill/update"
 }
