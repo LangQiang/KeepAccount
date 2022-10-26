@@ -45,7 +45,7 @@ class ChatRoomFragment: BaseFragment() {
                     }
                 }
             }
-            assistRootView(App.getMainActivity(), binding?.root)
+            assistRootView(App.getMainActivity(), binding?.chatContentView)
         }
         binding?.titleBar?.setMainTitle("CHAT ROOM")
         binding?.titleBar?.setBackListener { close() }

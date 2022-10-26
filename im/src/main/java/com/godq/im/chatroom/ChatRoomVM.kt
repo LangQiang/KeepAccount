@@ -8,6 +8,7 @@ import com.godq.im.IMManager
 import com.lazylite.mod.App
 import com.lazylite.mod.http.mgr.KwHttpMgr
 import com.lazylite.mod.http.mgr.model.RequestInfo
+import com.lazylite.mod.messagemgr.MessageManager
 import com.lazylite.mod.utils.SoftKeyboardHelper
 import timber.log.Timber
 
@@ -20,7 +21,12 @@ class ChatRoomVM  : LifecycleEventObserver {
     private val onReceiveMessageListener = object : IMManager.OnReceiveMessageListener {
         override fun onMsgReceive(msg: String) {
             Timber.tag("chatroom").e(msg)
-            onDataCallback?.invoke(parseSingleList(msg))
+            MessageManager.getInstance().asyncRun(object : MessageManager.Runner() {
+                override fun call() {
+                    onDataCallback?.invoke(parseSingleList(msg))
+                }
+
+            })
         }
 
     }
