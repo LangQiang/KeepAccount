@@ -13,24 +13,20 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import com.godq.cms.getUpdateBillUrl
 import com.godq.compose.botnav.BottomItemData
 import com.godq.compose.botnav.BottomLayoutView
 import com.godq.compose.botnav.BottomNavAdapter
 import com.godq.compose.botnav.wrapper.ViewPager2Wrapper
+import com.godq.deeplink.DeepLinkUtils
 import com.godq.keepaccounts.MainLinkHelper
 import com.godq.keepaccounts.R
+import com.godq.keepaccounts.decorate.DecorateController
 import com.lazylite.mod.App
 import com.lazylite.mod.fragmentmgr.FragmentOperation
 import com.lazylite.mod.fragmentmgr.IHostActivity
 import com.lazylite.mod.fragmentmgr.OnFragmentStackChangeListener
-import com.lazylite.mod.http.mgr.KwHttpMgr
-import com.lazylite.mod.http.mgr.model.RequestInfo
 import com.lazylite.mod.utils.KwSystemSettingUtils
-import com.lazylite.mod.utils.toast.KwToast
-import org.json.JSONObject
 import timber.log.Timber
-import java.security.MessageDigest
 
 
 class MainActivity : AppCompatActivity() {
@@ -40,6 +36,8 @@ class MainActivity : AppCompatActivity() {
     private var navHolder: View? = null
 
     private var bottomLayoutView: BottomLayoutView? = null
+
+    private var decorateController = DecorateController()
 
 
 
@@ -56,6 +54,8 @@ class MainActivity : AppCompatActivity() {
         navHolder = findViewById(R.id.nav_holder)
 
         bottomLayoutView= findViewById(R.id.bottom_layout)
+
+        decorateController.attach(findViewById(R.id.decorate_layer_container))
 
 
         val pairs: List<Pair<BottomItemData, Fragment>> = requestAdapterData()
@@ -74,22 +74,11 @@ class MainActivity : AppCompatActivity() {
             })
         }
 
-//        DeepLinkUtils.load("test://open/account?type=register").execute()
-        //curl -d '{"shop_name":"双门洞的夏天-2","shop_img":"https://img2.baidu.com/it/u=3876889557,2331082860&fm=253&fmt=auto&app=120&f=PNG?w=1422&h=800","shop_desc":"韩式烤肉","shop_addr":"哈西万达底商","shop_phone":"13312345678"}' -H 'Content-Type: application/json' http://150.158.55.208/shop/create -i
-//        val header = HashMap<String, String>()
-//        header["Content-Type"] = "application/json"
-//        val json = JSONObject()
-//        json.putOpt("shop_name", "双门洞的夏天-2")
-//        json.putOpt("shop_img", "https://img2.baidu.com/it/u=3876889557,2331082860&fm=253&fmt=auto&app=120&f=PNG?w=1422&h=800")
-//        json.putOpt("shop_desc", "韩式烤肉")
-//        json.putOpt("shop_addr", "哈西万达底商")
-//        json.putOpt("shop_phone", "13312345678")
+//        findViewById<View>(R.id.main_test_btn)?.apply {
+//            visibility = View.VISIBLE
+//            setOnClickListener {
 //
-//        val req = RequestInfo.newPost("http://150.158.55.208/shop/create", header, json.toString().toByteArray())
-//
-//
-//        KwHttpMgr.getInstance().kwHttpFetch.asyncPost(req) {
-//            Timber.tag("createShop").e(it.dataToString())
+//            }
 //        }
     }
 

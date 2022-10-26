@@ -73,6 +73,7 @@ dependencies {
     implementation project(':account')
     implementation project(':account-service-api')
     implementation project(':ComposeResource')
+    implementation project(':im')
 
 
 

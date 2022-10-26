@@ -1,0 +1,17 @@
+//        DeepLinkUtils.load("test://open/account?type=register").execute()
+        //curl -d '{"shop_name":"双门洞的夏天-2","shop_img":"https://img2.baidu.com/it/u=3876889557,2331082860&fm=253&fmt=auto&app=120&f=PNG?w=1422&h=800","shop_desc":"韩式烤肉","shop_addr":"哈西万达底商","shop_phone":"13312345678"}' -H 'Content-Type: application/json' http://150.158.55.208/shop/create -i
+//        val header = HashMap<String, String>()
+//        header["Content-Type"] = "application/json"
+//        val json = JSONObject()
+//        json.putOpt("shop_name", "双门洞的夏天-2")
+//        json.putOpt("shop_img", "https://img2.baidu.com/it/u=3876889557,2331082860&fm=253&fmt=auto&app=120&f=PNG?w=1422&h=800")
+//        json.putOpt("shop_desc", "韩式烤肉")
+//        json.putOpt("shop_addr", "哈西万达底商")
+//        json.putOpt("shop_phone", "13312345678")
+//
+//        val req = RequestInfo.newPost("http://150.158.55.208/shop/create", header, json.toString().toByteArray())
+//
+//
+//        KwHttpMgr.getInstance().kwHttpFetch.asyncPost(req) {
+//            Timber.tag("createShop").e(it.dataToString())
+//        }
