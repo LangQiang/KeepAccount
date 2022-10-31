@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style
+        name="tools_Theme.CopImageActivity"
+        parent="Theme.AppCompat.Light.NoActionBar"
+        >
+        <!-- 是否允许有标题栏 -->
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <style
+        name="tools_Theme.KSingGalleryActivity"
+        parent="Theme.AppCompat.Light.NoActionBar"
+        >
+        <!-- 是否允许有标题栏 -->
+        <item name="android:windowNoTitle">true</item>
+    </style>
+</resources>

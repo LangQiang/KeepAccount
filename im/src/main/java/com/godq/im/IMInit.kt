@@ -8,7 +8,7 @@ import com.lazylite.bridge.init.Init
 @AutoInit
 class IMInit: Init() {
     override fun init(context: Context?) {
-        IMManager.init()
+        PublicChatRoomManager.init()
     }
 
     override fun initAfterAgreeProtocol(context: Context?) {

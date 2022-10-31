@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <com.godq.upload.chooseimage.crop.CropView
+        android:id="@+id/cv_crop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/hs_preview">
+
+    </com.godq.upload.chooseimage.crop.CropView>
+
+    <View android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/cv_crop"
+          android:layout_alignLeft="@+id/hs_preview"
+          android:layout_alignRight="@+id/hs_preview"
+          android:layout_alignParentBottom="true"
+          android:background="#e5262630"/>
+    <RelativeLayout
+        android:id="@+id/cv_titleedit_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cv_crop"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/tv_edit_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="滑动图片进行裁减" />
+        <CheckedTextView
+            android:id="@+id/cb_edit_cover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:checked="true"
+            android:drawableLeft="@drawable/tools_checkbox_cr_blue_style"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:text="设为封面" />
+    </RelativeLayout>
+    <HorizontalScrollView
+        android:id="@+id/hs_preview"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/ll_preview_container"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</RelativeLayout>

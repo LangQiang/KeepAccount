@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.godq.upload.chooseimage.widget.SquareLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    tools:background="@color/black">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/iv_photo_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
+    <ImageView
+        android:id="@+id/iv_video_selected"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/tools_icon_gallery_selected"
+        android:visibility="invisible" />
+
+    <CheckBox
+        android:id="@+id/cb_photo_check_status"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:button="@null"/>
+
+    <TextView
+        android:id="@+id/tv_photo_gif"
+        android:layout_width="25dp"
+        android:layout_height="15dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="5dp"
+        android:background="@drawable/tools_shape_photo_gif_bg"
+        android:gravity="center"
+        android:text="GIF"
+        android:textColor="@color/kw_white"
+        android:textSize="10sp"
+        android:visibility="visible" />
+    
+    <ImageView
+        android:id="@+id/iv_duration_bg"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/tools_phone_video_bom_layout_bg"/>
+
+    <TextView
+        android:id="@+id/tv_photo_gifdur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="7dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:textColor="@color/kw_white"
+        android:textSize="11dp"
+        android:visibility="invisible"
+        tools:text="33:00"
+        tools:visibility="visible" />
+
+</com.godq.upload.chooseimage.widget.SquareLayout>

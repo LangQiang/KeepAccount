@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-        <import type="com.godq.im.IMManager"/>
+        <import type="com.godq.im.PublicChatRoomManager"/>
         <import type="android.view.View"/>
         <import type="com.godq.im.chatroom.MessageEntity"/>
         <variable
@@ -15,13 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:visibility="@{(IMManager.INSTANCE.isMineSend(msg)) ? View.GONE : View.VISIBLE}"
+            android:visibility="@{(PublicChatRoomManager.INSTANCE.isMineSend(msg)) ? View.GONE : View.VISIBLE}"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:text="@{msg.userId}"
+                android:text='@{msg.userName + "(" + msg.userId + ")"}'
                 android:textSize="12dp"
                 android:textColor="@color/black60"
                 android:layout_width="100dp"
@@ -43,14 +43,14 @@
         </LinearLayout>
 
         <LinearLayout
-            android:visibility="@{!IMManager.INSTANCE.isMineSend(msg) ? View.GONE : View.VISIBLE}"
+            android:visibility="@{!PublicChatRoomManager.INSTANCE.isMineSend(msg) ? View.GONE : View.VISIBLE}"
             android:layout_gravity="end"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:text="@{msg.userId}"
+                android:text='@{msg.userName + "(" + msg.userId + ")"}'
                 android:textSize="12dp"
                 android:textColor="@color/black60"
                 android:layout_gravity="end"

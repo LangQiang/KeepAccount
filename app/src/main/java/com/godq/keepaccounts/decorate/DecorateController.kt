@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import com.godq.accountsa.IAccountService
 import com.godq.keepaccounts.databinding.KaDecorateLayerLayoutBinding
+import com.lazylite.bridge.router.ServiceImpl
+import com.lazylite.mod.messagemgr.MessageManager
 
 class DecorateController {
 
@@ -22,6 +25,8 @@ class DecorateController {
             containerView?.addView(this, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
             onViewCreated(this)
         }
+
+        vm.onAttach()
     }
 
     private fun onCreateView(context: Context): View? {

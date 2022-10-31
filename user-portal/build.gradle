@@ -48,6 +48,8 @@ dependencies {
     implementation project(':ComposeResource')
     implementation project(':account-service-api')
     implementation project(':manager-system-api')
+    implementation project(':tools:upload-api')
+
 
     kapt rootProject.ext.base_core_processor
 

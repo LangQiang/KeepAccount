@@ -39,6 +39,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -74,6 +79,10 @@ dependencies {
     implementation project(':account-service-api')
     implementation project(':ComposeResource')
     implementation project(':im')
+    implementation project(':tools:upload')
+    implementation project(':tools:upload-api')
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 
 
 

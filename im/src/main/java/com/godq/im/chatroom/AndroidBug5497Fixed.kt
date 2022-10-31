@@ -30,11 +30,17 @@ class AndroidBug5497Fixed {
         this.changedView = changedView
         this.contentView = activity?.findViewById(android.R.id.content)
         this.changedView?.viewTreeObserver?.addOnGlobalLayoutListener(globalLayoutListener)
+
     }
 
 
     private fun computeUsableHeight(): Int {
         this.contentView?.getWindowVisibleDisplayFrame(rect)
         return rect.bottom
+    }
+
+    fun release() {
+        this.changedView?.viewTreeObserver?.removeOnGlobalLayoutListener(globalLayoutListener)
+
     }
 }

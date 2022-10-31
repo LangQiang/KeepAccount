@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 相册 -->
+    <string name="tools_no_photo">系统中还没有照片</string>
+    <string name="tools_no_video">系统中还没有视频</string>
+    <string name="tools_take_one_photo">拍一张</string>
+</resources>

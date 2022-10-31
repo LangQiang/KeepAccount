@@ -4,6 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View"/>
+        <import type="android.text.TextUtils"/>
+        <import type="com.godq.portal.mine.MineHomeUIState"/>
         <import type="com.godq.portal.utils.GlobalConstantRes"/>
         <import type="com.godq.portal.mine.MineHomeVM"/>
         <variable
@@ -45,14 +48,30 @@
             android:layout_width="match_parent"
             android:layout_height="110dp">
 
-            <com.facebook.drawee.view.SimpleDraweeView
-                frescoImgUrl="@{vm.mineHomeUIState.mineHomeTitleImg}"
-                frescoConfig="@{GlobalConstantRes.INSTANCE.mineHeadImageConfig}"
+            <FrameLayout
+                android:onClick="@{()-> vm.onAvatarClick()}"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_gravity="center_vertical"
                 android:layout_width="90dp"
-                android:layout_height="90dp"/>
+                android:layout_height="90dp">
+                <com.facebook.drawee.view.SimpleDraweeView
+                    frescoImgUrl="@{vm.mineHomeUIState.mineHomeTitleImg}"
+                    frescoConfig="@{GlobalConstantRes.INSTANCE.mineHeadImageConfig}"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"/>
+
+                <TextView
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="15dp"
+                    android:textColor="@color/white"
+                    android:textSize="14dp"
+                    android:text="点击上传"
+                    android:visibility="@{vm.mineHomeUIState.mineHomeTitleID == MineHomeUIState.DEFAULT_TITLE_ID || !TextUtils.isEmpty(vm.mineHomeUIState.mineHomeTitleImg) ? View.GONE : View.VISIBLE}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </FrameLayout>
 
             <LinearLayout
                 android:onClick="@{()->vm.openLoginPage()}"

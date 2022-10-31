@@ -1,14 +1,19 @@
 package com.godq.portal.mine
 
+import android.net.Uri
 import androidx.lifecycle.*
 import com.godq.accountsa.IAccountInfo
 import com.godq.accountsa.IAccountService
 import com.godq.deeplink.DeepLinkUtils
 import com.godq.msa.IManagerSystemObserver
 import com.godq.portal.UserPortalLinkHelper
+import com.godq.portal.utils.jumpToSettingFragment
+import com.godq.ulda.IUploadService
+import com.lazylite.mod.App
 import com.lazylite.mod.http.mgr.KwHttpMgr
 import com.lazylite.mod.http.mgr.model.RequestInfo
 import com.lazylite.mod.messagemgr.MessageManager
+import com.lazylite.mod.utils.toast.KwToast
 import org.json.JSONObject
 import timber.log.Timber
 
@@ -24,6 +29,11 @@ class MineHomeVM : LifecycleEventObserver {
 
         override fun onLogout() {
             Timber.tag("account").e("onLogout")
+            requestAndUpdateUI()
+        }
+
+        override fun onUpdate() {
+            Timber.tag("account").e("onUpdate")
             requestAndUpdateUI()
         }
 
@@ -72,7 +82,7 @@ class MineHomeVM : LifecycleEventObserver {
         } else {
             mineHomeUIState.mineHomeTitleID = "id:${accountInfo.getUserId()}"
             mineHomeUIState.mineHomeTitleName = accountInfo.getNickName()
-            mineHomeUIState.mineHomeTitleImg = ""
+            mineHomeUIState.mineHomeTitleImg = accountInfo.getAvatarUrl()
         }
     }
 
@@ -104,7 +114,48 @@ class MineHomeVM : LifecycleEventObserver {
     }
 
     fun gotoSettingPage() {
-        DeepLinkUtils.load("test://open/cms/update").execute()
+        if (!UserPortalLinkHelper.isLogin()) {
+            KwToast.show("去登录")
+            return
+        }
+        jumpToSettingFragment()
+    }
+
+    fun onAvatarClick() {
+        if (mineHomeUIState.mineHomeTitleID == MineHomeUIState.DEFAULT_TITLE_ID
+//            || mineHomeUIState.mineHomeTitleImg.isNotEmpty()
+        ) return
+        val activity = App.getMainActivity()?: return
+        UserPortalLinkHelper.chooseImage(activity, object : IUploadService.OnChooseImageCallback {
+            override fun onChoose(filePath: String?) {
+                Timber.tag("mine").e("filePath: $filePath")
+                uploadFileByPathToCos(filePath)
+            }
+
+        })
+    }
+
+    private fun uploadFileByPathToCos(filePath: String?) {
+        if (filePath.isNullOrEmpty()) {
+            KwToast.show("上传失败，无法获取所选文件路径")
+            return
+        }
+        val path = try {
+            Uri.parse(filePath).path
+        } catch (e: Exception) {
+            null
+        } ?: return
+        UserPortalLinkHelper.upload(path, object : IUploadService.OnUploadCallback {
+            override fun onUpload(accessUrl: String?) {
+                if (accessUrl.isNullOrEmpty()) {
+                    KwToast.show("无法上传文件到服务器")
+                    return
+                }
+                UserPortalLinkHelper.updateAvatar(accessUrl)
+            }
+
+        })
+
     }
 
 }

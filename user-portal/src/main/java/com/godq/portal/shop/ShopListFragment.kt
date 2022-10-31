@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.godq.deeplink.DeepLinkUtils
+import com.godq.portal.common.CommonTipView
+import com.godq.portal.common.DataLoadingStateVm
 import com.godq.portal.databinding.FragmentShopListLayoutBinding
 import com.lazylite.mod.widget.BaseFragment
 
@@ -17,18 +20,38 @@ class ShopListFragment : BaseFragment() {
 
     private val adapter = ShopListAdapter(null)
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        lifecycle.addObserver(vm)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentShopListLayoutBinding.inflate(LayoutInflater.from(context))
+        binding?.vm = vm
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.titleBar?.setMainTitle("店铺列表")
+
+        binding?.tipView?.onBtnClickListener = object : CommonTipView.OnBtnClickListener {
+            override fun onBtnClick(currentTipType: Int) {
+                when (currentTipType) {
+                    DataLoadingStateVm.LOAD_TYPE_NOT_LOGIN -> {
+                        DeepLinkUtils.load("test://open/account?type=login").execute()
+                    }
+                    else -> {
+                        vm.requestShopList()
+                    }
+                }
+            }
+        }
+
         binding?.shopListRv?.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = this@ShopListFragment.adapter

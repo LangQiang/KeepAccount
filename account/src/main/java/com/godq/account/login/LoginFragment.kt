@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.godq.account.databinding.FragmentLoginLayoutBinding
+import com.lazylite.mod.utils.SoftKeyboardHelper
 import com.lazylite.mod.widget.BaseFragment
 
 class LoginFragment: BaseFragment() {
@@ -19,5 +20,10 @@ class LoginFragment: BaseFragment() {
         binding = FragmentLoginLayoutBinding.inflate(LayoutInflater.from(context))
         binding?.vm = LoginVM()
         return binding?.root
+    }
+
+    override fun onStop() {
+        super.onStop()
+        SoftKeyboardHelper.hideKeyboard(binding?.root)
     }
 }

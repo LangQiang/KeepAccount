@@ -1,13 +1,9 @@
 package com.godq.im
 
-import android.os.SystemClock
 import io.socket.client.IO
 import io.socket.client.Socket
-import io.socket.emitter.Emitter
 import org.json.JSONObject
 import org.junit.Test
-
-import org.junit.Assert.*
 import java.net.URISyntaxException
 
 /**
@@ -27,7 +23,7 @@ class ExampleUnitTest {
 
         Thread {
             try {
-                mSocket = IO.socket("http://43.138.100.114:8001/chat_room")
+                mSocket = IO.socket("http://127.0.0.1:8001/chat_room")
 
             } catch (e: URISyntaxException) {
                 print(e.message)
@@ -37,7 +33,7 @@ class ExampleUnitTest {
 
             mSocket?.on("send_broadcast") { args ->
                 print("my_response")
-                mSocket?.emit("xxxx", "xxxx${mSocket?.id()}")
+                mSocket?.emit("xxxx", "${args[0]}  ${mSocket?.id()}")
 
                 print(args)
             }

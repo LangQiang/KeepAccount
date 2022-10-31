@@ -1,12 +1,14 @@
 package com.godq.keepaccounts.main
 
 import android.annotation.TargetApi
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Pair
 import android.view.KeyEvent
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
@@ -68,6 +70,10 @@ class MainActivity : AppCompatActivity() {
             setAdapter(pairs)
             bottomLayoutView?.setOnTabClickListener(object : BottomLayoutView.OnTabClickListener{
                 override fun onClick(view: View,pos:Int) {
+                    if(pos == 1 && !MainLinkHelper.isLogin()){
+                        DeepLinkUtils.load("test://open/account?type=login").execute()
+                        return
+                    }
                     viewPager2?.setCurrentItem(pos, false)
                 }
 
@@ -80,6 +86,13 @@ class MainActivity : AppCompatActivity() {
 //
 //            }
 //        }
+
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        MainLinkHelper.onResultCallbackForUploadChooseImage(requestCode, resultCode, data)
     }
 
     private fun setAdapter(fragments: List<Pair<BottomItemData, Fragment>>) {
@@ -123,6 +136,7 @@ class MainActivity : AppCompatActivity() {
             navHolder?.layoutParams?.apply {
                 height = navHeight ?: 0
             }
+            (decor as? ViewGroup)?.requestLayout()
         }
     }
 
@@ -139,7 +153,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onShowMainLayer(withBottom: Boolean) {
-
+                if(!MainLinkHelper.isLogin()) {
+                    viewPager2?.setCurrentItem(0, false)
+                }
             }
 
             override fun onHideMainLayer(isHide: Boolean) {

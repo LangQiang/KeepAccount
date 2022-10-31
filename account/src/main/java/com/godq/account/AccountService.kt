@@ -12,5 +12,13 @@ class AccountService : IAccountService{
         return RepositorySFactory.getLoginRepository().getAccountInfoCache()
     }
 
+    override fun updateAvatar(avatarUrl: String) {
+        RepositorySFactory.getLoginRepository().updateAvatar(avatarUrl)
+    }
+
+    override fun logout() {
+        RepositorySFactory.getLoginRepository().logout()
+    }
+
 
 }

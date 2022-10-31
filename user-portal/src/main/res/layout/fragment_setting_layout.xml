@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <data>
+        <import type="com.godq.portal.mine.setting.SettingVM"/>
+        <variable
+            name="vm"
+            type="SettingVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <com.lazylite.mod.widget.KwTitleBar
+            android:id="@+id/title"
+            style="@style/LRLiteBase_TitleBar"
+            android:background="@color/transparent"
+            android:tag="titleBar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.lazylite.mod.widget.KwSettingItem
+            android:id="@+id/item_mine_info"
+            android:onClick="@{()->vm.onUserInfoClick()}"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            app:set_icon="set_image"
+            app:set_line="false"
+            app:set_title="@string/mine_info_sec"
+            app:set_title_bold="true" />
+
+        <com.lazylite.mod.widget.KwSettingItem
+            android:id="@+id/item_mgr_ctrl"
+            android:onClick="@{()->vm.onMgrCtrlClick()}"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_mine_info"
+            app:set_icon="set_image"
+            app:set_line="false"
+            app:set_title="@string/mine_mgr_ctrl"
+            app:set_title_bold="true" />
+
+        <com.lazylite.mod.widget.KwSettingItem
+            android:visibility="gone"
+            android:id="@+id/item_account_safe"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_mgr_ctrl"
+            app:set_icon="set_image"
+            app:set_line="false"
+            app:set_title="@string/mine_safe_sec"
+            app:set_title_bold="true" />
+
+        <View
+            android:id="@+id/v_line"
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/LRLiteBase_cl_black_4"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_account_safe" />
+
+
+        <com.lazylite.mod.widget.KwSettingItem
+            android:id="@+id/item_help"
+            android:onClick="@{()->vm.onHelpClick()}"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/v_line"
+            app:set_icon="set_image"
+            app:set_line="false"
+            app:set_title="@string/mine_help_sec"
+            app:set_title_bold="true" />
+
+        <com.lazylite.mod.widget.KwSettingItem
+            android:id="@+id/item_about"
+            android:onClick="@{()->vm.onAboutClick()}"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_help"
+            app:set_icon="set_image"
+            app:set_line="false"
+            app:set_title="@string/mine_about_sec"
+            app:set_title_bold="true" />
+
+        <com.lazylite.mod.widget.KwSettingItem
+            android:id="@+id/item_clear_cache"
+            android:onClick="@{()->vm.onCacheClick()}"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_about"
+            app:set_icon="set_image"
+            app:set_line="false"
+            app:set_title="@string/mine_clear_cache_sec"
+            app:set_title_bold="true" />
+
+        <TextView
+            android:id="@+id/tv_login_out"
+            android:onClick="@{()->vm.onLogOutClick()}"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/mine_login_gray_btn_bg"
+            android:gravity="center"
+            android:text="退出登录"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_clear_cache" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

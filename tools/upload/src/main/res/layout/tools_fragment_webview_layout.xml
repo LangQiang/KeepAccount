@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.lazylite.mod.widget.KwTitleBar
+        android:id="@+id/bar"
+        style="@style/LRLiteBase_TitleBar"
+        android:background="@color/transparent"
+        android:tag="titleBar"
+        android:visibility="gone"
+        app:leftBackStr="@string/title_back_icon" />
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bar" />
+
+    <!--    <ProgressBar-->
+    <!--        android:id="@+id/progressBar"-->
+    <!--        style="?android:attr/progressBarStyleHorizontal"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="2dp"-->
+    <!--        android:layout_below="@+id/bar"-->
+    <!--        android:progressDrawable="@drawable/tools_shape_progressbar_bg"-->
+    <!--        android:visibility="visible" />-->
+    <!--加载失败页面-->
+
+    <com.lazylite.mod.widget.KwTipView
+        android:id="@+id/content_tip_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+</RelativeLayout>

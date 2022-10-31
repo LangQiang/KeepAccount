@@ -16,6 +16,8 @@ class ChatRoomFragment: BaseFragment() {
 
     private val vm = ChatRoomVM()
 
+    private var androidBug5497Fixed: AndroidBug5497Fixed? = null
+
     private val mAdapter = ChatRoomAdapter(null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,13 +31,14 @@ class ChatRoomFragment: BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = ImFragmentChatRoomLayoutBinding.inflate(LayoutInflater.from(context))
+
         binding?.vm = vm
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(AndroidBug5497Fixed()) {
+        androidBug5497Fixed = AndroidBug5497Fixed().apply {
             onChangedListener = {
                 binding?.rv?.post {
                     (mAdapter.itemCount - 1).takeIf {
@@ -45,7 +48,7 @@ class ChatRoomFragment: BaseFragment() {
                     }
                 }
             }
-            assistRootView(App.getMainActivity(), binding?.chatContentView)
+
         }
         binding?.titleBar?.setMainTitle("CHAT ROOM")
         binding?.titleBar?.setBackListener { close() }
@@ -59,8 +62,15 @@ class ChatRoomFragment: BaseFragment() {
             val prePos = mAdapter.data.size
             mAdapter.data.addAll(it)
             mAdapter.notifyItemRangeInserted(prePos, it.size)
-            binding?.rv?.smoothScrollToPosition(mAdapter.itemCount - 1)
 
+            val count = mAdapter.itemCount - 1
+            if (count >= 0) {
+                if (it.size > 10) {
+                    binding?.rv?.scrollToPosition(mAdapter.itemCount - 1)
+                } else {
+                    binding?.rv?.smoothScrollToPosition(mAdapter.itemCount - 1)
+                }
+            }
 
         }
 
@@ -72,5 +82,21 @@ class ChatRoomFragment: BaseFragment() {
         binding?.editTv?.apply {
             SoftKeyboardHelper.hideKeyboard(this)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        androidBug5497Fixed?.assistRootView(App.getMainActivity(), binding?.chatContentView)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        androidBug5497Fixed?.release()
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        lifecycle.removeObserver(vm)
     }
 }

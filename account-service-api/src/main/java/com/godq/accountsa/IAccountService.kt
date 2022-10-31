@@ -12,6 +12,8 @@ interface IAccountService {
 
     fun isLogin():Boolean
     fun getAccountInfo(): IAccountInfo
+    fun updateAvatar(avatarUrl: String)
+    fun logout()
 //    fun registerOnAccountStateChangeListener(listener: OnAccountStateChangeListener)
 //    fun unRegisterOnAccountStateChangeListener(listener: OnAccountStateChangeListener)
 
@@ -25,5 +27,6 @@ interface IAccountService {
         }
         fun onLogin()
         fun onLogout()
+        fun onUpdate()
     }
 }

@@ -1,7 +1,9 @@
 package com.godq.keepaccounts
 
+import android.content.Intent
 import androidx.fragment.app.Fragment
 import com.godq.accountsa.IAccountService
+import com.godq.ulda.IUploadService
 import com.godq.upa.IUserPortalService
 import com.lazylite.bridge.router.ServiceImpl
 import timber.log.Timber
@@ -11,10 +13,12 @@ object MainLinkHelper {
 
     private var userPortalService: IUserPortalService? = null
     private var accountService: IAccountService? = null
+    private var uploadService: IUploadService? = null
 
     init {
         userPortalService = ServiceImpl.getInstance().getService(IUserPortalService::class.java.name) as? IUserPortalService
         accountService = ServiceImpl.getInstance().getService(IAccountService::class.java.name) as? IAccountService
+        uploadService = ServiceImpl.getInstance().getService(IUploadService::class.java.name) as? IUploadService
     }
 
     fun getUserHomeFragment(): Fragment? {
@@ -53,5 +57,14 @@ object MainLinkHelper {
     }
 
     fun getToken(): String = accountService?.getAccountInfo()?.getToken() ?: ""
+
+
+    fun onResultCallbackForUploadChooseImage(requestCode: Int, resultCode: Int, data: Intent?) {
+        uploadService?.chooseImageOnResultAssist(requestCode, resultCode, data)
+    }
+
+    fun isLogin(): Boolean {
+        return accountService?.isLogin() == true
+    }
 
 }

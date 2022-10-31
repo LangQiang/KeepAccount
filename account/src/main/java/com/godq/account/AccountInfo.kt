@@ -8,6 +8,7 @@ class AccountInfo: IAccountInfo {
     var mUserId: String = ""
     var mNickname: String = ""
     var mToken: String = ""
+    var mAvatarUrl: String = ""
 
     override fun getUserId(): String {
         return mUserId
@@ -21,12 +22,17 @@ class AccountInfo: IAccountInfo {
         return mToken
     }
 
+    override fun getAvatarUrl(): String {
+        return mAvatarUrl
+    }
+
     override fun isLogin(): Boolean = mUserId.isNotEmpty() && mToken.isNotEmpty()
 
     fun set(accountInfo: AccountInfo) {
         this.mToken = accountInfo.mToken
         this.mNickname = accountInfo.mNickname
         this.mUserId = accountInfo.mUserId
+        this.mAvatarUrl = accountInfo.mAvatarUrl
     }
 
     fun set(jsonStr: String) {
@@ -36,6 +42,7 @@ class AccountInfo: IAccountInfo {
                 mToken = optString("token")
                 mNickname = optString("nick_name")
                 mUserId = optString("user_id")
+                mAvatarUrl = optString("user_avatar")
             }
         } catch (e: Exception) {
 
@@ -47,7 +54,15 @@ class AccountInfo: IAccountInfo {
         json.putOpt("token", mToken)
         json.putOpt("nick_name", mNickname)
         json.putOpt("user_id", mUserId)
+        json.putOpt("user_avatar", mAvatarUrl)
         return json.toString()
+    }
+
+    fun reset() {
+        mUserId = ""
+        mNickname = ""
+        mToken = ""
+        mAvatarUrl = ""
     }
 
 }

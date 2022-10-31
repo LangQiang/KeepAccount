@@ -32,6 +32,7 @@ class LoginRemoteApiImpl: LoginRemoteDataSource.ILoginApi {
                     accountInfo.mToken = optString("token")
                     accountInfo.mNickname = optString("nick_name")
                     accountInfo.mUserId = optString("user_id")
+                    accountInfo.mAvatarUrl = optString("user_avatar")
                     return accountInfo
                 }
             } catch (ignore: Exception) {

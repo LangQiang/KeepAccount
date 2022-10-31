@@ -9,3 +9,7 @@ fun getRegisterUrl(): String {
 fun getLoginUrl(): String {
     return "$HOST/account/login"
 }
+
+fun getUpdateUrl(): String {
+    return "$HOST/account/update"
+}

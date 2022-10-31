@@ -12,6 +12,8 @@ fun parseHistoryList(jsonStr: String): List<MessageEntity> {
             val entity = MessageEntity()
             entity.userId = obj.optString("user_id")
             entity.msg = obj.optString("msg")
+            entity.msgId = obj.optString("id")
+            entity.userName = obj.optString("user_name")
             retList.add(entity)
         }
         retList
@@ -20,16 +22,16 @@ fun parseHistoryList(jsonStr: String): List<MessageEntity> {
     }
 }
 
-fun parseSingleList(jsonStr: String): List<MessageEntity> {
-    val retList = ArrayList<MessageEntity>()
+fun parseSingleMsg(jsonStr: String): MessageEntity? {
     return try {
         val jsonObj = JSONObject(jsonStr)
         val entity = MessageEntity()
         entity.userId = jsonObj.optString("user_id")
         entity.msg = jsonObj.optString("msg")
-        retList.add(entity)
-        retList
+        entity.msgId = jsonObj.optString("id")
+        entity.userName = jsonObj.optString("user_name")
+        entity
     } catch (e: Exception) {
-        retList
+        null
     }
 }

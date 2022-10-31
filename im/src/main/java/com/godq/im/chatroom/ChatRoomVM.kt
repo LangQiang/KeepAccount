@@ -4,12 +4,10 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
-import com.godq.im.IMManager
-import com.lazylite.mod.App
+import com.godq.im.PublicChatRoomManager
 import com.lazylite.mod.http.mgr.KwHttpMgr
 import com.lazylite.mod.http.mgr.model.RequestInfo
 import com.lazylite.mod.messagemgr.MessageManager
-import com.lazylite.mod.utils.SoftKeyboardHelper
 import timber.log.Timber
 
 class ChatRoomVM  : LifecycleEventObserver {
@@ -18,12 +16,14 @@ class ChatRoomVM  : LifecycleEventObserver {
 
     var onDataCallback: ((historyData: List<MessageEntity>) -> Unit)? = null
 
-    private val onReceiveMessageListener = object : IMManager.OnReceiveMessageListener {
-        override fun onMsgReceive(msg: String) {
-            Timber.tag("chatroom").e(msg)
+    private val onReceiveMessageListener = object : PublicChatRoomManager.OnReceiveMessageListener {
+        override fun onMsgReceive(msg: MessageEntity) {
+            Timber.tag("chatroom").e(msg.toString())
             MessageManager.getInstance().asyncRun(object : MessageManager.Runner() {
                 override fun call() {
-                    onDataCallback?.invoke(parseSingleList(msg))
+                    val list = ArrayList<MessageEntity>()
+                    list.add(msg)
+                    onDataCallback?.invoke(list)
                 }
 
             })
@@ -41,7 +41,7 @@ class ChatRoomVM  : LifecycleEventObserver {
     fun sendMsg() {
         val sendMsg = msg.get()?: return
         Timber.tag("chatroom").e(sendMsg)
-        IMManager.sendMsg(sendMsg)
+        PublicChatRoomManager.sendMsg(sendMsg)
         msg.set("")
     }
 
@@ -49,10 +49,10 @@ class ChatRoomVM  : LifecycleEventObserver {
         Timber.tag("chatroom").e(event.name)
         when (event) {
             Lifecycle.Event.ON_CREATE -> {
-                IMManager.addOnReceiveMessageListener(onReceiveMessageListener)
+                PublicChatRoomManager.setOnReceiveMessageListener(onReceiveMessageListener)
             }
             Lifecycle.Event.ON_DESTROY -> {
-                IMManager.removeOnReceiveMessageListener(onReceiveMessageListener)
+                PublicChatRoomManager.removeOnReceiveMessageListener()
             }
             else -> {
                 //ignore

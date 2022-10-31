@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/title_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="取消"
+        android:textColor="#CC000000"
+        android:textSize="14dp" />
+
+    <TextView
+        android:id="@+id/tv_folder_title"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/title_height"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="所有照片"
+        android:textColor="#CC000000"
+        android:textSize="16dp" />
+
+    <ImageView
+        android:id="@+id/iv_folder_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tv_folder_title"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="14dp"
+        android:layout_toRightOf="@id/tv_folder_title"
+        android:src="@drawable/tools_arrow_down_2x"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="10dp">
+
+        <View
+            android:id="@+id/v_count_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tv_choose_count"
+            android:layout_alignTop="@+id/tv_choose_count"
+            android:layout_alignRight="@+id/tv_choose_count"
+            android:layout_alignBottom="@+id/tv_choose_count"
+            android:background="@drawable/tools_gallery_count_bg" />
+
+        <TextView
+            android:id="@+id/tv_choose_count"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/tv_continue"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="0"
+            android:textColor="#2a2934"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_continue"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/title_height"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="继续"
+            android:textColor="#CC000000"
+            android:textSize="14dp" />
+    </RelativeLayout>
+
+</merge>
