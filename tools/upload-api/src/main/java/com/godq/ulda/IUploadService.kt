@@ -14,10 +14,11 @@ interface IUploadService {
     fun upload(path: String, onUploadCallback: OnUploadCallback?)
 
     interface OnChooseImageCallback {
-        fun onChoose(filePath: String?)
+        fun onChoose(fileUri: String?)
     }
 
     interface OnUploadCallback {
         fun onUpload(accessUrl: String?)
+        fun onProgress(progress: Long, total: Long) {}
     }
 }

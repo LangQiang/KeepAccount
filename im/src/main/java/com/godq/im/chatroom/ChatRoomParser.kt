@@ -13,7 +13,9 @@ fun parseHistoryList(jsonStr: String): List<MessageEntity> {
             entity.userId = obj.optString("user_id")
             entity.msg = obj.optString("msg")
             entity.msgId = obj.optString("id")
-            entity.userName = obj.optString("user_name")
+            entity.nickName = obj.optString("nick_name")
+            entity.userAvatar = obj.optString("user_avatar")
+            entity.msgType = obj.optInt("msg_type")
             retList.add(entity)
         }
         retList
@@ -29,7 +31,9 @@ fun parseSingleMsg(jsonStr: String): MessageEntity? {
         entity.userId = jsonObj.optString("user_id")
         entity.msg = jsonObj.optString("msg")
         entity.msgId = jsonObj.optString("id")
-        entity.userName = jsonObj.optString("user_name")
+        entity.nickName = jsonObj.optString("nick_name")
+        entity.userAvatar = jsonObj.optString("user_avatar")
+        entity.msgType = jsonObj.optInt("msg_type")
         entity
     } catch (e: Exception) {
         null

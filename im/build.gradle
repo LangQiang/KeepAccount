@@ -57,6 +57,7 @@ dependencies {
     implementation ('io.socket:socket.io-client:2.0.0')
 
     implementation project(':account-service-api')
+    implementation project(':tools:upload-api')
     implementation project(':ComposeResource')
 
 

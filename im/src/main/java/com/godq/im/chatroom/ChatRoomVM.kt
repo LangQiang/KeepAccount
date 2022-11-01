@@ -1,18 +1,27 @@
 package com.godq.im.chatroom
 
+import android.net.Uri
 import androidx.databinding.ObservableField
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
+import com.godq.im.IMLinkHelper
 import com.godq.im.PublicChatRoomManager
+import com.godq.ulda.IUploadService
+import com.lazylite.mod.App
 import com.lazylite.mod.http.mgr.KwHttpMgr
 import com.lazylite.mod.http.mgr.model.RequestInfo
 import com.lazylite.mod.messagemgr.MessageManager
+import com.lazylite.mod.utils.toast.KwToast
 import timber.log.Timber
 
 class ChatRoomVM  : LifecycleEventObserver {
 
-    val msg = ObservableField("")
+    val inputTextMsgUIState = ObservableField("")
+
+    val imgSendLoadingUIState = ObservableField(false)
+
+    val imgSendProgressUIState = ObservableField(0.0)
 
     var onDataCallback: ((historyData: List<MessageEntity>) -> Unit)? = null
 
@@ -32,17 +41,63 @@ class ChatRoomVM  : LifecycleEventObserver {
     }
 
     fun loadHistory() {
-        KwHttpMgr.getInstance().kwHttpFetch.asyncGet(RequestInfo.newGet("http://43.138.100.114:8001/history/list")) {
+        KwHttpMgr.getInstance().kwHttpFetch.asyncGet(RequestInfo.newGet("http://150.158.55.208:8001/history/list")) {
             if (!it.isSuccessful) return@asyncGet
             onDataCallback?.invoke(parseHistoryList(it.dataToString()))
         }
     }
 
-    fun sendMsg() {
-        val sendMsg = msg.get()?: return
+    fun sendTextMsg() {
+        val sendMsg = inputTextMsgUIState.get()?: return
         Timber.tag("chatroom").e(sendMsg)
-        PublicChatRoomManager.sendMsg(sendMsg)
-        msg.set("")
+        PublicChatRoomManager.sendMsg(sendMsg, 0)
+        inputTextMsgUIState.set("")
+    }
+
+    fun onSendImgMsg() {
+        val activity = App.getMainActivity()?: return
+        imgSendLoadingUIState.set(true)
+        IMLinkHelper.chooseImage(activity, object : IUploadService.OnChooseImageCallback {
+            override fun onChoose(fileUri: String?) {
+                upload(fileUri)
+            }
+
+        })
+    }
+
+    private fun upload(fileUri: String?) {
+        if (fileUri.isNullOrEmpty()) {
+            KwToast.show("发送失败")
+            imgSendLoadingUIState.set(false)
+            return
+        }
+        val path = try {
+            Uri.parse(fileUri).path
+        } catch (e: Exception) {
+            imgSendLoadingUIState.set(false)
+            KwToast.show("发送失败")
+            null
+        } ?: return
+        IMLinkHelper.upload(path, object : IUploadService.OnUploadCallback {
+            override fun onUpload(accessUrl: String?) {
+                if (accessUrl.isNullOrEmpty()) {
+                    KwToast.show("发送失败")
+                    imgSendLoadingUIState.set(false)
+                    return
+                }
+                PublicChatRoomManager.sendMsg(accessUrl, 1)
+                imgSendLoadingUIState.set(false)
+            }
+
+            override fun onProgress(progress: Long, total: Long) {
+                super.onProgress(progress, total)
+                if (total == 0L) return
+                val progressD = progress.toDouble() / total
+                imgSendProgressUIState.set(progressD)
+                Timber.tag("chatroom").e("progress: $progressD")
+            }
+
+        })
     }
 
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {

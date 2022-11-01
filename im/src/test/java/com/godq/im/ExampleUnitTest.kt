@@ -23,7 +23,7 @@ class ExampleUnitTest {
 
         Thread {
             try {
-                mSocket = IO.socket("http://127.0.0.1:8001/chat_room")
+                mSocket = IO.socket("http://127.0.0.1:8001/chat_room?token=d04032a2b63b4ec2b65004710e5b3c49")
 
             } catch (e: URISyntaxException) {
                 print(e.message)

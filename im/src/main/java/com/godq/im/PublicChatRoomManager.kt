@@ -56,7 +56,7 @@ object PublicChatRoomManager {
 
     private fun initSocket() {
         try {
-            mSocket = IO.socket("http://43.138.100.114:8001/chat_room")
+            mSocket = IO.socket("http://150.158.55.208:8001/chat_room?token=${accountService?.getAccountInfo()?.getToken()}")
 
         } catch (e: URISyntaxException) {
             print(e.message)
@@ -67,6 +67,7 @@ object PublicChatRoomManager {
             val msg = (args[0] as? String) ?: return@on
             val recListener = receiveMessageListener
             val msgEntity = parseSingleMsg(msg) ?: return@on
+            Timber.tag("immmm").e(msgEntity.toString())
             if (recListener != null) {
                 lastReadMsgId = msgEntity.msgId
                 unReadMsgCount = 0
@@ -96,12 +97,12 @@ object PublicChatRoomManager {
         mSocket?.disconnect()
     }
 
-    fun sendMsg(msg: String) {
+    fun sendMsg(msg: String, msgType: Int) {
         if (accountService?.isLogin() != true) return
         val json = JSONObject()
-        json.putOpt("user_id", accountService.getAccountInfo().getUserId())
-        json.putOpt("user_name", accountService.getAccountInfo().getNickName())
+        json.putOpt("token", accountService.getAccountInfo().getToken())
         json.putOpt("msg", msg)
+        json.putOpt("msg_type", msgType)
 
         mSocket?.emit("new_message", json.toString())
     }
@@ -133,7 +134,7 @@ object PublicChatRoomManager {
         }
         if (lastReadMsgId == "none") return
 
-        KwHttpMgr.getInstance().kwHttpFetch.asyncGet(RequestInfo.newGet("http://43.138.100.114:8001/unread?last_read_id=$lastReadMsgId")) {
+        KwHttpMgr.getInstance().kwHttpFetch.asyncGet(RequestInfo.newGet("http://150.158.55.208:8001/unread?last_read_id=$lastReadMsgId")) {
             if (!it.isSuccessful) return@asyncGet
             it.dataToString().toInt().apply {
                 unReadMsgCount = this

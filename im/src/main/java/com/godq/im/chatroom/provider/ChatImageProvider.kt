@@ -4,28 +4,28 @@ import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.chad.library.adapter.base.provider.BaseItemProvider
 import com.godq.im.R
 import com.godq.im.chatroom.MessageEntity
+import com.godq.im.databinding.ImChatImgItemBinding
 import com.godq.im.databinding.ImChatTextItemBinding
-import com.lazylite.mod.imageloader.fresco.config.ImageLoadConfig
 import com.lazylite.mod.utils.DataBindBaseViewHolder
 
-class ChatTextProvider : BaseItemProvider<MultiItemEntity, DataBindBaseViewHolder>() {
+class ChatImageProvider : BaseItemProvider<MultiItemEntity, DataBindBaseViewHolder>() {
 
     override fun viewType(): Int {
-        return MessageEntity.TEXT
+        return MessageEntity.IMG
     }
 
     override fun layout(): Int {
-        return R.layout.im_chat_text_item
+        return R.layout.im_chat_img_item
     }
 
     override fun convert(helper: DataBindBaseViewHolder?, data: MultiItemEntity?, position: Int) {
-        if (helper?.viewDataBinding !is ImChatTextItemBinding) {
+        if (helper?.viewDataBinding !is ImChatImgItemBinding) {
             return
         }
         if (data !is MessageEntity) {
             return
         }
-        val binding = helper.viewDataBinding as ImChatTextItemBinding
+        val binding = helper.viewDataBinding as ImChatImgItemBinding
         binding.msg = data
         binding.executePendingBindings()
     }

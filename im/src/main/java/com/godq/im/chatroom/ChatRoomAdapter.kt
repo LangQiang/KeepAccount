@@ -2,6 +2,7 @@ package com.godq.im.chatroom
 
 import com.chad.library.adapter.base.MultipleItemRvAdapter
 import com.chad.library.adapter.base.entity.MultiItemEntity
+import com.godq.im.chatroom.provider.ChatImageProvider
 import com.godq.im.chatroom.provider.ChatTextProvider
 import com.lazylite.mod.utils.DataBindBaseViewHolder
 
@@ -18,5 +19,6 @@ class ChatRoomAdapter(data: List<MultiItemEntity>?): MultipleItemRvAdapter<Multi
 
     override fun registerItemProvider() {
         mProviderDelegate.registerProvider(ChatTextProvider())
+        mProviderDelegate.registerProvider(ChatImageProvider())
     }
 }

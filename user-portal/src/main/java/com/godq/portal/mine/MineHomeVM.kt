@@ -127,9 +127,9 @@ class MineHomeVM : LifecycleEventObserver {
         ) return
         val activity = App.getMainActivity()?: return
         UserPortalLinkHelper.chooseImage(activity, object : IUploadService.OnChooseImageCallback {
-            override fun onChoose(filePath: String?) {
-                Timber.tag("mine").e("filePath: $filePath")
-                uploadFileByPathToCos(filePath)
+            override fun onChoose(fileUri: String?) {
+                Timber.tag("mine").e("filePath: $fileUri")
+                uploadFileByPathToCos(fileUri)
             }
 
         })

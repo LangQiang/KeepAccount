@@ -31,6 +31,11 @@ class UploadServiceImpl: IUploadService {
                 onUploadCallback?.onUpload(accessUrl)
             }
 
+            override fun onProgress(progress: Long, total: Long) {
+                super.onProgress(progress, total)
+                onUploadCallback?.onProgress(progress, total)
+            }
+
         })
     }
 
