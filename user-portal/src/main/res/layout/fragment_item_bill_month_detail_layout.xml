@@ -5,27 +5,24 @@
 
     <data>
         <import type="com.godq.portal.utils.GlobalConstantRes"/>
-        <import type="com.godq.portal.billdetail.BillEntity"/>
+        <import type="com.godq.portal.billdetail.BillMonthEntity"/>
         <variable
             name="itemData"
-            type="com.godq.portal.billdetail.BillEntity" />
+            type="BillMonthEntity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        app:setBillItemBg="@{itemData}"
+        android:background="@drawable/ka_bill_item_bg1"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_width="match_parent"
         android:layout_height="80dp">
 
-        <ImageView
-            android:alpha="0.4"
-            app:setWeatherIcon="@{itemData}"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_width="60dp"
-            android:layout_height="60dp"/>
+        <com.godq.portal.billdetail.BillTableListView
+            setTableListView="@{itemData.tableList}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
         <TextView
             android:id="@+id/date_tv"
@@ -36,7 +33,7 @@
             android:textStyle="bold"
             android:textSize="18dp"
             android:textColor="@color/black80"
-            android:text="@{itemData.date}"
+            android:text="@{itemData.monthDate}"
             tools:text="2022-09-17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -48,20 +45,20 @@
             android:layout_marginStart="5dp"
             android:textSize="12dp"
             android:textColor="@color/black60"
-            android:text='@{"(" + String.valueOf(itemData.tableTimes) + ")桌"}'
+            android:text='@{"(" + String.valueOf(itemData.totalTablesCount) + ")桌"}'
             tools:text="(16)桌"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/week_tv"
+            android:visibility="gone"
             app:layout_constraintStart_toEndOf="@+id/date_tv"
             app:layout_constraintBottom_toBottomOf="@+id/date_tv"
             app:layout_constraintTop_toTopOf="@+id/date_tv"
             android:layout_marginStart="5dp"
             android:textSize="12dp"
             android:textColor="@color/black60"
-            android:text='@{"[" + String.valueOf(itemData.week) + "]"}'
             tools:text="[星期一]"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -70,7 +67,7 @@
             android:id="@+id/opt_tv"
             android:textSize="12dp"
             android:textColor="@color/black60"
-            android:text='@{"录入:" + itemData.optBy}'
+            android:visibility="gone"
             tools:text="录入:GodQ"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/date_tv"
@@ -83,7 +80,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginEnd="50dp"
+            android:layout_marginEnd="20dp"
             android:textStyle="bold"
             tools:text="2333"
             android:textSize="24dp"
@@ -115,15 +112,6 @@
             android:text='@{"支出:" + String.valueOf(itemData.payOut)}'
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-
-        <ImageView
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginEnd="15dp"
-            android:src="@{itemData.expand ? @drawable/to_collapse_arrow:@drawable/to_expand_arrow}"
-            android:layout_width="20dp"
-            android:layout_height="20dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

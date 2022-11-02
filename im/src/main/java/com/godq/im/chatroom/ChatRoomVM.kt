@@ -1,6 +1,7 @@
 package com.godq.im.chatroom
 
 import android.net.Uri
+import android.text.TextUtils
 import androidx.databinding.ObservableField
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -49,6 +50,7 @@ class ChatRoomVM  : LifecycleEventObserver {
 
     fun sendTextMsg() {
         val sendMsg = inputTextMsgUIState.get()?: return
+        if (sendMsg.isEmpty()) return
         Timber.tag("chatroom").e(sendMsg)
         PublicChatRoomManager.sendMsg(sendMsg, 0)
         inputTextMsgUIState.set("")
@@ -56,7 +58,6 @@ class ChatRoomVM  : LifecycleEventObserver {
 
     fun onSendImgMsg() {
         val activity = App.getMainActivity()?: return
-        imgSendLoadingUIState.set(true)
         IMLinkHelper.chooseImage(activity, object : IUploadService.OnChooseImageCallback {
             override fun onChoose(fileUri: String?) {
                 upload(fileUri)
@@ -71,6 +72,7 @@ class ChatRoomVM  : LifecycleEventObserver {
             imgSendLoadingUIState.set(false)
             return
         }
+        imgSendLoadingUIState.set(true)
         val path = try {
             Uri.parse(fileUri).path
         } catch (e: Exception) {

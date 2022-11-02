@@ -2,6 +2,7 @@ package com.godq.portal.billdetail
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.godq.portal.constants.getBillListUrl
 import com.godq.portal.utils.HolidayRepo
 import com.godq.portal.utils.WeatherRepo
@@ -14,10 +15,13 @@ class BillDetailMV {
 
     private val scope = CoroutineScope(Job() + Dispatchers.Main)
 
-    var onBillListDataCallback : ((List<BillEntity>?) -> Unit)? = null
+    var onBillListDataCallback : ((List<MultiItemEntity>?) -> Unit)? = null
     var onHolidayCallback : (() -> Unit)? = null
 
-    fun requestShopList(shopId: String?) {
+    private var cacheList: List<BillEntity>? = null
+
+    fun requestShopList(shopId: String?, listType: String?) {
+        listType?: return
         shopId?: return
         scope.launch {
             val billDetailList = withContext(Dispatchers.IO) {
@@ -28,11 +32,15 @@ class BillDetailMV {
                 parseBillDetailList(data)
             }
             if (billDetailList.isNullOrEmpty()) return@launch
-            onBillListDataCallback?.invoke(billDetailList)
+            cacheList = billDetailList
+            val finalList = transformByListType(billDetailList, listType)
+            onBillListDataCallback?.invoke(finalList)
 
             //获取holiday信息
-            val startDate = billDetailList.first().date
-            val endDate = billDetailList.last().date
+            val first = (billDetailList.first() as? BillEntity) ?: return@launch
+            val last = (billDetailList.last() as? BillEntity) ?: return@launch
+            val startDate = first.date
+            val endDate = last.date
             val holidayStateSuccess = withContext(Dispatchers.IO) {
                 HolidayRepo.fetchHolidayStateList(startDate, endDate)
             }
@@ -43,6 +51,16 @@ class BillDetailMV {
             onHolidayCallback?.invoke()
         }
     }
+
+    fun changeListType(shopId: String?, listType: String) {
+        val list = cacheList
+        if (list == null) {
+            requestShopList(shopId, listType)
+        } else {
+            onBillListDataCallback?.invoke(transformByListType(list, listType))
+        }
+    }
+
 
     fun onItemClick(adapter: BaseQuickAdapter<Any, BaseViewHolder>?, position: Int) {
         val dataList = adapter?.data ?: return

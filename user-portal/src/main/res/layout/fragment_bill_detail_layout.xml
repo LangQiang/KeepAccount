@@ -16,6 +16,7 @@
         app:layout_constraintTop_toBottomOf="@+id/title_bar"
         app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/bill_detail_rv"
+        android:paddingBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"/>
 

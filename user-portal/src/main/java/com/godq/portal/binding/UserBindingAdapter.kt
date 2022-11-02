@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.godq.portal.R
 import com.godq.portal.billdetail.BillEntity
+import com.godq.portal.billdetail.BillTableListView
 import com.godq.portal.utils.HolidayRepo
 import com.godq.portal.utils.WeatherRepo
 import com.lazylite.mod.App
@@ -44,6 +45,11 @@ fun setWeather(view: ImageView, billEntity: BillEntity) {
     }?.let {
         view.setImageDrawable(ContextCompat.getDrawable(App.getInstance(), it))
     }
+}
+
+@BindingAdapter("setTableListView")
+fun setTableList(view: BillTableListView, list: List<Int>) {
+    view.setTableListData(list)
 }
 
 

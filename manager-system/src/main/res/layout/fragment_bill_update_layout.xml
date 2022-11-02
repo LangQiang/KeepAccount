@@ -399,6 +399,41 @@
                     android:gravity="center"
                     android:textSize="18dp"
                     android:textColor="@color/black80"
+                    android:text="支出"
+                    tools:text="支出"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+                <EditText
+                    android:inputType="numberDecimal"
+                    android:text="@={vm.billInfo.payOut}"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:hint="输入金额"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
                     android:text="桌次"
                     tools:text="桌次"
                     android:layout_width="0dp"
@@ -439,7 +474,7 @@
             android:layout_margin="30dp"
             android:background="@drawable/base_round_high_color_btn_bg"
             android:layout_width="match_parent"
-            android:layout_height="60dp"/>
+            android:layout_height="50dp"/>
 
     </RelativeLayout>
 </layout>

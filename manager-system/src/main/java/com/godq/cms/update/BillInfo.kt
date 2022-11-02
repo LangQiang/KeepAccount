@@ -83,6 +83,13 @@ class BillInfo: BaseObservable() {
             notifyPropertyChanged(BR.freeAmount)
         }
 
+    @get:Bindable
+    var payOut: String? = "0"
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.payOut)
+        }
+
     fun setInfoWithoutId(info: BillInfo) {
         this.date = info.date
         this.tableTimes = info.tableTimes
@@ -94,6 +101,7 @@ class BillInfo: BaseObservable() {
         this.douyinAmount = info.douyinAmount
         this.waimaiAmount = info.waimaiAmount
         this.freeAmount = info.freeAmount
+        this.payOut = info.payOut
     }
 
     fun invalid(): Boolean {
@@ -108,11 +116,12 @@ class BillInfo: BaseObservable() {
                 || waimaiAmount.isNullOrEmpty()
                 || freeAmount.isNullOrEmpty()
                 || tableTimes.isNullOrEmpty()
+                || payOut.isNullOrEmpty()
 
     }
 
     override fun toString(): String {
-        return "BillInfo(shopId=$shopId, date=$date, tableTimes=$tableTimes, bankAmount=$bankAmount, aliAmount=$aliAmount, wxAmount=$wxAmount, cashAmount=$cashAmount, meituanAmount=$meituanAmount, douyinAmount=$douyinAmount, waimaiAmount=$waimaiAmount, freeAmount=$freeAmount)"
+        return "BillInfo(shopId=$shopId, date=$date, tableTimes=$tableTimes, bankAmount=$bankAmount, aliAmount=$aliAmount, wxAmount=$wxAmount, cashAmount=$cashAmount, meituanAmount=$meituanAmount, douyinAmount=$douyinAmount, waimaiAmount=$waimaiAmount, freeAmount=$freeAmount, payOut=$payOut)"
     }
 
 

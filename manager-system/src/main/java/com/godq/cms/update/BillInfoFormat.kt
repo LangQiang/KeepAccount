@@ -92,6 +92,14 @@ fun formatBillInfoFromClipBoard(clipboardText: String): BillInfo? {
             }
         }
 
+        //支出
+        val payOutPattern = Pattern.compile("(?<=支出\\s{0,10}[:：])[\\d.,，。\\s]+(?=[元块圆])")
+        payOutPattern.matcher(clipboardText).apply {
+            if (find()) {
+                info.payOut = group().trim().replace("[,，。\\s]+".toRegex(), "")
+            }
+        }
+
         Timber.tag("format").e(info.toString())
         info
     } catch (e:Exception) {

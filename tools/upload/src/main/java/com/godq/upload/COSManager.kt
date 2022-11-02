@@ -17,6 +17,7 @@ import com.tencent.cos.xml.transfer.TransferManager
 import com.tencent.cos.xml.transfer.TransferConfig
 
 import timber.log.Timber
+import java.io.File
 import java.util.*
 
 
@@ -47,6 +48,15 @@ object COSManager {
     }
 
     fun upload(path: String, onUploadResultCallback: OnUploadResultCallback?) {
+
+        //限制文件大小
+        with(File(path)) {
+            if (length() > 20 * 1024 * 1024) {
+                Timber.tag("upload").e("size over limit: ${length()}")
+                onUploadResultCallback?.onResult(true, null, "不能上传大小超过超过20M的文件")
+                return
+            }
+        }
 
         val transferConfig = TransferConfig.Builder().build()
 
@@ -88,9 +98,11 @@ object COSManager {
                                 @Nullable clientException: CosXmlClientException?,
                                 @Nullable serviceException: CosXmlServiceException?) {
                 if (clientException != null) {
+                    Timber.tag("upload").e("clientException: ${clientException.message}")
                     onUploadResultCallback?.onResult(false, null, clientException.message ?: "clientException")
                     clientException.printStackTrace()
                 } else {
+                    Timber.tag("upload").e("serviceException: ${serviceException?.message}")
                     onUploadResultCallback?.onResult(false, null, serviceException?.message ?: "serviceException")
                     serviceException?.printStackTrace()
                 }

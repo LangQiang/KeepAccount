@@ -39,6 +39,7 @@ class BillUpdateVm {
         json.putOpt("date", billInfo.date)
         json.putOpt("opt_by", ConfMgr.getStringValue("", "opt_by", ""))
         json.putOpt("table_times", billInfo.tableTimes)
+        json.putOpt("pay_out", billInfo.payOut)
         val array = JSONArray()
 
         val bankJson = JSONObject()

@@ -1,6 +1,7 @@
 package com.godq.portal.billdetail
 
 import android.text.TextUtils
+import com.chad.library.adapter.base.entity.MultiItemEntity
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
@@ -48,6 +49,7 @@ fun parseBillDetailList(jsonData: String?): List<BillEntity>? {
                     itemObj.optInt("bill_table_times"),
                     itemObj.optString("bill_opt_by").let { if (TextUtils.isEmpty(it)) "未知" else it },
                     week,
+                    itemObj.optDouble("bill_pay_out", 0.0),
                     subList
                 )
             )
@@ -57,4 +59,77 @@ fun parseBillDetailList(jsonData: String?): List<BillEntity>? {
     } catch (e: Exception) {
         null
     }
+}
+
+fun transformByListType(
+    billDetailList: List<BillEntity>,
+    listType: String
+): List<MultiItemEntity> {
+    return when (listType) {
+        BillDetailFragment.LIST_TYPE_DAY -> {
+            billDetailList
+        }
+        BillDetailFragment.LIST_TYPE_MONTH -> {
+            transformToMonthList(billDetailList)
+        }
+        BillDetailFragment.LIST_TYPE_WEEK -> {
+            transformToWeekList(billDetailList)
+        }
+        else -> {
+            billDetailList
+        }
+    }
+}
+
+private fun transformToMonthList(billDetailList: List<BillEntity>): List<MultiItemEntity> {
+    val monthList = ArrayList<BillMonthEntity>()
+    var month = ""
+    var billMonthEntity: BillMonthEntity? = null
+    for (billEntity in billDetailList) {
+        val itemMonth = billEntity.date.substring(0, 7)
+        if (itemMonth != month) {
+            month = itemMonth
+            billMonthEntity = BillMonthEntity(BillMonthEntity.TYPE_MONTH, month, 0.0, 0.0, 0)
+            billMonthEntity.totalTablesCount += billEntity.tableTimes
+            billMonthEntity.total += billEntity.total
+            billMonthEntity.payOut += billEntity.payOut
+            billMonthEntity.tableList.add(billEntity.tableTimes)
+            monthList.add(billMonthEntity)
+        } else {
+            billMonthEntity?: continue
+            billMonthEntity.totalTablesCount += billEntity.tableTimes
+            billMonthEntity.tableList.add(billEntity.tableTimes)
+            billMonthEntity.total += billEntity.total
+            billMonthEntity.payOut += billEntity.payOut
+        }
+    }
+    return monthList
+}
+
+private fun transformToWeekList(billDetailList: List<BillEntity>): List<MultiItemEntity> {
+    val weekList = ArrayList<BillWeekEntity>()
+    var isFirst = true
+    var billWeekEntity: BillWeekEntity? = null
+    for (billEntity in billDetailList) {
+        val week = billEntity.week
+        if (week == "星期一" || isFirst) {
+            isFirst = false
+            billWeekEntity = BillWeekEntity(BillWeekEntity.TYPE_WEEK, billEntity.date, "", 0.0, 0.0, 0)
+            billWeekEntity.totalTablesCount += billEntity.tableTimes
+            billWeekEntity.total += billEntity.total
+            billWeekEntity.payOut += billEntity.payOut
+            billWeekEntity.tableList.add(billEntity.tableTimes)
+            weekList.add(billWeekEntity)
+        } else {
+            billWeekEntity?: continue
+            if (week == "星期日") {
+                billWeekEntity.monthDateEnd = billEntity.date
+            }
+            billWeekEntity.totalTablesCount += billEntity.tableTimes
+            billWeekEntity.tableList.add(billEntity.tableTimes)
+            billWeekEntity.total += billEntity.total
+            billWeekEntity.payOut += billEntity.payOut
+        }
+    }
+    return weekList
 }
