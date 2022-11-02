@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Pair
 import android.view.KeyEvent
 import android.view.View
@@ -128,16 +129,22 @@ class MainActivity : AppCompatActivity() {
         val decor = window?.decorView?: return
         val insertCtrl = ViewCompat.getWindowInsetsController(decor)
         insertCtrl?.addOnControllableInsetsChangedListener { _, typeMask ->
-            Timber.tag("bar").e("typeMask: $typeMask")
+            Timber.tag("setCustomTheme").e("typeMask: $typeMask")
         }
         decor.post {
             val insert = ViewCompat.getRootWindowInsets(decor)
             val navHeight = insert?.getInsets(WindowInsetsCompat.Type.navigationBars())?.bottom
-            navHolder?.layoutParams?.apply {
-                height = navHeight ?: 0
+            val outMetrics = DisplayMetrics()
+            windowManager.defaultDisplay.getRealMetrics(outMetrics)
+            val deviceRealHeightPixels = outMetrics.heightPixels
+            if (decor.height >= deviceRealHeightPixels) {
+                navHolder?.layoutParams?.apply {
+                    height = navHeight ?: 0
+                }
+                (decor as? ViewGroup)?.requestLayout()
             }
-            (decor as? ViewGroup)?.requestLayout()
         }
+
     }
 
 

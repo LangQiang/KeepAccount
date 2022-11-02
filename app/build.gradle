@@ -40,7 +40,7 @@ android {
             signingConfig signingConfigs.release
             applicationVariants.all { variant -> {
                     variant.outputs.all {
-                        outputFileName = "app-" + variant.name + "-" + rootProject.ext.versionCode + ".apk"
+                        outputFileName = "app-smd-" + variant.name + "-" + rootProject.ext.versionCode + ".apk"
                     }
                 }
             }
