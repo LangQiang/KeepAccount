@@ -53,6 +53,10 @@ class ChatRoomFragment: BaseFragment() {
         binding?.titleBar?.setMainTitle("CHAT ROOM")
         binding?.titleBar?.setBackListener { close() }
 
+        mAdapter.setOnItemChildClickListener { adapter, itemView, position ->
+            vm.onItemChildClick(adapter.data[position] as? MessageEntity, itemView)
+        }
+
         binding?.rv?.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = mAdapter

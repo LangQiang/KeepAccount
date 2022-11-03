@@ -25,6 +25,8 @@ class ChatImageProvider : BaseItemProvider<MultiItemEntity, DataBindBaseViewHold
         if (data !is MessageEntity) {
             return
         }
+        helper.addOnClickListener(R.id.other_iv)
+        helper.addOnClickListener(R.id.self_iv)
         val binding = helper.viewDataBinding as ImChatImgItemBinding
         binding.msg = data
         binding.executePendingBindings()

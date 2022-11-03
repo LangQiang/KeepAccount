@@ -97,7 +97,7 @@
             tools:text="流水:2333"
             android:textSize="12dp"
             android:textColor="@color/black60"
-            android:text='@{"流水:" + String.valueOf(itemData.total)}'
+            android:text='@{String.format("流水:%.1f",itemData.total)}'
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -109,7 +109,7 @@
             tools:text="支出:2333"
             android:textSize="12dp"
             android:textColor="#458d35"
-            android:text='@{"支出:" + String.valueOf(itemData.payOut)}'
+            android:text='@{String.format("支出:%.1f",itemData.payOut)}'
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

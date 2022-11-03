@@ -1,13 +1,14 @@
 package com.godq.im.chatroom
 
 import android.net.Uri
-import android.text.TextUtils
+import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import com.godq.im.IMLinkHelper
 import com.godq.im.PublicChatRoomManager
+import com.godq.im.R
 import com.godq.ulda.IUploadService
 import com.lazylite.mod.App
 import com.lazylite.mod.http.mgr.KwHttpMgr
@@ -114,6 +115,18 @@ class ChatRoomVM  : LifecycleEventObserver {
             else -> {
                 //ignore
             }
+        }
+    }
+
+    fun onItemChildClick(messageEntity: MessageEntity?, view: View) {
+        messageEntity?: return
+
+        when (view.id) {
+            R.id.other_iv, R.id.self_iv -> {
+                val url = messageEntity.msg
+                KwToast.show(url)
+            }
+            else -> {}
         }
     }
 }

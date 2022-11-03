@@ -6,8 +6,8 @@ ext {
     buildToolV = "32.0.0"
 
     //应用版本号、name
-    versionCode= 1011
-    versionName= "1.0.1.1"
+    versionCode= 1012
+    versionName= "1.0.1.2"
 
     //java版本
     sourceCompatibility = JavaVersion.VERSION_1_8
