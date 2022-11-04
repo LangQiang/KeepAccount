@@ -22,7 +22,6 @@
             android:layout_height="wrap_content">
 
             <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/other_iv"
                 frescoImgUrl="@{msg.userAvatar}"
                 frescoConfig="@{ConstantRes.INSTANCE.avatarConfig}"
                 android:layout_width="40dp"
@@ -42,8 +41,10 @@
                     android:layout_height="wrap_content" />
 
                 <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/other_iv"
+                    android:background="@color/black6"
                     frescoImgUrl="@{msg.msg}"
-                    frescoConfig="@{ConstantRes.INSTANCE.avatarConfig}"
+                    frescoConfig="@{ConstantRes.INSTANCE.chatImgConfig}"
                     android:layout_marginTop="6dp"
                     android:layout_width="108dp"
                     android:layout_height="192dp" />
@@ -56,7 +57,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/self_iv"
                 android:layout_gravity="end"
                 frescoImgUrl="@{msg.userAvatar}"
                 frescoConfig="@{ConstantRes.INSTANCE.avatarConfig}"
@@ -81,8 +81,10 @@
                     android:layout_height="wrap_content" />
 
                 <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/self_iv"
                     frescoImgUrl="@{msg.msg}"
-                    frescoConfig="@{ConstantRes.INSTANCE.avatarConfig}"
+                    frescoConfig="@{ConstantRes.INSTANCE.chatImgConfig}"
+                    android:background="@color/black6"
                     android:layout_gravity="end"
                     android:layout_marginTop="6dp"
                     android:layout_width="108dp"

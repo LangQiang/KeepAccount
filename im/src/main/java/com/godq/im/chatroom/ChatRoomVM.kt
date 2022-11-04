@@ -11,10 +11,13 @@ import com.godq.im.PublicChatRoomManager
 import com.godq.im.R
 import com.godq.ulda.IUploadService
 import com.lazylite.mod.App
+import com.lazylite.mod.fragmentmgr.FragmentOperation
+import com.lazylite.mod.fragmentmgr.StartParameter
 import com.lazylite.mod.http.mgr.KwHttpMgr
 import com.lazylite.mod.http.mgr.model.RequestInfo
 import com.lazylite.mod.messagemgr.MessageManager
 import com.lazylite.mod.utils.toast.KwToast
+import com.lazylite.mod.widget.preview.PhotoPreviewFragment
 import timber.log.Timber
 
 class ChatRoomVM  : LifecycleEventObserver {
@@ -121,10 +124,15 @@ class ChatRoomVM  : LifecycleEventObserver {
     fun onItemChildClick(messageEntity: MessageEntity?, view: View) {
         messageEntity?: return
 
+        KwToast.show(messageEntity.msg)
+
         when (view.id) {
             R.id.other_iv, R.id.self_iv -> {
-                val url = messageEntity.msg
-                KwToast.show(url)
+                val url = messageEntity.msg ?: return
+
+                FragmentOperation.getInstance().showFullFragment(PhotoPreviewFragment.getInstance(view, url, false), StartParameter.Builder()
+                    .withHideBottomLayer(false)
+                    .build())
             }
             else -> {}
         }

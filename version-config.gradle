@@ -6,8 +6,8 @@ ext {
     buildToolV = "32.0.0"
 
     //应用版本号、name
-    versionCode= 1012
-    versionName= "1.0.1.2"
+    versionCode= 1014
+    versionName= "1.0.1.4"
 
     //java版本
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -33,7 +33,7 @@ ext {
     //dataBinding 注解处理器
     databinding_compiler = 'com.android.databinding:compiler:3.1.4'
 
-    base_core = 'io.github.langqiang:base-core:1.6.3-SNAPSHOT'
+    base_core = 'io.github.langqiang:base-core:1.7.0-SNAPSHOT'
     base_core_processor = 'io.github.langqiang:processor:1.0.0-SNAPSHOT'
     ui_compose = 'io.github.langqiang:UICompose:1.0.0-SNAPSHOT'
 
