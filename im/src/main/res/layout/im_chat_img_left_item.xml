@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="com.godq.im.chatroom.ConstantRes"/>
+        <import type="com.godq.im.chatroom.MessageEntity"/>
+        <variable
+            name="msg"
+            type="MessageEntity" />
+    </data>
+
+    <FrameLayout
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            frescoImgUrl="@{msg.userAvatar}"
+            frescoConfig="@{ConstantRes.INSTANCE.avatarConfig}"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+
+        <LinearLayout
+            android:layout_marginStart="50dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text='@{msg.nickName + "(" + msg.userId + ")"}'
+                android:textSize="12dp"
+                android:textColor="@color/black60"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content" />
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/other_iv"
+                android:background="@color/black6"
+                frescoImgUrl="@{msg.msg}"
+                frescoConfig="@{ConstantRes.INSTANCE.chatImgConfig}"
+                android:layout_marginTop="6dp"
+                android:layout_width="108dp"
+                android:layout_height="0dp" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+</layout>

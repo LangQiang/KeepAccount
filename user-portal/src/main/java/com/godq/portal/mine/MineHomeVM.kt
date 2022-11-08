@@ -140,12 +140,12 @@ class MineHomeVM : LifecycleEventObserver {
             KwToast.show("上传失败，无法获取所选文件路径")
             return
         }
-        val path = try {
-            Uri.parse(filePath).path
-        } catch (e: Exception) {
-            null
-        } ?: return
-        UserPortalLinkHelper.upload(path, object : IUploadService.OnUploadCallback {
+//        val path = try {
+//            Uri.parse(filePath).path
+//        } catch (e: Exception) {
+//            null
+//        } ?: return
+        UserPortalLinkHelper.upload(filePath, object : IUploadService.OnUploadCallback {
             override fun onUpload(accessUrl: String?) {
                 if (accessUrl.isNullOrEmpty()) {
                     KwToast.show("无法上传文件到服务器")

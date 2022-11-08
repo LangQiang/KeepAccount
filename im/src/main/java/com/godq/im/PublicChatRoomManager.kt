@@ -97,17 +97,30 @@ object PublicChatRoomManager {
         mSocket?.disconnect()
     }
 
-    fun sendMsg(msg: String, msgType: Int) {
+    fun sendMsg(msg: String) {
         if (accountService?.isLogin() != true) return
         val json = JSONObject()
         json.putOpt("token", accountService.getAccountInfo().getToken())
         json.putOpt("msg", msg)
-        json.putOpt("msg_type", msgType)
+        json.putOpt("msg_type", 0)
 
         mSocket?.emit("new_message", json.toString())
     }
 
-    fun isMineSend(messageEntity: MessageEntity): Boolean {
+    fun sendImgMsg(msg: String, width: Int, height: Int) {
+        if (accountService?.isLogin() != true) return
+        val json = JSONObject()
+        json.putOpt("token", accountService.getAccountInfo().getToken())
+        json.putOpt("msg", msg)
+        json.putOpt("pic_width", width)
+        json.putOpt("pic_height", height)
+        json.putOpt("msg_type", 1)
+
+        mSocket?.emit("new_message", json.toString())
+    }
+
+    fun isMineSend(messageEntity: MessageEntity?): Boolean {
+        messageEntity ?: return false
         return messageEntity.userId == accountService?.getAccountInfo()?.getUserId()
     }
 

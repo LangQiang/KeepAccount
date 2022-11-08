@@ -1,10 +1,11 @@
 package com.godq.ulda
 
+import android.app.Activity
 import android.content.Intent
 
 interface IUploadService {
 
-    fun chooseImage(fragmentOrActivity: Any, onChooseImageCallback: OnChooseImageCallback?)
+    fun chooseImage(activity: Activity, onChooseImageCallback: OnChooseImageCallback?)
 
     /**
      * 要使得chooseImage接口回调生效 务必要在activity的onActivityResult中调用这个接口

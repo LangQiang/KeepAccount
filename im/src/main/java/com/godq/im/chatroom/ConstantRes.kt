@@ -9,7 +9,7 @@ object ConstantRes {
         .create()
 
     val chatImgConfig: ImageLoadConfig = ImageLoadConfig.Builder()
-//        .roundedCorner(8f)
+        .roundedCorner(8f)
         .setScaleType(ScalingUtils.ScaleType.FIT_CENTER)
         .create()
 }

@@ -1,5 +1,6 @@
 package com.godq.im.chatroom
 
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.view.View
 import androidx.databinding.ObservableField
@@ -17,8 +18,10 @@ import com.lazylite.mod.http.mgr.KwHttpMgr
 import com.lazylite.mod.http.mgr.model.RequestInfo
 import com.lazylite.mod.messagemgr.MessageManager
 import com.lazylite.mod.utils.toast.KwToast
+import com.lazylite.mod.widget.preview.PhotoPreviewConfig
 import com.lazylite.mod.widget.preview.PhotoPreviewFragment
 import timber.log.Timber
+import java.lang.ref.WeakReference
 
 class ChatRoomVM  : LifecycleEventObserver {
 
@@ -56,7 +59,7 @@ class ChatRoomVM  : LifecycleEventObserver {
         val sendMsg = inputTextMsgUIState.get()?: return
         if (sendMsg.isEmpty()) return
         Timber.tag("chatroom").e(sendMsg)
-        PublicChatRoomManager.sendMsg(sendMsg, 0)
+        PublicChatRoomManager.sendMsg(sendMsg)
         inputTextMsgUIState.set("")
     }
 
@@ -77,21 +80,26 @@ class ChatRoomVM  : LifecycleEventObserver {
             return
         }
         imgSendLoadingUIState.set(true)
-        val path = try {
-            Uri.parse(fileUri).path
-        } catch (e: Exception) {
-            imgSendLoadingUIState.set(false)
-            KwToast.show("发送失败")
-            null
-        } ?: return
-        IMLinkHelper.upload(path, object : IUploadService.OnUploadCallback {
+//        val path = try {
+//            Uri.parse(fileUri).path
+//        } catch (e: Exception) {
+//            imgSendLoadingUIState.set(false)
+//            KwToast.show("发送失败")
+//            null
+//        } ?: return
+        val option = BitmapFactory.Options()
+        option.inJustDecodeBounds = true
+        BitmapFactory.decodeFile(fileUri, option)
+        val width = option.outWidth
+        val height = option.outHeight
+        IMLinkHelper.upload(fileUri, object : IUploadService.OnUploadCallback {
             override fun onUpload(accessUrl: String?) {
                 if (accessUrl.isNullOrEmpty()) {
                     KwToast.show("发送失败")
                     imgSendLoadingUIState.set(false)
                     return
                 }
-                PublicChatRoomManager.sendMsg(accessUrl, 1)
+                PublicChatRoomManager.sendImgMsg(accessUrl, width, height)
                 imgSendLoadingUIState.set(false)
             }
 
@@ -124,13 +132,11 @@ class ChatRoomVM  : LifecycleEventObserver {
     fun onItemChildClick(messageEntity: MessageEntity?, view: View) {
         messageEntity?: return
 
-        KwToast.show(messageEntity.msg)
-
         when (view.id) {
             R.id.other_iv, R.id.self_iv -> {
                 val url = messageEntity.msg ?: return
-
-                FragmentOperation.getInstance().showFullFragment(PhotoPreviewFragment.getInstance(view, url, false), StartParameter.Builder()
+                val config = PhotoPreviewConfig(WeakReference(view), url, false, 320, false)
+                FragmentOperation.getInstance().showFullFragment(PhotoPreviewFragment.getInstance(config), StartParameter.Builder()
                     .withHideBottomLayer(false)
                     .build())
             }

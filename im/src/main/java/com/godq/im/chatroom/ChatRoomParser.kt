@@ -9,13 +9,17 @@ fun parseHistoryList(jsonStr: String): List<MessageEntity> {
         val jsonArr = JSONArray(jsonStr)
         for (i in 0 until jsonArr.length()) {
             val obj = jsonArr.optJSONObject(i) ?: continue
-            val entity = MessageEntity()
-            entity.userId = obj.optString("user_id")
-            entity.msg = obj.optString("msg")
-            entity.msgId = obj.optString("id")
-            entity.nickName = obj.optString("nick_name")
-            entity.userAvatar = obj.optString("user_avatar")
-            entity.msgType = obj.optInt("msg_type")
+
+            val entity = MessageEntity(
+                obj.optString("id"),
+                obj.optString("user_id"),
+                obj.optString("msg"),
+                obj.optString("nick_name"),
+                obj.optInt("msg_type"),
+                obj.optString("user_avatar"),
+                obj.optInt("pic_width"),
+                obj.optInt("pic_height")
+            )
             retList.add(entity)
         }
         retList
@@ -26,15 +30,17 @@ fun parseHistoryList(jsonStr: String): List<MessageEntity> {
 
 fun parseSingleMsg(jsonStr: String): MessageEntity? {
     return try {
-        val jsonObj = JSONObject(jsonStr)
-        val entity = MessageEntity()
-        entity.userId = jsonObj.optString("user_id")
-        entity.msg = jsonObj.optString("msg")
-        entity.msgId = jsonObj.optString("id")
-        entity.nickName = jsonObj.optString("nick_name")
-        entity.userAvatar = jsonObj.optString("user_avatar")
-        entity.msgType = jsonObj.optInt("msg_type")
-        entity
+        val obj = JSONObject(jsonStr)
+        MessageEntity(
+            obj.optString("id"),
+            obj.optString("user_id"),
+            obj.optString("msg"),
+            obj.optString("nick_name"),
+            obj.optInt("msg_type"),
+            obj.optString("user_avatar"),
+            obj.optInt("pic_width"),
+            obj.optInt("pic_height")
+        )
     } catch (e: Exception) {
         null
     }

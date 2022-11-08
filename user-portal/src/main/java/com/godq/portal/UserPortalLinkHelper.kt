@@ -28,8 +28,8 @@ object UserPortalLinkHelper {
         uploadService?.upload(path, onUploadCallback)
     }
 
-    fun chooseImage(fragmentOrActivity: Activity, onChooseImageCallback: IUploadService.OnChooseImageCallback?) {
-        uploadService?.chooseImage(fragmentOrActivity, onChooseImageCallback)
+    fun chooseImage(activity: Activity, onChooseImageCallback: IUploadService.OnChooseImageCallback?) {
+        uploadService?.chooseImage(activity, onChooseImageCallback)
     }
 
     fun updateAvatar(avatarUrl: String) {

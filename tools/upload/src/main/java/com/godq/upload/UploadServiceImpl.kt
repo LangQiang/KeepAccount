@@ -1,5 +1,6 @@
 package com.godq.upload
 
+import android.app.Activity
 import android.content.Intent
 import com.godq.ulda.IUploadService
 import com.godq.upload.chooseimage.KSingChooseImageUtil
@@ -13,16 +14,18 @@ class UploadServiceImpl: IUploadService {
         COSManager.init(App.getInstance())
     }
 
-    override fun chooseImage(fragmentOrActivity: Any, onChooseImageCallback: IUploadService.OnChooseImageCallback?) {
-        mChooseImage = KSingChooseImageUtil()
-        mChooseImage?.show(fragmentOrActivity) { imageUri ->
-            onChooseImageCallback?.onChoose(imageUri)
-            mChooseImage = null
-        }
+    override fun chooseImage(activity: Activity, onChooseImageCallback: IUploadService.OnChooseImageCallback?) {
+//        mChooseImage = KSingChooseImageUtil()
+//        mChooseImage?.show(fragmentOrActivity) { imageUri ->
+//            onChooseImageCallback?.onChoose(imageUri)
+//            mChooseImage = null
+//        }
+        pickSystemImage(activity, onChooseImageCallback)
     }
 
     override fun chooseImageOnResultAssist(requestCode: Int, resultCode: Int, data: Intent?) {
-        mChooseImage?.onActivityResult(requestCode, resultCode, data)
+        chooseImageOnResult(requestCode, resultCode, data)
+//        mChooseImage?.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun upload(path: String, onUploadCallback: IUploadService.OnUploadCallback?) {
