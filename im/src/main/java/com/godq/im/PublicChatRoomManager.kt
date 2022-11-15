@@ -12,7 +12,6 @@ import io.socket.client.IO
 import io.socket.client.Socket
 import org.json.JSONObject
 import timber.log.Timber
-import java.lang.ref.WeakReference
 import java.net.URISyntaxException
 
 object PublicChatRoomManager {
@@ -56,7 +55,7 @@ object PublicChatRoomManager {
 
     private fun initSocket() {
         try {
-            mSocket = IO.socket("http://150.158.55.208:8001/chat_room?token=${accountService?.getAccountInfo()?.getToken()}")
+            mSocket = IO.socket("http://43.138.100.114:8001/chat_room?token=${accountService?.getAccountInfo()?.getToken()}")
 
         } catch (e: URISyntaxException) {
             print(e.message)
@@ -147,7 +146,7 @@ object PublicChatRoomManager {
         }
         if (lastReadMsgId == "none") return
 
-        KwHttpMgr.getInstance().kwHttpFetch.asyncGet(RequestInfo.newGet("http://150.158.55.208:8001/unread?last_read_id=$lastReadMsgId")) {
+        KwHttpMgr.getInstance().kwHttpFetch.asyncGet(RequestInfo.newGet("http://43.138.100.114:8001/unread?last_read_id=$lastReadMsgId")) {
             if (!it.isSuccessful) return@asyncGet
             it.dataToString().toInt().apply {
                 unReadMsgCount = this

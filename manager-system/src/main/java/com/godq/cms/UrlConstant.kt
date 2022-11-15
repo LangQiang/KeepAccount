@@ -1,6 +1,6 @@
 package com.godq.cms
 
-const val HOST = "http://150.158.55.208"
+const val HOST = "http://43.138.100.114"
 
 
 fun getShopListUrl(): String {

@@ -56,7 +56,7 @@ class MineHomeVM : LifecycleEventObserver {
     }
 
     private fun requestTurnoverData() {
-        KwHttpMgr.getInstance().kwHttpFetch.asyncGet(RequestInfo.newGet("http://150.158.55.208/bill/statistics")) {
+        KwHttpMgr.getInstance().kwHttpFetch.asyncGet(RequestInfo.newGet("http://43.138.100.114/bill/statistics")) {
             try {
                 val data = it.dataToString()
                 Timber.tag("statistic").e(data)

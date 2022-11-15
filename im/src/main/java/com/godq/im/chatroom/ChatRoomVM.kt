@@ -49,7 +49,7 @@ class ChatRoomVM  : LifecycleEventObserver {
     }
 
     fun loadHistory() {
-        KwHttpMgr.getInstance().kwHttpFetch.asyncGet(RequestInfo.newGet("http://150.158.55.208:8001/history/list")) {
+        KwHttpMgr.getInstance().kwHttpFetch.asyncGet(RequestInfo.newGet("http://43.138.100.114:8001/history/list")) {
             if (!it.isSuccessful) return@asyncGet
             onDataCallback?.invoke(parseHistoryList(it.dataToString()))
         }

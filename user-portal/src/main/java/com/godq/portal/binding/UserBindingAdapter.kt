@@ -28,8 +28,7 @@ fun setBillItemBackGround(view: View, billEntity: BillEntity) {
 
 @BindingAdapter("setWeatherIcon")
 fun setWeather(view: ImageView, billEntity: BillEntity) {
-    val weather = WeatherRepo.getWeather(billEntity.date) ?: return
-    when (weather) {
+    var iconId = when (WeatherRepo.getWeather(billEntity.date)) {
         WeatherRepo.WEATHER_QING -> {R.drawable.ka_qing_icon}
         WeatherRepo.WEATHER_YIN -> {R.drawable.ka_yintian_icon}
         WeatherRepo.WEATHER_YU -> {R.drawable.ka_zhongyu_icon}
@@ -42,8 +41,12 @@ fun setWeather(view: ImageView, billEntity: BillEntity) {
         else -> {
             null
         }
-    }?.let {
-        view.setImageDrawable(ContextCompat.getDrawable(App.getInstance(), it))
+    }
+    if (iconId != null) {
+        view.setImageDrawable(ContextCompat.getDrawable(App.getInstance(), iconId))
+        view.visibility = View.VISIBLE
+    } else {
+        view.visibility = View.INVISIBLE
     }
 }
 
