@@ -100,7 +100,7 @@
 
         <com.lazylite.mod.widget.KwSettingItem
             android:id="@+id/item_about"
-            android:onClick="@{()->vm.onAboutClick()}"
+            android:onClick="@{()->vm.onCacheClick()}"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:paddingLeft="5dp"
@@ -110,12 +110,12 @@
             app:layout_constraintTop_toBottomOf="@+id/item_help"
             app:set_icon="set_image"
             app:set_line="false"
-            app:set_title="@string/mine_about_sec"
+            app:set_title="@string/mine_clear_cache_sec"
             app:set_title_bold="true" />
 
         <com.lazylite.mod.widget.KwSettingItem
             android:id="@+id/item_clear_cache"
-            android:onClick="@{()->vm.onCacheClick()}"
+            android:onClick="@{()->vm.onAboutClick()}"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:paddingLeft="5dp"
@@ -125,7 +125,7 @@
             app:layout_constraintTop_toBottomOf="@+id/item_about"
             app:set_icon="set_image"
             app:set_line="false"
-            app:set_title="@string/mine_clear_cache_sec"
+            app:set_title="@string/mine_about_sec"
             app:set_title_bold="true" />
 
         <TextView

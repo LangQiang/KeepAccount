@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="100dp"
+	android:orientation="horizontal"
+	>
+
+	<EditText
+		android:id="@+id/et_host"
+		android:layout_width="0dp"
+		android:layout_weight="1"
+		android:gravity="center_vertical"
+		android:layout_height="match_parent"
+		android:layout_marginLeft="16dp"
+		android:textSize="16dp"
+		android:textColor="@color/kw_common_cl_black"
+		android:hint="空格分开  key  value"
+		/>
+
+	<TextView
+		android:id="@+id/iv_delete"
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent"
+		android:text="删除"
+		android:gravity="center"
+		android:textSize="16dp"
+		android:textColor="@color/black"
+		android:layout_gravity="center_vertical"
+		android:layout_alignParentRight="true"
+		android:layout_marginRight="16dp"
+		android:layout_centerVertical="true"
+		/>
+
+</LinearLayout>

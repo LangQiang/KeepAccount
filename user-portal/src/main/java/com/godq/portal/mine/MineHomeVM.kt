@@ -1,21 +1,25 @@
 package com.godq.portal.mine
 
-import android.net.Uri
 import androidx.lifecycle.*
 import com.godq.accountsa.IAccountInfo
 import com.godq.accountsa.IAccountService
 import com.godq.deeplink.DeepLinkUtils
 import com.godq.msa.IManagerSystemObserver
 import com.godq.portal.UserPortalLinkHelper
+import com.godq.portal.constants.HOST
 import com.godq.portal.utils.jumpToSettingFragment
+import com.godq.threadpool.ThreadPool
 import com.godq.ulda.IUploadService
 import com.lazylite.mod.App
 import com.lazylite.mod.http.mgr.KwHttpMgr
 import com.lazylite.mod.http.mgr.model.RequestInfo
 import com.lazylite.mod.messagemgr.MessageManager
+import com.lazylite.mod.utils.KwFileUtils
 import com.lazylite.mod.utils.toast.KwToast
 import org.json.JSONObject
 import timber.log.Timber
+import java.io.File
+import java.util.*
 
 class MineHomeVM : LifecycleEventObserver {
     val mineHomeUIState = MineHomeUIState()
@@ -56,7 +60,7 @@ class MineHomeVM : LifecycleEventObserver {
     }
 
     private fun requestTurnoverData() {
-        KwHttpMgr.getInstance().kwHttpFetch.asyncGet(RequestInfo.newGet("http://43.138.100.114/bill/statistics")) {
+        KwHttpMgr.getInstance().kwHttpFetch.asyncGet(RequestInfo.newGet("$HOST/bill/statistics")) {
             try {
                 val data = it.dataToString()
                 Timber.tag("statistic").e(data)
@@ -95,6 +99,7 @@ class MineHomeVM : LifecycleEventObserver {
         Timber.tag("test").e(event.name)
         when (event) {
             Lifecycle.Event.ON_CREATE -> {
+                fakeCache()
                 MessageManager.getInstance().attachMessage(IAccountService.IAccountObserver.EVENT_ID, accountObserver)
                 MessageManager.getInstance().attachMessage(IManagerSystemObserver.EVENT_ID, managerSystemObserver)
             }
@@ -156,6 +161,14 @@ class MineHomeVM : LifecycleEventObserver {
 
         })
 
+    }
+
+    private fun fakeCache() {
+        ThreadPool.exec {
+            val k = Random().nextInt(100)
+            val array = ByteArray(1024 * k)
+            KwFileUtils.fileWrite(File(App.getInstance().cacheDir, "fake-${UUID.randomUUID()}"), array)
+        }
     }
 
 }

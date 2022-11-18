@@ -7,6 +7,7 @@ import com.lazylite.bridge.router.ServiceImpl
 import com.lazylite.mod.config.ConfMgr
 import com.lazylite.mod.http.mgr.KwHttpMgr
 import com.lazylite.mod.http.mgr.model.RequestInfo
+import com.lazylite.mod.http.mgr.test.UrlEntrustUtils
 import com.lazylite.mod.messagemgr.MessageManager
 import io.socket.client.IO
 import io.socket.client.Socket
@@ -15,6 +16,9 @@ import timber.log.Timber
 import java.net.URISyntaxException
 
 object PublicChatRoomManager {
+
+    val HOST: String = UrlEntrustUtils.entrustHost("http://43.138.100.114", "http://43.138.100.114")
+
 
     private var connected = false
 
@@ -55,7 +59,7 @@ object PublicChatRoomManager {
 
     private fun initSocket() {
         try {
-            mSocket = IO.socket("http://43.138.100.114:8001/chat_room?token=${accountService?.getAccountInfo()?.getToken()}")
+            mSocket = IO.socket("$HOST:8001/chat_room?token=${accountService?.getAccountInfo()?.getToken()}")
 
         } catch (e: URISyntaxException) {
             print(e.message)
@@ -146,7 +150,7 @@ object PublicChatRoomManager {
         }
         if (lastReadMsgId == "none") return
 
-        KwHttpMgr.getInstance().kwHttpFetch.asyncGet(RequestInfo.newGet("http://43.138.100.114:8001/unread?last_read_id=$lastReadMsgId")) {
+        KwHttpMgr.getInstance().kwHttpFetch.asyncGet(RequestInfo.newGet("$HOST:8001/unread?last_read_id=$lastReadMsgId")) {
             if (!it.isSuccessful) return@asyncGet
             it.dataToString().toInt().apply {
                 unReadMsgCount = this

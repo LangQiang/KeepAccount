@@ -1,6 +1,8 @@
 package com.godq.cms
 
-const val HOST = "http://43.138.100.114"
+import com.lazylite.mod.http.mgr.test.UrlEntrustUtils
+
+val HOST: String = UrlEntrustUtils.entrustHost("http://43.138.100.114", "http://43.138.100.114")
 
 
 fun getShopListUrl(): String {

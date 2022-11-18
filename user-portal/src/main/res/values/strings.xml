@@ -4,9 +4,9 @@
     <string name="mine_info_sec">个人资料-TODO</string>
     <string name="mine_mgr_ctrl">管理后台</string>
     <string name="mine_safe_sec">账户与安全</string>
-    <string name="mine_help_sec">帮助与反馈-TODO</string>
-    <string name="mine_about_sec">关于我们-TODO</string>
-    <string name="mine_clear_cache_sec">清除缓存-TODO</string>
+    <string name="mine_help_sec">帮助与反馈</string>
+    <string name="mine_about_sec">关于我们</string>
+    <string name="mine_clear_cache_sec">清除缓存</string>
     <string name="search_result_search_nocontent_tip">暂无数据</string>
     <string name="search_result_search_noconnect_tip">网络请求失败\n请检查您的网络设置</string>
     <string name="base_net_nocontent_tip">当前网络不可用，请检查网络配置</string>

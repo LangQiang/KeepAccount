@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <FrameLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/device_info_btn"
+                    android:background="@drawable/debug_btn_bg"
+                    android:textColor="@color/white"
+                    android:text="设备信息"
+                    android:gravity="center"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_gravity="center"
+                    android:background="@drawable/debug_btn_bg"
+                    android:textColor="@color/white"
+                    android:text="todo1"
+                    android:gravity="center"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_gravity="center"
+                    android:background="@drawable/debug_btn_bg"
+                    android:textColor="@color/white"
+                    android:text="todo2"
+                    android:gravity="center"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_gravity="center"
+                    android:background="@drawable/debug_btn_bg"
+                    android:textColor="@color/white"
+                    android:text="todo3"
+                    android:gravity="center"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"/>
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_height="100dp">
+        <EditText
+            android:background="@color/black6"
+            android:id="@+id/scheme_et"
+            android:gravity="top|start"
+            android:hint="输入scheme"
+            android:layout_width="0dp"
+            android:layout_marginEnd="15dp"
+            android:layout_weight="1"
+            android:layout_height="100dp"/>
+
+        <TextView
+            android:id="@+id/scheme_btn"
+            android:background="@drawable/debug_btn_bg"
+            android:textColor="@color/white"
+            android:text="跳转"
+            android:gravity="center"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"/>
+    </LinearLayout>
+
+
+</FrameLayout>

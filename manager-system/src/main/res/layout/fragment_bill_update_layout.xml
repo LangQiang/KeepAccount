@@ -55,7 +55,7 @@
             <View
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:background="@color/line_divider_color"
+                android:background="@color/mgr_line_divider_color"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"/>
 
@@ -104,7 +104,7 @@
             <View
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:background="@color/line_divider_color"
+                android:background="@color/mgr_line_divider_color"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"/>
 
@@ -139,7 +139,7 @@
             <View
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:background="@color/line_divider_color"
+                android:background="@color/mgr_line_divider_color"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"/>
 
@@ -175,7 +175,7 @@
             <View
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:background="@color/line_divider_color"
+                android:background="@color/mgr_line_divider_color"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"/>
 
@@ -211,7 +211,7 @@
             <View
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:background="@color/line_divider_color"
+                android:background="@color/mgr_line_divider_color"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"/>
 
@@ -246,7 +246,7 @@
             <View
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:background="@color/line_divider_color"
+                android:background="@color/mgr_line_divider_color"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"/>
 
@@ -281,7 +281,7 @@
             <View
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:background="@color/line_divider_color"
+                android:background="@color/mgr_line_divider_color"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"/>
 
@@ -316,7 +316,7 @@
             <View
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:background="@color/line_divider_color"
+                android:background="@color/mgr_line_divider_color"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"/>
 
@@ -351,7 +351,7 @@
             <View
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:background="@color/line_divider_color"
+                android:background="@color/mgr_line_divider_color"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"/>
 
@@ -386,7 +386,7 @@
             <View
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:background="@color/line_divider_color"
+                android:background="@color/mgr_line_divider_color"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"/>
 
@@ -421,7 +421,7 @@
             <View
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:background="@color/line_divider_color"
+                android:background="@color/mgr_line_divider_color"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"/>
 
@@ -456,7 +456,7 @@
             <View
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:background="@color/line_divider_color"
+                android:background="@color/mgr_line_divider_color"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"/>
 

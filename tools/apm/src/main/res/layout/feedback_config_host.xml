@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:background="@color/main_bg"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical">
+
+
+		<com.lazylite.mod.widget.KwTitleBar
+			android:id="@+id/title"
+			style="@style/LRLiteBase_TitleBar"
+			android:tag="titleBar"/>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+			<Button
+				android:id="@+id/btn_save"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="保存"
+				android:layout_marginLeft="16dp"
+				/>
+
+			<Button
+				android:id="@+id/btn_add_weex"
+				android:visibility="gone"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="添加weex测试环境"
+				android:layout_marginLeft="16dp"
+				/>
+			<Button
+				android:id="@+id/host_select"
+				android:layout_marginLeft="16dp"
+				android:text="常用host"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+		</LinearLayout>
+
+
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="1dp"
+			android:background="@color/skin_splite_color"
+			/>
+
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/recyclerview_host"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
+			/>
+	</LinearLayout>
+	<RelativeLayout
+		android:id="@+id/select_container"
+		android:clickable="true"
+		tools:visibility="visible"
+		android:visibility="gone"
+		android:background="@color/white"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<com.lazylite.mod.widget.KwTitleBar
+			android:layout_marginTop="30dp"
+			android:id="@+id/select_title"
+			android:tag="titleBar"
+			style="@style/LRLiteBase_TitleBar" />
+
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/selectRv"
+			android:layout_below="@+id/select_title"
+			android:layout_above="@+id/select_control"
+			android:clipToPadding="false"
+			android:paddingBottom="100dp"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"/>
+
+		<LinearLayout
+			android:layout_alignParentBottom="true"
+			android:id="@+id/select_control"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+			<Button
+				android:id="@+id/confirm_select"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="确认选择"
+				android:layout_marginLeft="16dp"
+				/>
+
+			<Button
+				android:id="@+id/cancel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="取消"
+				android:layout_marginLeft="16dp"
+				/>
+
+		</LinearLayout>
+	</RelativeLayout>
+</FrameLayout>

@@ -1,0 +1,57 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk rootProject.ext.compileSdk
+
+
+    defaultConfig {
+        minSdk rootProject.ext.minSdk
+        targetSdk rootProject.ext.targetSdk
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        multiDexEnabled true
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            consumerProguardFiles "consumer-rules.pro"
+        }
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.sourceCompatibility
+        targetCompatibility rootProject.ext.targetCompatibility
+    }
+}
+
+dependencies {
+    implementation rootProject.ext.appcompat
+
+    implementation rootProject.ext.material
+
+    implementation project(':ComposeResource')
+    annotationProcessor rootProject.ext.base_core_processor
+
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
+
+    if (getGradle().getStartParameter().getTaskNames().toString().toLowerCase().contains("assemblewxrelease")) {
+        implementation('com.didichuxing.doraemonkit:doraemonkit:3.0.7.2') {
+            exclude module: "okhttp"
+        }
+    } else {
+        releaseImplementation('com.didichuxing.doraemonkit:doraemonkit-no-op:3.0.7.2') {
+            exclude module: "okhttp"
+        }
+        debugImplementation('com.didichuxing.doraemonkit:doraemonkit:3.0.7.2') {
+            exclude module: "okhttp"
+        }
+    }
+
+//    implementation 'com.tencent.bugly:crashreport:4.0.4'
+
+}

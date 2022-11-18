@@ -1,7 +1,6 @@
 package com.godq.im.chatroom
 
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.Lifecycle
@@ -49,7 +48,7 @@ class ChatRoomVM  : LifecycleEventObserver {
     }
 
     fun loadHistory() {
-        KwHttpMgr.getInstance().kwHttpFetch.asyncGet(RequestInfo.newGet("http://43.138.100.114:8001/history/list")) {
+        KwHttpMgr.getInstance().kwHttpFetch.asyncGet(RequestInfo.newGet("${PublicChatRoomManager.HOST}:8001/history/list")) {
             if (!it.isSuccessful) return@asyncGet
             onDataCallback?.invoke(parseHistoryList(it.dataToString()))
         }
