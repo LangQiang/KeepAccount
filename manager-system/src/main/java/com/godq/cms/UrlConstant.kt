@@ -16,3 +16,7 @@ fun getBillListUrl(shopId: String): String {
 fun getUpdateBillUrl(): String {
     return "$HOST/bill/update"
 }
+
+fun deleteBillRecordUrl(): String {
+    return "$HOST/bill/delete"
+}

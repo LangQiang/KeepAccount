@@ -6,7 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.godq.cms.databinding.FragmentBgMgrHomeLayoutBinding
 import com.godq.deeplink.DeepLinkUtils
+import com.lazylite.mod.http.mgr.KwHttpMgr
+import com.lazylite.mod.http.mgr.model.RequestInfo
 import com.lazylite.mod.widget.BaseFragment
+import org.json.JSONObject
+import timber.log.Timber
 
 class BillMgrHomeFragment: BaseFragment() {
 
@@ -25,5 +29,16 @@ class BillMgrHomeFragment: BaseFragment() {
 
     fun update() {
         DeepLinkUtils.load("test://open/cms/update").execute()
+    }
+
+    fun delete() {
+        val data = binding?.deleteInputView?.text.toString()
+        val json = JSONObject()
+        json.putOpt("shop_id", 1)
+        json.putOpt("date", data)
+        val req = RequestInfo.newPost(deleteBillRecordUrl(), mapOf("Content-Type" to "application/json"), json.toString().toByteArray())
+        KwHttpMgr.getInstance().kwHttpFetch.asyncPost(req) {
+            Timber.tag("Mgr").e(it.dataToString())
+        }
     }
 }

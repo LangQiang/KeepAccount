@@ -15,7 +15,7 @@ import com.lazylite.mod.utils.ScreenUtility
 import timber.log.Timber
 import java.util.*
 
-class DateSelectDialog (private val activity: Activity)
+class DateSelectDialog(private val activity: Activity, private val date: String?)
     : Dialog(activity, R.style.CommonDialogTheme), IDialogQueue {
 
     var onSelectCallback: ((dateStr: String?) -> Unit)? = null
@@ -40,10 +40,29 @@ class DateSelectDialog (private val activity: Activity)
         binding.dialog = this
 
         val calendar = Calendar.getInstance()
-        val y = calendar.get(Calendar.YEAR)
-        val m = calendar.get(Calendar.MONTH)
-        val d = calendar.get(Calendar.DAY_OF_MONTH)
-        dateStr = String.format("%d-%02d-%02d", y, m + 1, d)
+        var y: Int
+        var m: Int
+        var d: Int
+        if (date.isNullOrEmpty()) {
+            y = calendar.get(Calendar.YEAR)
+            m = calendar.get(Calendar.MONTH)
+            d = calendar.get(Calendar.DAY_OF_MONTH)
+            dateStr = String.format("%d-%02d-%02d", y, m + 1, d)
+        } else {
+            try {
+                val splits = date.split('-')
+                dateStr = date
+                y = splits[0].toInt()
+                m = splits[1].toInt() - 1
+                d = splits[2].toInt()
+            } catch (e: Exception) {
+                y = calendar.get(Calendar.YEAR)
+                m = calendar.get(Calendar.MONTH)
+                d = calendar.get(Calendar.DAY_OF_MONTH)
+                dateStr = String.format("%d-%02d-%02d", y, m + 1, d)
+            }
+
+        }
         binding.datePickerView.init(y, m, d) { _, year, monthOfYear, dayOfMonth ->
             Timber.tag("date").e("year:$year month:$monthOfYear day:$dayOfMonth ")
             dateStr = String.format("%d-%02d-%02d", year, monthOfYear + 1, dayOfMonth)

@@ -109,7 +109,7 @@ class BillUpdateVm {
 
     fun onDateSelectClick() {
         App.getMainActivity()?.apply {
-            with(DateSelectDialog(this)) {
+            with(DateSelectDialog(this, billInfo.date)) {
                 onSelectCallback = {
                     billInfo.date = it
                 }
