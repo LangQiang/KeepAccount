@@ -3,6 +3,7 @@ package com.godq.keepaccounts
 import android.content.Intent
 import androidx.fragment.app.Fragment
 import com.godq.accountsa.IAccountService
+import com.godq.msa.IManagerService
 import com.godq.ulda.IUploadService
 import com.godq.upa.IUserPortalService
 import com.lazylite.bridge.router.ServiceImpl
@@ -14,15 +15,25 @@ object MainLinkHelper {
     private var userPortalService: IUserPortalService? = null
     private var accountService: IAccountService? = null
     private var uploadService: IUploadService? = null
+    private var mgrService: IManagerService? = null
 
     init {
         userPortalService = ServiceImpl.getInstance().getService(IUserPortalService::class.java.name) as? IUserPortalService
         accountService = ServiceImpl.getInstance().getService(IAccountService::class.java.name) as? IAccountService
         uploadService = ServiceImpl.getInstance().getService(IUploadService::class.java.name) as? IUploadService
+        mgrService = ServiceImpl.getInstance().getService(IManagerService::class.java.name) as? IManagerService
     }
 
     fun getUserHomeFragment(): Fragment? {
         return userPortalService?.getShopListFragment()
+    }
+
+    fun getProcureFragment(): Fragment? {
+        return mgrService?.getProcureHomeFragment()
+    }
+
+    fun getMgrFragment(): Fragment? {
+        return mgrService?.getMgrHomeFragment()
     }
 
     fun getMineFragment(): Fragment? {

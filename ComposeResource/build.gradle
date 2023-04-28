@@ -29,10 +29,16 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    dataBinding { // 开启 DataBinding
+        enabled true
+    }
 }
 
 dependencies {
     api rootProject.ext.base_core
     api rootProject.ext.ui_compose
     kapt rootProject.ext.base_core_processor
+
+    implementation 'io.github.langqiang:AppLogcat:1.1.1-SNAPSHOT'
+
 }

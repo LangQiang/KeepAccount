@@ -20,3 +20,23 @@ fun getUpdateBillUrl(): String {
 fun deleteBillRecordUrl(): String {
     return "$HOST/bill/delete"
 }
+
+fun getProcureListUrl(): String {
+    return "$HOST/procure/list"
+}
+
+fun getCreateProcureUrl(): String {
+    return "$HOST/procure/create"
+}
+
+fun getEquipmentListUrl(procureId: String?): String {
+    return "$HOST/equipment/list/${procureId}"
+}
+
+fun getCreateEquipmentUrl(): String {
+    return "$HOST/equipment/create"
+}
+
+fun getUpdateEquipmentUrl(): String {
+    return "$HOST/equipment/update"
+}

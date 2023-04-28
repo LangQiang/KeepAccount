@@ -1,5 +1,6 @@
 package com.godq.keepaccounts.main
 
+import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.Intent
 import android.graphics.Color
@@ -11,6 +12,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.OnApplyWindowInsetsListener
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -71,7 +73,7 @@ class MainActivity : AppCompatActivity() {
             setAdapter(pairs)
             bottomLayoutView?.setOnTabClickListener(object : BottomLayoutView.OnTabClickListener{
                 override fun onClick(view: View,pos:Int) {
-                    if(pos == 1 && !MainLinkHelper.isLogin()){
+                    if(!MainLinkHelper.isLogin()){
                         DeepLinkUtils.load("test://open/account?type=login").execute()
                         return
                     }
@@ -79,6 +81,11 @@ class MainActivity : AppCompatActivity() {
                 }
 
             })
+        }
+
+        if(!MainLinkHelper.isLogin()){
+            DeepLinkUtils.load("test://open/account?type=login").execute()
+            return
         }
 
 //        findViewById<View>(R.id.main_test_btn)?.apply {
@@ -111,6 +118,18 @@ class MainActivity : AppCompatActivity() {
             ),this))
         }
 
+        MainLinkHelper.getProcureFragment()?.apply {
+            data.add(Pair(BottomItemData("采购", R.string.bottom_index_select_icon,
+                R.string.bottom_index_normal_icon
+            ),this))
+        }
+
+        MainLinkHelper.getMgrFragment()?.apply {
+            data.add(Pair(BottomItemData("管理", R.string.bottom_index_select_icon,
+                R.string.bottom_index_normal_icon
+            ),this))
+        }
+
         MainLinkHelper.getMineFragment()?.apply {
             data.add(Pair(BottomItemData("我的", R.string.bottom_mine_select_icon,
                 R.string.bottom_mine_normal_icon
@@ -120,28 +139,26 @@ class MainActivity : AppCompatActivity() {
         return data
     }
 
+    @SuppressLint("ObsoleteSdkInt")
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private fun setCustomTheme() {
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-        window.statusBarColor = Color.TRANSPARENT
         KwSystemSettingUtils.resetStatusBarBlack(this)
-
         val decor = window?.decorView?: return
         val insertCtrl = ViewCompat.getWindowInsetsController(decor)
         insertCtrl?.addOnControllableInsetsChangedListener { _, typeMask ->
             Timber.tag("setCustomTheme").e("typeMask: $typeMask")
-        }
-        decor.post {
-            val insert = ViewCompat.getRootWindowInsets(decor)
-            val navHeight = insert?.getInsets(WindowInsetsCompat.Type.navigationBars())?.bottom
-            val outMetrics = DisplayMetrics()
-            windowManager.defaultDisplay.getRealMetrics(outMetrics)
-            val deviceRealHeightPixels = outMetrics.heightPixels
-            if (decor.height >= deviceRealHeightPixels) {
-                navHolder?.layoutParams?.apply {
-                    height = navHeight ?: 0
+            decor.post {
+                val insert = ViewCompat.getRootWindowInsets(decor)
+                val navHeight = insert?.getInsets(WindowInsetsCompat.Type.navigationBars())?.bottom
+                val outMetrics = DisplayMetrics()
+                windowManager.defaultDisplay.getRealMetrics(outMetrics)
+                val deviceRealHeightPixels = outMetrics.heightPixels
+                if (decor.height >= deviceRealHeightPixels) {
+                    navHolder?.layoutParams?.apply {
+                        height = navHeight ?: 0
+                    }
+                    (decor as? ViewGroup)?.requestLayout()
                 }
-                (decor as? ViewGroup)?.requestLayout()
             }
         }
 

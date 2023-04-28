@@ -51,11 +51,12 @@
                 android:layout_marginEnd="30dp"
                 android:layout_height="wrap_content">
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="60dp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:hint="用户名"
+                        android:textColor="@color/black80"
+
                         android:text="@={vm.registerUIState.accountName}"
                         android:layout_gravity="center"
                         android:layout_width="match_parent"
@@ -64,43 +65,46 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_marginTop="10dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     app:passwordToggleEnabled="true"
                     android:layout_width="match_parent"
                     android:layout_height="60dp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:text="@={vm.registerUIState.password}"
                         android:hint="密码"
+                        android:textColor="@color/black80"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_marginTop="10dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     app:passwordToggleEnabled="true"
                     android:layout_width="match_parent"
                     android:layout_height="60dp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:hint="确认密码"
+                        android:textColor="@color/black80"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_marginTop="10dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="60dp">
                     <com.google.android.material.textfield.TextInputEditText
                         android:text="@={vm.registerUIState.nickName}"
                         android:hint="昵称"
+                        android:textColor="@color/black80"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:text="注册"
                 android:onClick="@{()->vm.register()}"
                 android:layout_marginStart="15dp"

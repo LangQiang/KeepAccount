@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.godq.cms.procure.NewProcureFragment"/>
+        <variable
+            name="fragment"
+            type="NewProcureFragment" />
+    </data>
+
+    <FrameLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="标题"
+                    tools:text="标题"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <EditText
+                    android:text="@={fragment.title}"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:hint="输入标题"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/mgr_line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="描述"
+                    tools:text="描述"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <EditText
+                    android:text="@={fragment.desc}"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:hint="描述"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/mgr_line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="备注"
+                    tools:text="备注"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <EditText
+                    android:text="@={fragment.notes}"
+
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:hint="备注"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/mgr_line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp" />
+
+            <TextView
+                android:id="@+id/commit_tv"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/base_round_high_color_btn_bg"
+                android:gravity="center"
+                android:onClick="@{() -> fragment.onCommitClick()}"
+                android:text="创建"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+    </FrameLayout>
+</layout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.godq.cms.procure.ProcureEntity"/>
+        <variable
+            name="itemData"
+            type="ProcureEntity" />
+    </data>
+
+    <com.lazylite.mod.widget.RoundCornerLayout
+        android:layout_margin="15dp"
+        app:round_layout_radius="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+
+        <View
+            android:alpha="0.5"
+            android:background="@drawable/procure_item_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:paddingEnd="15dp"
+            android:paddingStart="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginEnd="8dp"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="@{itemData.name}"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    tools:text="标题"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginTop="4dp"
+                    android:text="@{itemData.name}"
+                    android:textColor="@color/black80"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textSize="14dp"
+                    tools:text="描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <TextView
+                android:textSize="13dp"
+                tools:text="2044/02/11"
+                android:layout_gravity="center"
+                android:textColor="@color/black60"
+                android:text="@{itemData.createTime.substring(0, 10)}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+    </com.lazylite.mod.widget.RoundCornerLayout>
+</layout>

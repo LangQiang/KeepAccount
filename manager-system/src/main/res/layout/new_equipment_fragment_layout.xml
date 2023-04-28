@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.godq.cms.procure.detail.NewEquipmentFragment"/>
+        <variable
+            name="fragment"
+            type="NewEquipmentFragment" />
+    </data>
+
+    <FrameLayout
+        android:background="#ebebeb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@{`所属采购单:` + fragment.procureEntity.name}"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:padding="20dp"
+                tools:text="hahha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="名称"
+                    tools:text="名称"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        setViewVisible="@{!fragment.isCreateOpt}"
+                        android:text="@={fragment.name}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black40"
+                        android:hint="输入名称"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <EditText
+                        setViewVisible="@{fragment.isCreateOpt}"
+                        android:text="@={fragment.name}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:textColorHint="@color/black60"
+                        android:hint="输入名称"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </FrameLayout>
+
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/mgr_line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="图片"
+                    tools:text="图片"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent" >
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        frescoImgUrl="@{fragment.pic}"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"/>
+
+                    <TextView
+                        setViewVisible="@{fragment.isCreateOpt}"
+                        android:onClick="@{() -> fragment.onSelectImageClick()}"
+                        android:background="@drawable/base_round_high_color_btn_bg"
+                        android:layout_gravity="center"
+                        android:textColor="@color/white"
+                        android:text="选择图片"
+                        android:gravity="center"
+                        android:layout_width="80dp"
+                        android:layout_height="30dp"/>
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/mgr_line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="描述"
+                    tools:text="描述"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        setViewVisible="@{!fragment.isCreateOpt}"
+                        android:text="@={fragment.desc}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black40"
+                        android:hint="描述"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <EditText
+                        setViewVisible="@{fragment.isCreateOpt}"
+                        android:text="@={fragment.desc}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:textColorHint="@color/black60"
+                        android:hint="描述"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/mgr_line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="备注"
+                    tools:text="备注"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        setViewVisible="@{false}"
+                        android:text="@={fragment.notes}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black40"
+                        android:hint="备注"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <EditText
+                        setViewVisible="@{true}"
+                        android:text="@={fragment.notes}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:textColorHint="@color/black60"
+                        android:hint="备注"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/mgr_line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="状态"
+                    tools:text="状态"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+
+                <RadioGroup
+                    android:id="@+id/state_radio_group"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <RadioButton
+                        android:id="@+id/todo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="待处理"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:textColor="@color/black"
+                        android:textSize="14dp"
+                        android:checked="true"/>
+
+                    <RadioButton
+                        android:id="@+id/discard"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="废弃"
+                        android:textColor="@color/black"
+                        android:textSize="14dp"/>
+
+                    <RadioButton
+                        android:id="@+id/complete"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="完成"
+                        android:textColor="@color/black"
+                        android:textSize="14dp"/>
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/mgr_line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="数量"
+                    tools:text="数量"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        setViewVisible="@{!fragment.isCreateOpt}"
+                        android:text="@={fragment.count + ``}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black40"
+                        android:hint="数量"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <EditText
+                        setViewVisible="@{fragment.isCreateOpt}"
+                        android:text="@={fragment.count + ``}"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:textSize="18dp"
+                        android:textColorHint="@color/black60"
+                        android:textColor="@color/black80"
+                        android:hint="数量"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/mgr_line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="价格"
+                    tools:text="价格"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        setViewVisible="@{!fragment.isCreateOpt}"
+                        android:text="@={fragment.price + ``}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black40"
+                        android:hint="价格"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <EditText
+                        setViewVisible="@{fragment.isCreateOpt}"
+                        android:text="@={fragment.price + ``}"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:textSize="18dp"
+                        android:textColorHint="@color/black60"
+                        android:textColor="@color/black80"
+                        android:hint="价格"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/mgr_line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp" />
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/mgr_line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="购买渠道"
+                    tools:text="购买渠道"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        setViewVisible="@{!fragment.isCreateOpt}"
+                        android:text="@{fragment.buyChannel + ``}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black40"
+                        android:hint="购买渠道"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <EditText
+                        setViewVisible="@{fragment.isCreateOpt}"
+                        android:text="@={fragment.buyChannel}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:textColorHint="@color/black60"
+                        android:hint="购买渠道"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/mgr_line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="购买时间"
+                    tools:text="购买时间"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <EditText
+                    android:text="@={fragment.completeDate}"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:hint="购买时间"
+                    android:textColorHint="@color/black60"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/mgr_line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="45dp">
+
+                <TextView
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:text="采购人"
+                    tools:text="采购人"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
+
+                <EditText
+                    android:text="@={fragment.purchaser}"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/black80"
+                    android:textColorHint="@color/black60"
+                    android:hint="采购人"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/mgr_line_divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp" />
+
+            <TextView
+                android:id="@+id/commit_tv"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/base_round_high_color_btn_bg"
+                android:gravity="center"
+                android:onClick="@{() -> fragment.onCommitClick()}"
+                android:text="@{fragment.isCreateOpt ? `创建` : `更新`}"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+    </FrameLayout>
+</layout>

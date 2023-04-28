@@ -39,8 +39,8 @@ class BillDetailMV {
             //获取holiday信息
             val first = (billDetailList.first() as? BillEntity) ?: return@launch
             val last = (billDetailList.last() as? BillEntity) ?: return@launch
-            val startDate = first.date
-            val endDate = last.date
+            val startDate = last.date
+            val endDate = first.date
             val holidayStateSuccess = withContext(Dispatchers.IO) {
                 HolidayRepo.fetchHolidayStateList(startDate, endDate)
             }

@@ -47,7 +47,6 @@
                 android:paddingEnd="15dp">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_marginEnd="10dp"
@@ -58,6 +57,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:textColor="@color/black80"
+                        android:textColorHint="@color/black60"
                         android:hint="输入已注册id（用户id）" />
                 </com.google.android.material.textfield.TextInputLayout>
 

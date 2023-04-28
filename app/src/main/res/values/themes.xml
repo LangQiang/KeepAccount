@@ -14,6 +14,14 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="app_AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="app_AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <!--取消activity动画-->
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:textColorHint">@color/black40</item>
+        <item name="android:textColor">@color/black80</item>
+
     </style>
 </resources>

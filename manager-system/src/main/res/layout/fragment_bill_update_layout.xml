@@ -465,16 +465,19 @@
 
         <TextView
             android:id="@+id/commit_tv"
-            android:onClick="@{() -> vm.onCommitClick()}"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            android:text="提交"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="30dp"
-            android:background="@drawable/base_round_high_color_btn_bg"
             android:layout_width="match_parent"
-            android:layout_height="50dp"/>
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/base_round_high_color_btn_bg"
+            android:gravity="center"
+            android:onClick="@{() -> vm.onCommitClick()}"
+            android:text="提交"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
 
     </RelativeLayout>
 </layout>

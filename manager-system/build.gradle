@@ -47,6 +47,9 @@ dependencies {
     implementation project(':nice-spinner')
     implementation project(':ComposeResource')
     implementation project(':manager-system-api')
+    implementation project(':tools:upload-api')
+    api 'io.github.langqiang:SideSlideMenuWidget:1.0.3-SNAPSHOT'
+
 
     kapt rootProject.ext.base_core_processor
 }
