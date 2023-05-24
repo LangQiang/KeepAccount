@@ -42,16 +42,38 @@ fun pickSystemImage(
     }
 }
 
+
+fun pickSystemFile(
+    activity: Activity,
+    onChooseImageCallback: IUploadService.OnChooseImageCallback?
+): Boolean {
+    sOnChooseImageCallback = onChooseImageCallback
+    val intent = Intent(Intent.ACTION_GET_CONTENT)
+    intent.type = "*/*"
+    return try {
+        activity.startActivityForResult(intent, 11001)
+        true
+    } catch (e: Exception) {
+        false
+    }
+}
+
 fun chooseImageOnResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    if (requestCode != 11001 || resultCode != Activity.RESULT_OK) return
-    val activity = App.getMainActivity() ?: return
-    val uri = data?.data?: return
-    getAbsolutePath(activity, uri, object : OnCallback {
-        override fun onResult(result: String?) {
-            sOnChooseImageCallback?.onChoose(result)
-            Timber.tag("choose").e(result)
-        }
-    })
+    if (requestCode == 11001 && resultCode == Activity.RESULT_CANCELED) {
+        sOnChooseImageCallback?.onCancel()
+        return
+    }
+    if (requestCode == 11001 && resultCode == Activity.RESULT_OK) {
+        val activity = App.getMainActivity() ?: return
+        val uri = data?.data?: return
+        getAbsolutePath(activity, uri, object : OnCallback {
+            override fun onResult(result: String?) {
+                sOnChooseImageCallback?.onChoose(result)
+                Timber.tag("choose").e(result)
+            }
+        })
+        return
+    }
 }
 
 private fun getAbsolutePath(context: Context?, data: Uri?, callback: OnCallback) {

@@ -11,8 +11,6 @@ android {
     defaultConfig {
         minSdk rootProject.ext.minSdk
         targetSdk rootProject.ext.targetSdk
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
 
     }
 
@@ -32,6 +30,7 @@ android {
     dataBinding { // 开启 DataBinding
         enabled true
     }
+    namespace 'com.godq.portal'
 }
 
 dependencies {

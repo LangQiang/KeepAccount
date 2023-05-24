@@ -35,6 +35,7 @@ class BillUpdateFragment: BaseFragment() {
             setSpinnerTextFormatter { item -> SpannableString((item as? BillShopEntity)?.name ?: "未知") }
             setSelectedTextFormatter { item -> SpannableString((item as? BillShopEntity)?.name ?: "未知") }
             setBackgroundColor(ContextCompat.getColor(context, R.color.transparent))
+            setTextColor(0xcc000000.toInt())
             setOnSpinnerItemSelectedListener { parent, _, position, _ ->
                 vm.billInfo.shopId = (parent.getItemAtPosition(position) as? BillShopEntity)?.id ?: ""
             }

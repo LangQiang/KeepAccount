@@ -9,8 +9,6 @@ android {
     defaultConfig {
         minSdk rootProject.ext.minSdk
         targetSdk rootProject.ext.targetSdk
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
 
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -28,6 +26,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'com.godq.msa'
 }
 
 dependencies {

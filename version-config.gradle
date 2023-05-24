@@ -1,13 +1,13 @@
 ext {
     //编译、目标、最小支持版本
-    compileSdk = 31
+    compileSdk = 32
     minSdk     = 21
-    targetSdk  = 31
+    targetSdk  = 32
     buildToolV = "32.0.0"
 
     //应用版本号、name
-    versionCode= 1030
-    versionName= "1.0.3.0"
+    versionCode= 1031
+    versionName= "1.0.3.1"
 
     //java版本
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -21,6 +21,7 @@ ext {
     coordinatorlayout = 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
     viewpager2 = 'androidx.viewpager2:viewpager2:1.0.0'
     //kotlin
+    stdlib_ktx = 'org.jetbrains.kotlin:kotlin-stdlib:1.6.0'
     core_ktx = 'androidx.core:core-ktx:1.7.0'
     //协程
     ktx_coroutines_core = 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1'

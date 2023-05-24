@@ -1,7 +1,9 @@
 package com.godq.upload
 
 import android.content.Context
+import android.os.FileUtils
 import androidx.annotation.Nullable
+import com.godq.ulda.IUploadService
 
 import com.tencent.qcloud.core.auth.ShortTimeCredentialProvider
 import com.tencent.qcloud.core.auth.QCloudCredentialProvider
@@ -12,6 +14,7 @@ import com.tencent.cos.xml.exception.CosXmlClientException
 import com.tencent.cos.xml.model.CosXmlRequest
 import com.tencent.cos.xml.model.CosXmlResult
 import com.tencent.cos.xml.listener.CosXmlResultListener
+import com.tencent.cos.xml.transfer.COSXMLUploadTask
 import com.tencent.cos.xml.transfer.COSXMLUploadTask.COSXMLUploadTaskResult
 import com.tencent.cos.xml.transfer.TransferManager
 import com.tencent.cos.xml.transfer.TransferConfig
@@ -47,14 +50,14 @@ object COSManager {
         cosXmlService = CosXmlSimpleService(applicationContext, serviceConfig, myCredentialProvider)
     }
 
-    fun upload(path: String, onUploadResultCallback: OnUploadResultCallback?) {
+    fun upload(path: String, onUploadResultCallback: OnUploadResultCallback?): IUploadService.IUploadTask? {
 
         //限制文件大小
         with(File(path)) {
-            if (length() > 20 * 1024 * 1024) {
+            if (length() > 100 * 1024 * 1024) {
                 Timber.tag("upload").e("size over limit: ${length()}")
                 onUploadResultCallback?.onResult(true, null, "不能上传大小超过超过20M的文件")
-                return
+                return null
             }
         }
 
@@ -64,7 +67,7 @@ object COSManager {
 
         // 存储桶名称，由bucketname-appid 组成，appid必须填入，可以在COS控制台查看存储桶名称。 https://console.cloud.tencent.com/cos5/bucket
         val bucket = "godq-1307306000"
-        val cosPath = UUID.randomUUID().toString().replace(Regex("-"), "") //对象在存储桶中的位置标识符，即称对象键
+        val cosPath = UUID.randomUUID().toString().replace(Regex("-"), "") + "." + getFileExtension(path) //对象在存储桶中的位置标识符，即称对象键
 
         //本地文件的绝对路径
         val srcPath: String = path
@@ -112,7 +115,26 @@ object COSManager {
         cosXmlUploadTask.setTransferStateListener {
             Timber.tag("upload").e("TransferState ${it.name}")
         }
+        return object : IUploadService.IUploadTask {
+            override fun cancel() {
+                cosXmlUploadTask.cancel()
+            }
 
+        }
+    }
+
+    private fun getFileExtension(fileName: String): String {
+        val lastDotIndex = fileName.lastIndexOf(".")
+        return if (lastDotIndex != -1 && lastDotIndex < fileName.length - 1) {
+            val suffix = fileName.substring(lastDotIndex + 1)
+            if (suffix.length > 8) {
+                return ""
+            } else {
+                suffix
+            }
+        } else {
+            ""
+        }
     }
 
     interface OnUploadResultCallback {

@@ -40,3 +40,11 @@ fun getCreateEquipmentUrl(): String {
 fun getUpdateEquipmentUrl(): String {
     return "$HOST/equipment/update"
 }
+
+fun getAssetListUrl(): String {
+    return "$HOST/asset/list"
+}
+
+fun getAddAssetUrl(): String {
+    return "$HOST/asset/create"
+}

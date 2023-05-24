@@ -102,6 +102,10 @@ class NewEquipmentFragment(val procureEntity: ProcureEntity, private val equipme
             override fun onChoose(fileUri: String?) {
                 uploadFileByPathToCos(fileUri)
             }
+
+            override fun onCancel() {
+
+            }
         })
     }
 

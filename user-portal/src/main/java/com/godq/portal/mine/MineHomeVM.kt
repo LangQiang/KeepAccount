@@ -137,6 +137,10 @@ class MineHomeVM : LifecycleEventObserver {
                 uploadFileByPathToCos(fileUri)
             }
 
+            override fun onCancel() {
+
+            }
+
         })
     }
 

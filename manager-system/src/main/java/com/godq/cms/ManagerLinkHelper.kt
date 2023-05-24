@@ -12,12 +12,14 @@ object ManagerLinkHelper {
     }
 
 
-    fun upload(path: String, onUploadCallback: IUploadService.OnUploadCallback?) {
-        uploadService?.upload(path, onUploadCallback)
-    }
+    fun upload(path: String, onUploadCallback: IUploadService.OnUploadCallback?) = uploadService?.upload(path, onUploadCallback)
 
     fun chooseImage(activity: Activity, onChooseImageCallback: IUploadService.OnChooseImageCallback?) {
         uploadService?.chooseImage(activity, onChooseImageCallback)
+    }
+
+    fun chooseFile(activity: Activity, onChooseImageCallback: IUploadService.OnChooseImageCallback?) {
+        uploadService?.chooseFile(activity, onChooseImageCallback)
     }
 
 }

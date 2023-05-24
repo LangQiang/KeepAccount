@@ -69,6 +69,10 @@ class ChatRoomVM  : LifecycleEventObserver {
                 upload(fileUri)
             }
 
+            override fun onCancel() {
+
+            }
+
         })
     }
 

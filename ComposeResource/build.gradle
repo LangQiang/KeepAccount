@@ -10,8 +10,6 @@ android {
     defaultConfig {
         minSdk 21
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
 
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -32,6 +30,7 @@ android {
     dataBinding { // 开启 DataBinding
         enabled true
     }
+    namespace 'com.godq.resource'
 }
 
 dependencies {
@@ -40,5 +39,7 @@ dependencies {
     kapt rootProject.ext.base_core_processor
 
     implementation 'io.github.langqiang:AppLogcat:1.1.1-SNAPSHOT'
+
+    api rootProject.ext.stdlib_ktx
 
 }

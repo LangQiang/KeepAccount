@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'org.jetbrains.compose'
 }
 
 android {
@@ -10,8 +11,6 @@ android {
     defaultConfig {
         minSdk rootProject.ext.minSdk
         targetSdk rootProject.ext.targetSdk
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
 
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -28,10 +27,22 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+        freeCompilerArgs += [
+                "-Xjvm-default=all",
+        ]
     }
     dataBinding { // 开启 DataBinding
         enabled true
     }
+
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.1.0'
+        kotlinCompilerVersion '1.6.10'
+    }
+    namespace 'com.godq.cms'
 }
 
 dependencies {
@@ -49,6 +60,25 @@ dependencies {
     implementation project(':manager-system-api')
     implementation project(':tools:upload-api')
     api 'io.github.langqiang:SideSlideMenuWidget:1.0.3-SNAPSHOT'
+
+    def version = '1.2.0'
+    implementation "androidx.compose.ui:ui:${version}"
+    implementation "androidx.compose.material:material:${version}"
+    implementation "androidx.compose.ui:ui-tooling:${version}"
+    implementation "androidx.compose.runtime:runtime-livedata:${version}"
+    implementation "androidx.navigation:navigation-compose:2.4.0-alpha10"
+    implementation "androidx.compose.foundation:foundation:${version}"
+    implementation 'androidx.constraintlayout:constraintlayout-compose:1.0.0-beta02'
+
+    implementation "io.coil-kt:coil:2.0.0"
+    implementation "io.coil-kt:coil-compose:2.0.0"
+
+
+
+    debugImplementation "androidx.customview:customview:1.2.0-alpha01"
+    debugImplementation "androidx.customview:customview-poolingcontainer:1.0.0-alpha01"
+
+
 
 
     kapt rootProject.ext.base_core_processor
