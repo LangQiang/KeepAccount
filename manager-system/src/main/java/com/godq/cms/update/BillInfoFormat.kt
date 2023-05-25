@@ -8,7 +8,28 @@ import java.util.regex.Pattern
 fun formatBillInfoFromClipBoard(clipboardText: String): BillInfo? {
 
     return try {
+
+        if (!clipboardText.contains("营业额")) {
+            return null
+        }
+
         val info = BillInfo()
+
+        //店铺
+        val shopPattern = Pattern.compile("##.*##")
+        shopPattern.matcher(clipboardText).apply {
+            if (find()) {
+                when (group().trim().replace("#", "")) {
+                    "乐松" -> {
+                        info.shopId = "2"
+                    }
+                    else -> {
+                        info.shopId = "1"
+                    }
+                }
+            }
+        }
+
 
         //日期
         val datePattern = Pattern.compile("(\\d+)\\s*月(\\d+)\\s*[号日]\\s*(?=营业额报表)")
@@ -84,6 +105,14 @@ fun formatBillInfoFromClipBoard(clipboardText: String): BillInfo? {
             }
         }
 
+        //外卖 "外卖:1  ,1.2，4。4单1  ,1.2，4。4元\n"
+        val otherPattern = Pattern.compile("(?<=其他\\s{0,10}[:：]\\s{0,10}[\\d.,，。\\s]{1,30}单)[\\d.,，。\\s]+(?=[元块圆])")
+        otherPattern.matcher(clipboardText).apply {
+            if (find()) {
+                info.waimaiAmount = group().trim().replace("[,，。\\s]+".toRegex(), "")
+            }
+        }
+
         //免单
         val freePattern = Pattern.compile("(?<=免单\\s{0,10}[:：])[\\d.,，。\\s]+(?=[元块圆])")
         freePattern.matcher(clipboardText).apply {
@@ -99,6 +128,71 @@ fun formatBillInfoFromClipBoard(clipboardText: String): BillInfo? {
                 info.payOut = group().trim().replace("[,，。\\s]+".toRegex(), "")
             }
         }
+
+        //食材
+        val payOutMaterialsPattern = Pattern.compile("(?<=食材\\s{0,10}[:：])[\\d.,，。\\s]+(?=[元块圆])")
+        payOutMaterialsPattern.matcher(clipboardText).apply {
+            if (find()) {
+                info.payOutMaterials = group().trim().replace("[,，。\\s]+".toRegex(), "")
+            }
+        }
+
+        //人工
+        val payOutLaborPattern = Pattern.compile("(?<=人工\\s{0,10}[:：])[\\d.,，。\\s]+(?=[元块圆])")
+        payOutLaborPattern.matcher(clipboardText).apply {
+            if (find()) {
+                info.payOutLabor = group().trim().replace("[,，。\\s]+".toRegex(), "")
+            }
+        }
+
+        //水费
+        val payOutWaterPattern = Pattern.compile("(?<=水费\\s{0,10}[:：])[\\d.,，。\\s]+(?=[元块圆])")
+        payOutWaterPattern.matcher(clipboardText).apply {
+            if (find()) {
+                info.payOutWater = group().trim().replace("[,，。\\s]+".toRegex(), "")
+            }
+        }
+
+        //电费
+        val payOutElectricityPattern = Pattern.compile("(?<=电费\\s{0,10}[:：])[\\d.,，。\\s]+(?=[元块圆])")
+        payOutElectricityPattern.matcher(clipboardText).apply {
+            if (find()) {
+                info.payOutElectricity = group().trim().replace("[,，。\\s]+".toRegex(), "")
+            }
+        }
+
+        //燃气
+        val payOutGasPattern = Pattern.compile("(?<=燃气\\s{0,10}[:：])[\\d.,，。\\s]+(?=[元块圆])")
+        payOutGasPattern.matcher(clipboardText).apply {
+            if (find()) {
+                info.payOutGas = group().trim().replace("[,，。\\s]+".toRegex(), "")
+            }
+        }
+
+        //分红
+        val payOutDividendsPattern = Pattern.compile("(?<=分红\\s{0,10}[:：])[\\d.,，。\\s]+(?=[元块圆])")
+        payOutDividendsPattern.matcher(clipboardText).apply {
+            if (find()) {
+                info.payOutDividends = group().trim().replace("[,，。\\s]+".toRegex(), "")
+            }
+        }
+
+        //其他支出
+        val payOutOtherPattern = Pattern.compile("(?<=其他支出\\s{0,10}[:：])[\\d.,，。\\s]+(?=[元块圆])")
+        payOutOtherPattern.matcher(clipboardText).apply {
+            if (find()) {
+                info.payOutOther = group().trim().replace("[,，。\\s]+".toRegex(), "")
+            }
+        }
+
+        //总流水
+        val totalPattern = Pattern.compile("(?<=营业额\\s{0,10}[:：])[\\d.,，。\\s]+(?=[元块圆])")
+        totalPattern.matcher(clipboardText).apply {
+            if (find()) {
+                info.total = group().trim().replace("[,，。\\s]+".toRegex(), "")
+            }
+        }
+
 
         Timber.tag("format").e(info.toString())
         info

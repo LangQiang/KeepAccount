@@ -29,7 +29,9 @@ class BillDetailMV {
                 if (response?.isSuccessful == false) return@withContext null
                 val data = response.dataToString()
                 Timber.tag("shopppp").e(data)
-                parseBillDetailList(data)?.reversed()
+                parseBillDetailList(data)?.let {
+                    if (it.size <= 1) it else it.reversed()
+                }
             }
             if (billDetailList.isNullOrEmpty()) return@launch
             cacheList = billDetailList

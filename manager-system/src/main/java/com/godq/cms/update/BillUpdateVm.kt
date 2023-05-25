@@ -26,81 +26,143 @@ class BillUpdateVm {
 
     fun onCommitClick() {
 
+        val block = {
+            val header = HashMap<String, String>()
+            header["Content-Type"] = "application/json"
+
+            val json = JSONObject()
+            json.putOpt("shop_id", billInfo.shopId)
+            json.putOpt("date", billInfo.date)
+            json.putOpt("opt_by", ConfMgr.getStringValue("", "opt_by", ""))
+            json.putOpt("table_times", billInfo.tableTimes)
+            json.putOpt("pay_out", billInfo.payOut)
+            json.putOpt("total", billInfo.total)
+            val array = JSONArray()
+
+            val payOutMaterialsJson = JSONObject()
+            payOutMaterialsJson.putOpt("type", "食材")
+            payOutMaterialsJson.putOpt("amount", billInfo.payOutMaterials)
+            array.put(payOutMaterialsJson)
+
+            val payOutLaborJson = JSONObject()
+            payOutLaborJson.putOpt("type", "人工")
+            payOutLaborJson.putOpt("amount", billInfo.payOutLabor)
+            array.put(payOutLaborJson)
+
+            val payOutWaterJson = JSONObject()
+            payOutWaterJson.putOpt("type", "水费")
+            payOutWaterJson.putOpt("amount", billInfo.payOutWater)
+            array.put(payOutWaterJson)
+
+            val payOutElectricityJson = JSONObject()
+            payOutElectricityJson.putOpt("type", "电费")
+            payOutElectricityJson.putOpt("amount", billInfo.payOutElectricity)
+            array.put(payOutElectricityJson)
+
+            val payOutGasJson = JSONObject()
+            payOutGasJson.putOpt("type", "燃气")
+            payOutGasJson.putOpt("amount", billInfo.payOutGas)
+            array.put(payOutGasJson)
+
+            val payOutDividendsJson = JSONObject()
+            payOutDividendsJson.putOpt("type", "分红")
+            payOutDividendsJson.putOpt("amount", billInfo.payOutDividends)
+            array.put(payOutDividendsJson)
+
+            val payOutOtherJson = JSONObject()
+            payOutOtherJson.putOpt("type", "其他支出")
+            payOutOtherJson.putOpt("amount", billInfo.payOutOther)
+            array.put(payOutOtherJson)
+
+            val bankJson = JSONObject()
+            bankJson.putOpt("type", "银行卡")
+            bankJson.putOpt("amount", billInfo.bankAmount)
+            array.put(bankJson)
+
+            val aliJson = JSONObject()
+            aliJson.putOpt("type", "支付宝")
+            aliJson.putOpt("amount", billInfo.aliAmount)
+            array.put(aliJson)
+
+            val wxJson = JSONObject()
+            wxJson.putOpt("type", "微信")
+            wxJson.putOpt("amount", billInfo.wxAmount)
+            array.put(wxJson)
+
+            val cashJson = JSONObject()
+            cashJson.putOpt("type", "现金")
+            cashJson.putOpt("amount", billInfo.cashAmount)
+            array.put(cashJson)
+
+            val mtJson = JSONObject()
+            mtJson.putOpt("type", "美团")
+            mtJson.putOpt("amount", billInfo.meituanAmount)
+            array.put(mtJson)
+
+            val dyJson = JSONObject()
+            dyJson.putOpt("type", "抖音")
+            dyJson.putOpt("amount", billInfo.douyinAmount)
+            array.put(dyJson)
+
+            val wmJson = JSONObject()
+            wmJson.putOpt("type", "外卖")
+            wmJson.putOpt("amount", billInfo.waimaiAmount)
+            array.put(wmJson)
+
+            val otherJson = JSONObject()
+            otherJson.putOpt("type", "其他")
+            otherJson.putOpt("amount", billInfo.otherAmount)
+            array.put(otherJson)
+
+            val freeJson = JSONObject()
+            freeJson.putOpt("type", "免单")
+            freeJson.putOpt("amount", billInfo.freeAmount)
+            array.put(freeJson)
+
+            json.putOpt("type_list", array)
+
+
+            val req = RequestInfo.newPost(getUpdateBillUrl(), header, json.toString().toByteArray())
+
+            Timber.tag("commit").e(json.toString())
+
+            KwHttpMgr.getInstance().kwHttpFetch.asyncPost(req) {
+                if (it.code == 200) {
+                    FragmentOperation.getInstance().close()
+                    MessageManager.getInstance().asyncNotify(IManagerSystemObserver.EVENT_ID, object : MessageManager.Caller<IManagerSystemObserver>() {
+                        override fun call() {
+                            ob.onBillUpdate()
+                        }
+
+                    })
+                    KwToast.show("上传成功！")
+                }
+            }
+        }
+
         if (invalid()) {
             KwToast.show("请补全信息")
             return
         }
 
-        val header = HashMap<String, String>()
-        header["Content-Type"] = "application/json"
-
-        val json = JSONObject()
-        json.putOpt("shop_id", billInfo.shopId)
-        json.putOpt("date", billInfo.date)
-        json.putOpt("opt_by", ConfMgr.getStringValue("", "opt_by", ""))
-        json.putOpt("table_times", billInfo.tableTimes)
-        json.putOpt("pay_out", billInfo.payOut)
-        val array = JSONArray()
-
-        val bankJson = JSONObject()
-        bankJson.putOpt("type", "银行卡")
-        bankJson.putOpt("amount", billInfo.bankAmount)
-        array.put(bankJson)
-
-        val aliJson = JSONObject()
-        aliJson.putOpt("type", "支付宝")
-        aliJson.putOpt("amount", billInfo.aliAmount)
-        array.put(aliJson)
-
-        val wxJson = JSONObject()
-        wxJson.putOpt("type", "微信")
-        wxJson.putOpt("amount", billInfo.wxAmount)
-        array.put(wxJson)
-
-        val cashJson = JSONObject()
-        cashJson.putOpt("type", "现金")
-        cashJson.putOpt("amount", billInfo.cashAmount)
-        array.put(cashJson)
-
-        val mtJson = JSONObject()
-        mtJson.putOpt("type", "美团")
-        mtJson.putOpt("amount", billInfo.meituanAmount)
-        array.put(mtJson)
-
-        val dyJson = JSONObject()
-        dyJson.putOpt("type", "抖音")
-        dyJson.putOpt("amount", billInfo.douyinAmount)
-        array.put(dyJson)
-
-        val wmJson = JSONObject()
-        wmJson.putOpt("type", "外卖")
-        wmJson.putOpt("amount", billInfo.waimaiAmount)
-        array.put(wmJson)
-
-        val freeJson = JSONObject()
-        freeJson.putOpt("type", "免单")
-        freeJson.putOpt("amount", billInfo.freeAmount)
-        array.put(freeJson)
-
-        json.putOpt("type_list", array)
-
-
-        val req = RequestInfo.newPost(getUpdateBillUrl(), header, json.toString().toByteArray())
-
-        Timber.tag("commit").e(json.toString())
-
-        KwHttpMgr.getInstance().kwHttpFetch.asyncPost(req) {
-            if (it.code == 200) {
-                FragmentOperation.getInstance().close()
-                MessageManager.getInstance().asyncNotify(IManagerSystemObserver.EVENT_ID, object : MessageManager.Caller<IManagerSystemObserver>() {
-                    override fun call() {
-                        ob.onBillUpdate()
+        if (!billInfo.checkTotal()) {
+            App.getMainActivity()?.also {
+                with(AlertDialog.Builder(it)) {
+                    setTitle("提醒")
+                    setMessage("总流水和收入不相等，是否重新核对？")
+                    setPositiveButton("忽略") { _, _ ->
+                        block()
                     }
+                    setNegativeButton("重新核对") { _, _ ->
 
-                })
-                KwToast.show("上传成功！")
+                    }
+                    create().show()
+                }
+                return
             }
         }
+
+        block()
     }
 
     private fun invalid(): Boolean {
@@ -143,7 +205,7 @@ class BillUpdateVm {
                 setTitle("提醒")
                 setMessage("检测到剪切板中含有营业额报表信息，是否自动录入？")
                 setPositiveButton("确认录入") { _, _ ->
-                    billInfo.setInfoWithoutId(this@apply)
+                    billInfo.setInfo(this@apply)
                 }
                 setNegativeButton("取消") { _, _ ->
 

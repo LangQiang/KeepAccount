@@ -22,445 +22,764 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"/>
 
-        <LinearLayout
+        <ScrollView
             android:layout_below="@+id/title_bar"
             android:layout_above="@+id/commit_tv"
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="45dp">
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:text="选择店铺"
-                    tools:text="选择店铺"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
 
-                <org.angmarch.views.NiceSpinner
-                    android:id="@+id/nice_spinner"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@color/mgr_line_divider_color"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"/>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="45dp">
-
-                <TextView
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:text="日期"
-                    tools:text="日期"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent">
                     <TextView
                         android:gravity="center"
                         android:textSize="18dp"
                         android:textColor="@color/black80"
-                        android:text="@{vm.billInfo.date}"
-                        tools:text="选择日期"
-                        android:onClick="@{()->vm.onDateSelectClick()}"
-                        android:id="@+id/date_picker_tv"
-                        android:layout_width="match_parent"
+                        android:text="选择店铺"
+                        tools:text="选择店铺"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="match_parent"/>
 
-                    <ImageView
-                        android:layout_marginEnd="15dp"
-                        android:layout_gravity="end|center_vertical"
-                        android:src="@drawable/lrlite_base_right_arrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </FrameLayout>
+                    <org.angmarch.views.NiceSpinner
+                        android:id="@+id/nice_spinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="日期"
+                        tools:text="日期"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:gravity="center"
+                            android:textSize="18dp"
+                            android:textColor="@color/black80"
+                            android:text="@{vm.billInfo.date}"
+                            tools:text="选择日期"
+                            android:onClick="@{()->vm.onDateSelectClick()}"
+                            android:id="@+id/date_picker_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
+                        <ImageView
+                            android:layout_marginEnd="15dp"
+                            android:layout_gravity="end|center_vertical"
+                            android:src="@drawable/lrlite_base_right_arrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </FrameLayout>
 
 
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="银行卡"
+                        tools:text="银行卡"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.billInfo.bankAmount}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入金额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="支付宝"
+                        tools:text="支付宝"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.billInfo.aliAmount}"
+
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入金额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="微信"
+                        tools:text="微信"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.billInfo.wxAmount}"
+
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入金额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="现金"
+                        tools:text="现金"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.billInfo.cashAmount}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入金额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="美团"
+                        tools:text="美团"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.billInfo.meituanAmount}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入金额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="抖音"
+                        tools:text="抖音"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:text="@={vm.billInfo.douyinAmount}"
+                        android:inputType="numberDecimal"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入金额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="外卖"
+                        tools:text="外卖"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.billInfo.waimaiAmount}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入金额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="其他"
+                        tools:text="其他"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.billInfo.otherAmount}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入金额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="免单"
+                        tools:text="免单"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.billInfo.freeAmount}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入金额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="支出"
+                        tools:text="支出"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.billInfo.payOut}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入金额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="支出-食材"
+                        tools:text="支出-食材"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.billInfo.payOutMaterials}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入金额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="支出-人工"
+                        tools:text="支出-人工"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.billInfo.payOutLabor}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入金额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="支出-水费"
+                        tools:text="支出-水费"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.billInfo.payOutWater}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入金额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="支出-电费"
+                        tools:text="支出-电费"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.billInfo.payOutElectricity}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入金额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="支出-燃气"
+                        tools:text="支出-燃气"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.billInfo.payOutGas}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入金额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="支出-分红"
+                        tools:text="支出-分红"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.billInfo.payOutDividends}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入金额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="支出-其他"
+                        tools:text="支出-其他"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.billInfo.payOutOther}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入金额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="桌次"
+                        tools:text="桌次"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.billInfo.tableTimes}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入桌次"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="营业额"
+                        tools:text="营业额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.billInfo.total}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入金额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
 
             </LinearLayout>
-
-            <View
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@color/mgr_line_divider_color"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"/>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="45dp">
-
-                <TextView
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:text="银行卡"
-                    tools:text="银行卡"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-                <EditText
-                    android:inputType="numberDecimal"
-                    android:text="@={vm.billInfo.bankAmount}"
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:hint="输入金额"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@color/mgr_line_divider_color"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"/>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="45dp">
-
-                <TextView
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:text="支付宝"
-                    tools:text="支付宝"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-                <EditText
-                    android:inputType="numberDecimal"
-                    android:text="@={vm.billInfo.aliAmount}"
-
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:hint="输入金额"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@color/mgr_line_divider_color"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"/>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="45dp">
-
-                <TextView
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:text="微信"
-                    tools:text="微信"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-                <EditText
-                    android:inputType="numberDecimal"
-                    android:text="@={vm.billInfo.wxAmount}"
-
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:hint="输入金额"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@color/mgr_line_divider_color"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"/>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="45dp">
-
-                <TextView
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:text="现金"
-                    tools:text="现金"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-                <EditText
-                    android:inputType="numberDecimal"
-                    android:text="@={vm.billInfo.cashAmount}"
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:hint="输入金额"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@color/mgr_line_divider_color"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"/>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="45dp">
-
-                <TextView
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:text="美团"
-                    tools:text="美团"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-                <EditText
-                    android:inputType="numberDecimal"
-                    android:text="@={vm.billInfo.meituanAmount}"
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:hint="输入金额"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@color/mgr_line_divider_color"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"/>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="45dp">
-
-                <TextView
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:text="抖音"
-                    tools:text="抖音"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-                <EditText
-                    android:text="@={vm.billInfo.douyinAmount}"
-                    android:inputType="numberDecimal"
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:hint="输入金额"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@color/mgr_line_divider_color"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"/>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="45dp">
-
-                <TextView
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:text="外卖"
-                    tools:text="外卖"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-                <EditText
-                    android:inputType="numberDecimal"
-                    android:text="@={vm.billInfo.waimaiAmount}"
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:hint="输入金额"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@color/mgr_line_divider_color"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"/>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="45dp">
-
-                <TextView
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:text="免单"
-                    tools:text="免单"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-                <EditText
-                    android:inputType="numberDecimal"
-                    android:text="@={vm.billInfo.freeAmount}"
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:hint="输入金额"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@color/mgr_line_divider_color"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"/>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="45dp">
-
-                <TextView
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:text="支出"
-                    tools:text="支出"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-                <EditText
-                    android:inputType="numberDecimal"
-                    android:text="@={vm.billInfo.payOut}"
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:hint="输入金额"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@color/mgr_line_divider_color"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"/>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="45dp">
-
-                <TextView
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:text="桌次"
-                    tools:text="桌次"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-                <EditText
-                    android:inputType="numberDecimal"
-                    android:text="@={vm.billInfo.tableTimes}"
-                    android:gravity="center"
-                    android:textSize="18dp"
-                    android:textColor="@color/black80"
-                    android:hint="输入金额"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@color/mgr_line_divider_color"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"/>
-
-        </LinearLayout>
+        </ScrollView>
 
 
         <TextView
