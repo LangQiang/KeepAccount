@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
 
-
+        MainLinkHelper.checkUpgrade(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

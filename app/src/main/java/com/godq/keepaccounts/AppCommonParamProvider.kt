@@ -1,6 +1,7 @@
 package com.godq.keepaccounts
 
 import com.lazylite.mod.http.mgr.ICommonParamProvider
+import com.lazylite.mod.utils.AppInfo
 import com.lazylite.mod.utils.LRSign
 import java.util.concurrent.ConcurrentHashMap
 
@@ -20,6 +21,8 @@ object AppCommonParamProvider: ICommonParamProvider {
     }
 
     override fun getCommonQueryParams(): ConcurrentHashMap<String, String> {
+        queryParams["channel"] = "personal"
+        queryParams["version"] = AppInfo.VERSION_CODE
         return queryParams
     }
 

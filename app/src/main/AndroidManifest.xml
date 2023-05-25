@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/account_logo"
         android:usesCleartextTraffic="true"
         android:supportsRtl="true"
-        tools:replace="android:icon,android:roundIcon"
+        tools:replace="android:icon,android:roundIcon, android:theme"
         android:theme="@style/Theme.KeepAccounts">
         <activity
             android:theme="@style/app_AppTheme"

@@ -95,6 +95,8 @@ dependencies {
     implementation project(':tools:upload')
     implementation project(':tools:upload-api')
     implementation project(':tools:apm')
+    implementation project(':upgrade')
+    implementation project(':upgrade-api')
 
 
 

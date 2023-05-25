@@ -1,7 +1,9 @@
 package com.godq.keepaccounts
 
+import android.app.Activity
 import android.content.Intent
 import androidx.fragment.app.Fragment
+import cn.tme.upgrade_api.IUpgradeService
 import com.godq.accountsa.IAccountService
 import com.godq.msa.IManagerService
 import com.godq.ulda.IUploadService
@@ -16,12 +18,14 @@ object MainLinkHelper {
     private var accountService: IAccountService? = null
     private var uploadService: IUploadService? = null
     private var mgrService: IManagerService? = null
+    private var iUpgradeService: IUpgradeService? = null
 
     init {
         userPortalService = ServiceImpl.getInstance().getService(IUserPortalService::class.java.name) as? IUserPortalService
         accountService = ServiceImpl.getInstance().getService(IAccountService::class.java.name) as? IAccountService
         uploadService = ServiceImpl.getInstance().getService(IUploadService::class.java.name) as? IUploadService
         mgrService = ServiceImpl.getInstance().getService(IManagerService::class.java.name) as? IManagerService
+        iUpgradeService = ServiceImpl.getInstance().getService(IUpgradeService::class.java.name) as? IUpgradeService
     }
 
     fun getUserHomeFragment(): Fragment? {
@@ -76,6 +80,10 @@ object MainLinkHelper {
 
     fun isLogin(): Boolean {
         return accountService?.isLogin() == true
+    }
+
+    fun checkUpgrade(activity: Activity) {
+        iUpgradeService?.check(activity)
     }
 
 }
