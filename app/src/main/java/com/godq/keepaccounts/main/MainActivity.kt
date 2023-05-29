@@ -1,21 +1,11 @@
 package com.godq.keepaccounts.main
 
-import android.annotation.SuppressLint
-import android.annotation.TargetApi
 import android.content.Intent
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.util.Pair
 import android.view.KeyEvent
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.OnApplyWindowInsetsListener
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.godq.compose.botnav.BottomItemData
@@ -31,7 +21,6 @@ import com.lazylite.mod.fragmentmgr.FragmentOperation
 import com.lazylite.mod.fragmentmgr.IHostActivity
 import com.lazylite.mod.fragmentmgr.OnFragmentStackChangeListener
 import com.lazylite.mod.utils.KwSystemSettingUtils
-import timber.log.Timber
 
 
 class MainActivity : AppCompatActivity() {
@@ -49,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(null)
         App.setMainActivity(this)
-        setCustomTheme()
+        KwSystemSettingUtils.resetStatusBarBlack(this)
         setContentView(R.layout.activity_main)
         bindFragmentOperation()
 
@@ -137,31 +126,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         return data
-    }
-
-    @SuppressLint("ObsoleteSdkInt")
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun setCustomTheme() {
-        KwSystemSettingUtils.resetStatusBarBlack(this)
-        val decor = window?.decorView?: return
-        val insertCtrl = ViewCompat.getWindowInsetsController(decor)
-        insertCtrl?.addOnControllableInsetsChangedListener { _, typeMask ->
-            Timber.tag("setCustomTheme").e("typeMask: $typeMask")
-            decor.post {
-                val insert = ViewCompat.getRootWindowInsets(decor)
-                val navHeight = insert?.getInsets(WindowInsetsCompat.Type.navigationBars())?.bottom
-                val outMetrics = DisplayMetrics()
-                windowManager.defaultDisplay.getRealMetrics(outMetrics)
-                val deviceRealHeightPixels = outMetrics.heightPixels
-                if (decor.height >= deviceRealHeightPixels) {
-                    navHolder?.layoutParams?.apply {
-                        height = navHeight ?: 0
-                    }
-                    (decor as? ViewGroup)?.requestLayout()
-                }
-            }
-        }
-
     }
 
 
