@@ -5,7 +5,9 @@ import android.content.Context
 import android.os.Process
 import com.godq.compose.UICompose
 import com.godq.compose.UIComposeConfig
+import com.godq.xskin.SkinManager
 import com.lazylite.bridge.init.ComponentInit
+import com.lazylite.mod.config.ConfMgr
 import com.lazylite.mod.global.BaseConfig
 import com.lazylite.mod.http.mgr.KwHttpMgr
 import com.lazylite.mod.utils.KwDebug
@@ -46,7 +48,8 @@ class KAApp : Application() {
         KwHttpMgr.getInstance().addCommonParamProvider(AppCommonParamProvider)
 
 
-
+        SkinManager.init(this)
+        applySkin()
 
 //        ComponentInit.initOnAppCreate(this)
 //        isAgreeProtocolWhenStart = ProtocolUtil.isProtocolDialogAgreed
@@ -55,5 +58,13 @@ class KAApp : Application() {
 //        }
 
         registerActivityLifecycleCallbacks(KwLifecycleCallback.getInstance())
+    }
+
+    private fun applySkin() {
+        ConfMgr.getStringValue("", "skin", "")?.takeIf {
+            it.isNotEmpty()
+        }?.apply {
+            SkinManager.loadSkin(this)
+        }
     }
 }

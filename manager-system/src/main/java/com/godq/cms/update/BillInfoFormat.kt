@@ -27,6 +27,8 @@ fun formatBillInfoFromClipBoard(clipboardText: String): BillInfo? {
                         info.shopId = "1"
                     }
                 }
+            } else {
+                info.shopId = "1"
             }
         }
 

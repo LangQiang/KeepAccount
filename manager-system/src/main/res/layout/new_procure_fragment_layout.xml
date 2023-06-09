@@ -10,9 +10,13 @@
     </data>
 
     <FrameLayout
-        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <com.godq.xskin.widget.SkinTransitionBgView
+            android:background="@drawable/skin_common_main_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
         <LinearLayout
             android:layout_gravity="center"

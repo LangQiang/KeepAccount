@@ -16,18 +16,20 @@ import com.godq.deeplink.DeepLinkUtils
 import com.godq.keepaccounts.MainLinkHelper
 import com.godq.keepaccounts.R
 import com.godq.keepaccounts.decorate.DecorateController
+import com.godq.xskin.SkinManager
+import com.godq.xskin.load.SkinLoadCallback
 import com.lazylite.mod.App
+import com.lazylite.mod.config.ConfMgr
 import com.lazylite.mod.fragmentmgr.FragmentOperation
 import com.lazylite.mod.fragmentmgr.IHostActivity
 import com.lazylite.mod.fragmentmgr.OnFragmentStackChangeListener
 import com.lazylite.mod.utils.KwSystemSettingUtils
+import com.lazylite.mod.widget.loading.LoadingDialogMgr
 
 
 class MainActivity : AppCompatActivity() {
 
     private var viewPager2: ViewPager2? = null
-
-    private var navHolder: View? = null
 
     private var bottomLayoutView: BottomLayoutView? = null
 
@@ -44,8 +46,6 @@ class MainActivity : AppCompatActivity() {
 
         viewPager2 = findViewById(R.id.view_pager2)
         viewPager2?.isSaveEnabled = false
-
-        navHolder = findViewById(R.id.nav_holder)
 
         bottomLayoutView= findViewById(R.id.bottom_layout)
 
@@ -80,7 +80,6 @@ class MainActivity : AppCompatActivity() {
 //        findViewById<View>(R.id.main_test_btn)?.apply {
 //            visibility = View.VISIBLE
 //            setOnClickListener {
-//
 //            }
 //        }
 
@@ -108,7 +107,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         MainLinkHelper.getProcureFragment()?.apply {
-            data.add(Pair(BottomItemData("采购", R.string.bottom_index_select_icon,
+            data.add(Pair(BottomItemData("清单", R.string.bottom_index_select_icon,
                 R.string.bottom_index_normal_icon
             ),this))
         }

@@ -14,12 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.lazylite.mod.widget.KwTitleBar
+        <com.godq.compose.titlebar.TitleBar
             android:id="@+id/title_bar"
-            style="@style/LRLiteBase_TitleBar"
+            android:layout_height="@dimen/title_height"
             android:tag="titleBar"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"/>
+
 
 
         <FrameLayout

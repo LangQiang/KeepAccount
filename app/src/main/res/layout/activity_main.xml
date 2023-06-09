@@ -1,59 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:background="@color/main_bg"
+    xmlns:xskin="http://schemas.android.com/xskin"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".main.MainActivity">
+
+    <com.godq.xskin.widget.SkinTransitionBgView
+        android:background="@drawable/skin_common_main_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager2"
+        android:layout_marginBottom="@dimen/lrlite_base_bottom_height"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.godq.compose.botnav.BottomLayoutView
+        android:layout_gravity="bottom"
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/lrlite_base_bottom_height"/>
 
     <FrameLayout
+        android:id="@+id/decorate_layer_container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        tools:context=".main.MainActivity">
+        android:layout_height="match_parent"/>
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager2"
-            android:layout_marginBottom="@dimen/lrlite_base_bottom_height"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-        <com.godq.compose.botnav.BottomLayoutView
-            android:layout_gravity="bottom"
-            android:background="@color/bottom_bg"
-            android:id="@+id/bottom_layout"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/lrlite_base_bottom_height"/>
-
-        <FrameLayout
-            android:id="@+id/decorate_layer_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-        <FrameLayout
-            android:id="@+id/app_fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TextView
-            android:id="@+id/main_test_btn"
-            android:visibility="gone"
-            android:background="@color/skin_high_blue_color"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            android:text="test"
-            android:layout_gravity="center_horizontal|bottom"
-            android:layout_marginBottom="100dp"
-            android:layout_width="100dp"
-            android:layout_height="50dp"/>
-
-    </FrameLayout>
-
-    <View
-        android:id="@+id/nav_holder"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <FrameLayout
+        android:id="@+id/app_fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"/>
-</LinearLayout>
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/main_test_btn"
+        android:visibility="gone"
+        android:background="@color/skin_high_blue_color"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:text="test"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="100dp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"/>
+
+</FrameLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="skin_text_primary">#cc000000</color>
+    <color name="skin_text_secondary">#66000000</color>
+    <color name="skin_text_Tertiary">#22000000</color>
+    <color name="skin_text_Quaternary">#10000000</color>
+
+    <color name="skin_btn_text_color">#ffffffff</color>
+
+    <color name="skin_btn_bg_normal">#ff66B2FF</color>
+    <color name="skin_btn_bg_press">#aa66B2FF</color>
+
+    <color name="skin_item_shape_common_normal_bg_color">#ffffffff</color>
+    <color name="skin_item_shape_common_press_bg_color">#ffebebeb</color>
+
+    <color name="skin_title_bar_bg_color">#00000000</color>
+</resources>

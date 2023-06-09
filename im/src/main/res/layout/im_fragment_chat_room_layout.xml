@@ -11,9 +11,12 @@
     </data>
 
     <FrameLayout
-        android:background="@color/main_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <com.godq.xskin.widget.SkinTransitionBgView
+            android:background="@drawable/skin_common_main_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/chat_content_view"
             android:layout_width="match_parent"
@@ -21,7 +24,7 @@
 
             <com.lazylite.mod.widget.KwTitleBar
                 android:id="@+id/title_bar"
-                style="@style/LRLiteBase_TitleBar"
+                style="@style/Skin_Common_TitleBar"
                 android:tag="titleBar"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="match_parent"/>

@@ -38,8 +38,10 @@ dependencies {
     api rootProject.ext.ui_compose
     kapt rootProject.ext.base_core_processor
 
+    api rootProject.ext.xskin
     implementation 'io.github.langqiang:AppLogcat:1.1.1-SNAPSHOT'
 
-    api rootProject.ext.stdlib_ktx
+
+    api rootProject.ext.core_ktx
 
 }

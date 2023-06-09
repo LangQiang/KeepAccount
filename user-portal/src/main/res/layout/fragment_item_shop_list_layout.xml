@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:xskin="http://schemas.android.com/xskin"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -12,8 +13,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        xskin:enable="true"
         android:layout_margin="15dp"
-        android:background="@drawable/base_shape_white_18"
+        android:background="@drawable/skin_item_selector_common_18"
         android:layout_width="match_parent"
         android:layout_height="110dp">
         <com.facebook.drawee.view.SimpleDraweeView
@@ -29,8 +31,9 @@
 
         <TextView
             android:text="@{itemData.name}"
+            xskin:enable="true"
             android:id="@+id/title_tv"
-            android:textColor="@color/black80"
+            android:textColor="@color/skin_text_primary"
             android:textSize="18sp"
             android:layout_marginStart="10dp"
             app:layout_constraintStart_toEndOf="@+id/img_iv"
@@ -55,10 +58,11 @@
                 android:layout_height="20dp"/>
 
             <TextView
+                xskin:enable="true"
                 android:text="@{itemData.addr}"
                 android:layout_gravity="center_vertical"
                 android:id="@+id/sub_title_tv"
-                android:textColor="@color/black40"
+                android:textColor="@color/skin_text_secondary"
                 android:textSize="14sp"
                 android:layout_marginStart="3dp"
                 tools:text="预览SubTitle"
@@ -70,11 +74,12 @@
 
 
         <TextView
+            xskin:enable="true"
             app:layout_constraintStart_toStartOf="@+id/sub_title_container"
             android:text="@{itemData.desc}"
             app:layout_constraintTop_toBottomOf="@+id/sub_title_container"
             android:id="@+id/desc_tv"
-            android:textColor="@color/black40"
+            android:textColor="@color/skin_text_secondary"
             android:textSize="14sp"
             android:layout_marginTop="7dp"
             android:singleLine="true"

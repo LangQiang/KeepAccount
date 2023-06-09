@@ -10,12 +10,16 @@ import com.godq.portal.constants.HOST
 import com.godq.portal.utils.jumpToSettingFragment
 import com.godq.threadpool.ThreadPool
 import com.godq.ulda.IUploadService
+import com.godq.xskin.SkinManager
+import com.godq.xskin.load.SkinLoadCallback
 import com.lazylite.mod.App
+import com.lazylite.mod.config.ConfMgr
 import com.lazylite.mod.http.mgr.KwHttpMgr
 import com.lazylite.mod.http.mgr.model.RequestInfo
 import com.lazylite.mod.messagemgr.MessageManager
 import com.lazylite.mod.utils.KwFileUtils
 import com.lazylite.mod.utils.toast.KwToast
+import com.lazylite.mod.widget.loading.LoadingDialogMgr
 import org.json.JSONObject
 import timber.log.Timber
 import java.io.File
@@ -142,6 +146,29 @@ class MineHomeVM : LifecycleEventObserver {
             }
 
         })
+    }
+
+    fun onSkinShenKongClick() {
+        LoadingDialogMgr.hideProcess()
+        val url = "https://godq-1307306000.cos.ap-beijing.myqcloud.com/skinresapk-debug_smd_1.apk"
+        SkinManager.loadSkin(url, callback = object : SkinLoadCallback {
+
+            override fun onProgress(progress: Float) {
+                super.onProgress(progress)
+                LoadingDialogMgr.showProcess("${(progress * 100).toInt()}%")
+            }
+
+            override fun onFinish(success: Boolean) {
+                LoadingDialogMgr.hideProcess()
+                ConfMgr.setStringValue("", "skin", url, false)
+            }
+        })
+    }
+
+    fun onSkinResetClick() {
+        LoadingDialogMgr.hideProcess()
+        ConfMgr.setStringValue("", "skin", "", false)
+        SkinManager.reset()
     }
 
     private fun uploadFileByPathToCos(filePath: String?) {

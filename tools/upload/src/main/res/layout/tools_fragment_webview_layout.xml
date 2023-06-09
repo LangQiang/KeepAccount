@@ -7,7 +7,7 @@
 
     <com.lazylite.mod.widget.KwTitleBar
         android:id="@+id/bar"
-        style="@style/LRLiteBase_TitleBar"
+        style="@style/Skin_Common_TitleBar"
         android:background="@color/transparent"
         android:tag="titleBar"
         android:visibility="gone"

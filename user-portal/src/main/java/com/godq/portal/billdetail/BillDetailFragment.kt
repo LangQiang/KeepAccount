@@ -10,7 +10,9 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.godq.compose.titlebar.TitleBar
 import com.godq.portal.R
+import com.godq.resource.SkinTitleBarResDelegate
 import com.godq.statisticwidget.histogram.HistogramView
 import com.lazylite.mod.config.ConfMgr
 import com.lazylite.mod.widget.BaseFragment
@@ -59,16 +61,14 @@ class BillDetailFragment : BaseFragment() {
 
         currentListType = ConfMgr.getStringValue("", "bill_list_type", "日")
 
-        val titleBar = view.findViewById<KwTitleBar>(R.id.title_bar)
-        titleBar.setMainTitle("账单")
-        titleBar.setBackListener { close() }
-        completeView = titleBar?.complete?.apply {
-            text = currentListType ?: "未知"
-            textSize = 16f
-            setTextColor(ContextCompat.getColor(context, R.color.black60))
-        }
-        titleBar?.setRightListener {
-            val con = context ?: return@setRightListener
+        val titleBar = view.findViewById<TitleBar>(R.id.title_bar)
+        titleBar.setTitle("账单")
+        titleBar.setMenuTitle(currentListType ?: "未知")
+        titleBar.setBackClickListener { close() }
+        titleBar.setResDelegate(SkinTitleBarResDelegate(titleBar))
+
+        titleBar?.setMenuClickListener {
+            val con = context ?: return@setMenuClickListener
             with(BillListTypeSelectPopView(con, listTypes)) {
                 setOnItemClickListener { _, _, position, _ ->
                     val listType = listTypes[position]

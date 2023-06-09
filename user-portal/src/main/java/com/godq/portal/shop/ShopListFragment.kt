@@ -10,6 +10,7 @@ import com.godq.deeplink.DeepLinkUtils
 import com.godq.portal.common.CommonTipView
 import com.godq.portal.common.DataLoadingStateVm
 import com.godq.portal.databinding.FragmentShopListLayoutBinding
+import com.godq.resource.SkinTitleBarResDelegate
 import com.lazylite.mod.widget.BaseFragment
 
 class ShopListFragment : BaseFragment() {
@@ -37,7 +38,11 @@ class ShopListFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.titleBar?.setMainTitle("店铺列表")
+        binding?.titleBar?.apply {
+            setTitle("店铺列表")
+            setVisible(showBack = false, showTitle = true)
+            setResDelegate(SkinTitleBarResDelegate(this))
+        }
 
         binding?.tipView?.onBtnClickListener = object : CommonTipView.OnBtnClickListener {
             override fun onBtnClick(currentTipType: Int) {
