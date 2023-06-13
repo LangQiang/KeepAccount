@@ -73,14 +73,13 @@ class BillDetailFragment : BaseFragment() {
                 setOnItemClickListener { _, _, position, _ ->
                     val listType = listTypes[position]
                     currentListType = listType
-                    completeView?.text = listType
+                    titleBar.setMenuTitle(listType)
                     ConfMgr.setStringValue("", "bill_list_type", listType, false)
                     vm.changeListType(shopId, listType)
                     dismiss()
                 }
-                anchorView = completeView
-                horizontalOffset = -200
-                verticalOffset = 30
+                anchorView = titleBar
+                horizontalOffset = 1000
                 show()
             }
         }
