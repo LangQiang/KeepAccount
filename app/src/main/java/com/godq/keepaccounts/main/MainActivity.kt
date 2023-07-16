@@ -16,15 +16,11 @@ import com.godq.deeplink.DeepLinkUtils
 import com.godq.keepaccounts.MainLinkHelper
 import com.godq.keepaccounts.R
 import com.godq.keepaccounts.decorate.DecorateController
-import com.godq.xskin.SkinManager
-import com.godq.xskin.load.SkinLoadCallback
 import com.lazylite.mod.App
-import com.lazylite.mod.config.ConfMgr
 import com.lazylite.mod.fragmentmgr.FragmentOperation
 import com.lazylite.mod.fragmentmgr.IHostActivity
 import com.lazylite.mod.fragmentmgr.OnFragmentStackChangeListener
 import com.lazylite.mod.utils.KwSystemSettingUtils
-import com.lazylite.mod.widget.loading.LoadingDialogMgr
 
 
 class MainActivity : AppCompatActivity() {
@@ -55,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         val pairs: List<Pair<BottomItemData, Fragment>> = requestAdapterData()
 
 
-        if (!pairs.isNullOrEmpty()) {
+        if (pairs.isNotEmpty()) {
             bottomLayoutView?.mAdapter = BottomNavAdapter(pairs)
             bottomLayoutView?.bind(ViewPager2Wrapper(viewPager2))
             viewPager2?.offscreenPageLimit = 4

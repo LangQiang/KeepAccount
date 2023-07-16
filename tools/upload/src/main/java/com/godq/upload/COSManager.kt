@@ -1,27 +1,22 @@
 package com.godq.upload
 
 import android.content.Context
-import android.os.FileUtils
-import androidx.annotation.Nullable
 import com.godq.ulda.IUploadService
-
-import com.tencent.qcloud.core.auth.ShortTimeCredentialProvider
-import com.tencent.qcloud.core.auth.QCloudCredentialProvider
 import com.tencent.cos.xml.CosXmlServiceConfig
 import com.tencent.cos.xml.CosXmlSimpleService
-import com.tencent.cos.xml.exception.CosXmlServiceException
 import com.tencent.cos.xml.exception.CosXmlClientException
+import com.tencent.cos.xml.exception.CosXmlServiceException
+import com.tencent.cos.xml.listener.CosXmlResultListener
 import com.tencent.cos.xml.model.CosXmlRequest
 import com.tencent.cos.xml.model.CosXmlResult
-import com.tencent.cos.xml.listener.CosXmlResultListener
-import com.tencent.cos.xml.transfer.COSXMLUploadTask
 import com.tencent.cos.xml.transfer.COSXMLUploadTask.COSXMLUploadTaskResult
-import com.tencent.cos.xml.transfer.TransferManager
 import com.tencent.cos.xml.transfer.TransferConfig
-
+import com.tencent.cos.xml.transfer.TransferManager
+import com.tencent.qcloud.core.auth.QCloudCredentialProvider
+import com.tencent.qcloud.core.auth.ShortTimeCredentialProvider
 import timber.log.Timber
 import java.io.File
-import java.util.*
+import java.util.UUID
 
 
 object COSManager {
@@ -98,8 +93,8 @@ object COSManager {
             // 如果您使用 kotlin 语言来调用，请注意回调方法中的异常是可空的，否则不会回调 onFail 方法，即：
             // clientException 的类型为 CosXmlClientException?，serviceException 的类型为 CosXmlServiceException?
             override fun onFail(request: CosXmlRequest,
-                                @Nullable clientException: CosXmlClientException?,
-                                @Nullable serviceException: CosXmlServiceException?) {
+                                clientException: CosXmlClientException?,
+                                serviceException: CosXmlServiceException?) {
                 if (clientException != null) {
                     Timber.tag("upload").e("clientException: ${clientException.message}")
                     onUploadResultCallback?.onResult(false, null, clientException.message ?: "clientException")

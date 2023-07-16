@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -16,7 +14,6 @@ import com.godq.resource.SkinTitleBarResDelegate
 import com.godq.statisticwidget.histogram.HistogramView
 import com.lazylite.mod.config.ConfMgr
 import com.lazylite.mod.widget.BaseFragment
-import com.lazylite.mod.widget.KwTitleBar
 
 class BillDetailFragment : BaseFragment() {
 
@@ -26,7 +23,7 @@ class BillDetailFragment : BaseFragment() {
 
     private val vm = BillDetailMV()
 
-    private var completeView: TextView? = null
+//    private var completeView: TextView? = null
 
     private var recyclerView: RecyclerView? = null
 

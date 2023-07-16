@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.core.content.FileProvider
 import androidx.lifecycle.*
 import com.godq.cms.asset.add.AddAssetFragment
+import com.godq.xskin.SkinManager
 import com.lazylite.mod.App
 import com.lazylite.mod.fragmentmgr.FragmentOperation
 import com.lazylite.mod.fragmentmgr.StartParameter
@@ -32,12 +33,18 @@ class AssetViewModel: ViewModel(), LifecycleEventObserver {
 
     val state = mutableStateOf(false)
 
+    val skinBg = mutableStateOf("")
+
     private val currentItemInDownloading = HashMap<String, AssetEntity>()
 
     private val assetEvent = object : IAssetEvent {
         override fun onAddAsset() {
             loadAssets()
         }
+    }
+
+    private val skinChangedListener = SkinManager.SkinChangedListener {
+
     }
 
     private val downloadListener = object : AssetDownloader.DownloadListener {
@@ -107,10 +114,12 @@ class AssetViewModel: ViewModel(), LifecycleEventObserver {
             Lifecycle.Event.ON_START -> {
                 MessageManager.getInstance().attachMessage(IAssetEvent.EVENT_ID, assetEvent)
                 AssetDownloader.addDownloadListener(downloadListener)
+                SkinManager.registerSkinChangedListener(skinChangedListener)
             }
             Lifecycle.Event.ON_STOP -> {
                 MessageManager.getInstance().detachMessage(IAssetEvent.EVENT_ID, assetEvent)
                 AssetDownloader.removeDownloadListener(downloadListener)
+                SkinManager.unregisterSkinChangedListener(skinChangedListener)
             }
             else -> {
 

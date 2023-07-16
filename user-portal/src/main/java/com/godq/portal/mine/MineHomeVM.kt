@@ -76,7 +76,7 @@ class MineHomeVM : LifecycleEventObserver {
                     mineHomeDataUIState.mineHomeCurrentMonthTurnover = optDouble("currentMonthTotalTurnover")
                     mineHomeDataUIState.mineHomeLastMonthTurnover = optDouble("lastMonthTotalTurnover")
                 }
-            } catch (e: Exception) {
+            } catch (ignore: Exception) {
 
             }
         }
