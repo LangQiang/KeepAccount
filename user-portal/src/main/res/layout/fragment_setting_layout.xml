@@ -4,6 +4,7 @@
     >
 
     <data>
+        <import type="com.lazylite.mod.utils.AppInfo"/>
         <import type="com.godq.portal.mine.setting.SettingVM"/>
         <variable
             name="vm"
@@ -103,7 +104,7 @@
             app:set_title_bold="true" />
 
         <com.lazylite.mod.widget.KwSettingItem
-            android:id="@+id/item_about"
+            android:id="@+id/item_clear_cache"
             android:onClick="@{()->vm.onCacheClick()}"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -118,7 +119,7 @@
             app:set_title_bold="true" />
 
         <com.lazylite.mod.widget.KwSettingItem
-            android:id="@+id/item_clear_cache"
+            android:id="@+id/item_about"
             android:onClick="@{()->vm.onAboutClick()}"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -126,11 +127,26 @@
             android:paddingRight="5dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_about"
+            app:layout_constraintTop_toBottomOf="@+id/item_clear_cache"
             app:set_icon="set_image"
             app:set_line="false"
             app:set_title="@string/mine_about_sec"
             app:set_title_bold="true" />
+
+        <LinearLayout
+            android:padding="15dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/item_about"
+            android:id="@+id/device_info_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="@{`v` + AppInfo.VERSION_CODE}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_login_out"
@@ -149,7 +165,7 @@
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_clear_cache" />
+            app:layout_constraintTop_toBottomOf="@+id/device_info_container" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

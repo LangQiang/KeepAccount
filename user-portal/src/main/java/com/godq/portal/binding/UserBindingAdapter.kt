@@ -2,11 +2,14 @@ package com.godq.portal.binding
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.godq.portal.R
 import com.godq.portal.billdetail.BillEntity
 import com.godq.portal.billdetail.BillTableListView
+import com.godq.portal.billdetail.BillWeekEntity
+import com.godq.portal.ext.scale
 import com.godq.portal.utils.HolidayRepo
 import com.godq.portal.utils.WeatherRepo
 import com.lazylite.mod.App
@@ -53,6 +56,12 @@ fun setWeather(view: ImageView, billEntity: BillEntity) {
 @BindingAdapter("setTableListView")
 fun setTableList(view: BillTableListView, list: List<Int>) {
     view.setTableListData(list)
+}
+
+@BindingAdapter("setWeekTableCount")
+fun setWeekTableCount(view: TextView, weekEntity: BillWeekEntity) {
+    val weekTableCountText = (weekEntity.totalTablesCount.toFloat() / weekEntity.daysOfThisWeek).scale(2).toString() + "\n(" + weekEntity.totalTablesCount + ")桌"
+    view.text = weekTableCountText
 }
 
 

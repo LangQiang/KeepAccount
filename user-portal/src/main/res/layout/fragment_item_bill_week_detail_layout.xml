@@ -33,15 +33,15 @@
             android:textStyle="bold"
             android:textSize="18dp"
             android:textColor="@color/black80"
-            android:text="@{itemData.monthDateStart}"
+            android:text="@{itemData.monthDateEnd}"
             tools:text="2022-09-17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <View
             app:layout_constraintTop_toBottomOf="@+id/date_tv_start"
-            app:layout_constraintStart_toStartOf="@+id/date_tv_start"
-            app:layout_constraintEnd_toEndOf="@+id/date_tv_start"
+            app:layout_constraintStart_toStartOf="@+id/date_tv_end"
+            app:layout_constraintEnd_toEndOf="@+id/date_tv_end"
             app:layout_constraintBottom_toTopOf="@+id/date_tv_end"
             android:id="@+id/line_ver"
             android:background="@color/black"
@@ -52,13 +52,12 @@
 
             android:id="@+id/date_tv_end"
             app:layout_constraintStart_toStartOf="@+id/date_tv_start"
-            app:layout_constraintEnd_toEndOf="@+id/date_tv_start"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/line_ver"
             android:textStyle="bold"
             android:textSize="18dp"
             android:textColor="@color/black80"
-            android:text="@{itemData.monthDateEnd}"
+            android:text="@{itemData.monthDateStart}"
             tools:text="2022-09-17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -70,8 +69,9 @@
             android:layout_marginStart="5dp"
             android:textSize="12dp"
             android:textColor="@color/black60"
-            android:text='@{"(" + String.valueOf(itemData.totalTablesCount) + ")桌"}'
+            android:gravity="center"
             tools:text="(16)桌"
+            setWeekTableCount="@{itemData}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

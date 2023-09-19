@@ -110,11 +110,11 @@ private fun transformToWeekList(billDetailList: List<BillEntity>): List<MultiIte
     val weekList = ArrayList<BillWeekEntity>()
     var isFirst = true
     var billWeekEntity: BillWeekEntity? = null
-    for (billEntity in billDetailList) {
+    for (billEntity in billDetailList.reversed()) {
         val week = billEntity.week
         if (week == "星期一" || isFirst) {
             isFirst = false
-            billWeekEntity = BillWeekEntity(BillWeekEntity.TYPE_WEEK, billEntity.date, "", 0.0, 0.0, 0)
+            billWeekEntity = BillWeekEntity(BillWeekEntity.TYPE_WEEK, billEntity.date, "", 0.0, 0.0, 1, 0)
             billWeekEntity.totalTablesCount += billEntity.tableTimes
             billWeekEntity.total += billEntity.total
             billWeekEntity.payOut += billEntity.payOut
@@ -125,11 +125,12 @@ private fun transformToWeekList(billDetailList: List<BillEntity>): List<MultiIte
             if (week == "星期日") {
                 billWeekEntity.monthDateEnd = billEntity.date
             }
+            billWeekEntity.daysOfThisWeek++
             billWeekEntity.totalTablesCount += billEntity.tableTimes
             billWeekEntity.tableList.add(billEntity.tableTimes)
             billWeekEntity.total += billEntity.total
             billWeekEntity.payOut += billEntity.payOut
         }
     }
-    return weekList
+    return weekList.reversed()
 }

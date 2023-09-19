@@ -8,6 +8,7 @@ class BillWeekEntity(
     var monthDateEnd: String,
     var total:Double,
     var payOut:Double,
+    var daysOfThisWeek: Int,
     var totalTablesCount: Int) : MultiItemEntity{
 
     var tableList = ArrayList<Int>()
