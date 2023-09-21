@@ -7,6 +7,35 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
+val subEntitySortFormatArr = mapOf(
+    "银行卡" to 0,
+    "支付宝" to 10,
+    "微信" to 20,
+    "现金" to 30,
+    "美团" to 40,
+    "抖音" to 50,
+    "外卖" to 60,
+    "免单" to 70,
+    "其他" to 80,
+    "支出" to 90,
+    "食材" to 100,
+    "人工" to 110,
+    "水费" to 120,
+    "电费" to 130,
+    "燃气" to 140,
+    "其他支出" to 150,
+    "分红" to 160,
+)
+val subEntityAmountForceNegativeSet = setOf(
+    "支出",
+    "食材",
+    "人工",
+    "水费",
+    "电费",
+    "燃气",
+    "其他支出",
+)
+
 fun parseBillDetailList(jsonData: String?): List<BillEntity>? {
     jsonData ?: return null
     return try {
@@ -23,13 +52,25 @@ fun parseBillDetailList(jsonData: String?): List<BillEntity>? {
 
         for (i in 0 until array.length()) {
             val itemObj = array.optJSONObject(i) ?: continue
-            val subList = ArrayList<BillSubEntity>()
+            val subList = TreeSet<BillSubEntity>(kotlin.Comparator { o1, o2 ->
+//                return@Comparator if (o1.sortWeight > o2.sortWeight) {
+//                    1
+//                }else if (o1.sortWeight < o2.sortWeight) {
+//                    -1
+//                } else 0
+                return@Comparator o1.sortWeight - o2.sortWeight
+            })
             itemObj.optJSONArray("bill_pay_type_list")?.apply {
                 for (j in 0 until length()) {
                     val typeJson = optJSONObject(j)
                     val type = typeJson?.optString("bill_type") ?: "未知"
                     val amount = typeJson?.optString("bill_amount") ?: "0.0"
-                    subList.add(BillSubEntity(BillSubEntity.TYPE_DETAIL, type, amount))
+                    subList.add(
+                            BillSubEntity(BillSubEntity.TYPE_DETAIL,
+                            type,
+                            if (subEntityAmountForceNegativeSet.contains(type))  "-$amount" else amount,
+                            subEntitySortFormatArr[type] ?: 0)
+                    )
                 }
             }
             val date = itemObj.optString("bill_date")
@@ -50,7 +91,7 @@ fun parseBillDetailList(jsonData: String?): List<BillEntity>? {
                     itemObj.optString("bill_opt_by").let { if (TextUtils.isEmpty(it)) "未知" else it },
                     week,
                     itemObj.optDouble("bill_pay_out", 0.0),
-                    subList
+                    subList.toList()
                 )
             )
         }
