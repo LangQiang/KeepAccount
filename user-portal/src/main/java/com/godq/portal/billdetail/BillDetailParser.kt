@@ -175,3 +175,12 @@ private fun transformToWeekList(billDetailList: List<BillEntity>): List<MultiIte
     }
     return weekList.reversed()
 }
+
+fun parseBillTotal(jsonData: String?): Float {
+    jsonData?: return 0f
+    return try {
+        JSONObject(jsonData).optJSONObject("data")?.optDouble("total")?.toFloat()?: 0f
+    } catch (e: Exception) {
+        0f
+    }
+}

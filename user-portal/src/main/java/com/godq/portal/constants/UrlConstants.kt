@@ -25,3 +25,7 @@ fun getUpdateBillUrl(): String {
     return "$HOST/bill/update"
 }
 
+fun getBillTotal(shopId: String?, typeName: String?): String {
+    return "$HOST/bill/total?bill_shop_id=$shopId&type_name=$typeName"
+}
+

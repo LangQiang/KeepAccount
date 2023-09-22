@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewGroup.LayoutParams
+import android.widget.FrameLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -20,6 +22,8 @@ class BillDetailFragment : BaseFragment() {
     private var shopId: String? = null
 
     private val adapter = BillDetailAdapter(null)
+
+    private var billDetailHeaderComponent: BillDetailHeaderComponent? = null
 
     private val vm = BillDetailMV()
 
@@ -80,6 +84,14 @@ class BillDetailFragment : BaseFragment() {
                 show()
             }
         }
+
+        //header
+        billDetailHeaderComponent = BillDetailHeaderComponent(shopId)
+        view.findViewById<FrameLayout>(R.id.header_container)?.also {
+            val headerView = billDetailHeaderComponent?.getView(it.context) ?: return@also
+            it.addView(headerView, LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT))
+        }
+
         histogramView = view.findViewById(R.id.histogram_view)
 
         recyclerView = view.findViewById(R.id.bill_detail_rv)
