@@ -1,9 +1,31 @@
 package com.godq.cms.update
 
 import timber.log.Timber
-import java.lang.Exception
 import java.util.*
 import java.util.regex.Pattern
+import kotlin.Exception
+
+fun String?.isZero(): Boolean {
+    return try {
+        this?.toFloat() == 0f
+    } catch (e: Exception) {
+        true
+    }
+}
+
+fun calculateMTExtPayout(billInfo: BillInfo): String {
+    val mtVoucher = try {
+        billInfo.meituanVoucherAmount?.toFloat() ?: 0f
+    } catch (e: Exception) {
+        0f
+    }
+    val mtPackage = try {
+        billInfo.meituanPackageAmount?.toFloat() ?: 0f
+    } catch (e: Exception) {
+        0f
+    }
+    return "%.1f".format((mtVoucher * 0.03f + mtPackage * 0.04f))
+}
 
 fun formatBillInfoFromClipBoard(clipboardText: String): BillInfo? {
 
@@ -91,6 +113,22 @@ fun formatBillInfoFromClipBoard(clipboardText: String): BillInfo? {
             }
         }
 
+        //美团代金券
+        val mtVouCherPattern = Pattern.compile("(?<=美团代金券\\s{0,10}[:：])[\\d.,，。\\s]+(?=[元块圆])")
+        mtVouCherPattern.matcher(clipboardText).apply {
+            if (find()) {
+                info.meituanVoucherAmount = group().trim().replace("[,，。\\s]+".toRegex(), "")
+            }
+        }
+
+        //美团套餐
+        val mtPackagePattern = Pattern.compile("(?<=美团套餐\\s{0,10}[:：])[\\d.,，。\\s]+(?=[元块圆])")
+        mtPackagePattern.matcher(clipboardText).apply {
+            if (find()) {
+                info.meituanPackageAmount = group().trim().replace("[,，。\\s]+".toRegex(), "")
+            }
+        }
+
         //抖音 "抖音:1  ,1.2，4。4张1  ,1.2，4。4元\n"
         val dyPattern = Pattern.compile("(?<=抖音\\s{0,10}[:：]\\s{0,10}[\\d.,，。\\s]{0,30}张)[\\d.,，。\\s]+(?=[元块圆])")
         dyPattern.matcher(clipboardText).apply {
@@ -128,6 +166,14 @@ fun formatBillInfoFromClipBoard(clipboardText: String): BillInfo? {
         payOutPattern.matcher(clipboardText).apply {
             if (find()) {
                 info.payOut = group().trim().replace("[,，。\\s]+".toRegex(), "")
+            }
+        }
+
+        //美团扣点
+        val payOutMTExtPattern = Pattern.compile("(?<=美团扣点\\s{0,10}[:：])[\\d.,，。\\s]+(?=[元块圆])")
+        payOutMTExtPattern.matcher(clipboardText).apply {
+            if (find()) {
+                info.payOutMTExt = group().trim().replace("[,，。\\s]+".toRegex(), "")
             }
         }
 
@@ -195,6 +241,20 @@ fun formatBillInfoFromClipBoard(clipboardText: String): BillInfo? {
             }
         }
 
+        /*
+        * 如果没有解析到美团扣点，美团扣点需要在这里算出来，然后修改总支出
+        * 这里有个bug暂时先不管（bug：应该根据是否解析到美团扣点字段来决定是否计算，因为人工上传也可能美团就是不扣点）
+        * */
+        if (info.payOutMTExt.isZero()) {
+            info.payOutMTExt = calculateMTExtPayout(info)
+            try {
+                val payOut = info.payOut?.toBigDecimal()
+                val mtExt = info.payOutMTExt?.toBigDecimal()
+                info.payOut = (payOut?.add(mtExt))?.toString() ?: "0.0"
+            } catch (e: Exception) {
+                //
+            }
+        }
 
         Timber.tag("format").e(info.toString())
         info

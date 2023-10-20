@@ -13,11 +13,14 @@ val subEntitySortFormatArr = mapOf(
     "微信" to 20,
     "现金" to 30,
     "美团" to 40,
+    "美团套餐" to 44,
+    "美团代金券" to 46,
     "抖音" to 50,
     "外卖" to 60,
     "免单" to 70,
     "其他" to 80,
     "支出" to 90,
+    "美团扣点" to 95,
     "食材" to 100,
     "人工" to 110,
     "水费" to 120,
@@ -28,6 +31,7 @@ val subEntitySortFormatArr = mapOf(
 )
 val subEntityAmountForceNegativeSet = setOf(
     "支出",
+    "美团扣点",
     "食材",
     "人工",
     "水费",
@@ -60,6 +64,8 @@ fun parseBillDetailList(jsonData: String?): List<BillEntity>? {
 //                } else 0
                 return@Comparator o1.sortWeight - o2.sortWeight
             })
+
+            var unknownTypeWeight = -1
             itemObj.optJSONArray("bill_pay_type_list")?.apply {
                 for (j in 0 until length()) {
                     val typeJson = optJSONObject(j)
@@ -69,7 +75,7 @@ fun parseBillDetailList(jsonData: String?): List<BillEntity>? {
                             BillSubEntity(BillSubEntity.TYPE_DETAIL,
                             type,
                             if (subEntityAmountForceNegativeSet.contains(type))  "-$amount" else amount,
-                            subEntitySortFormatArr[type] ?: 0)
+                            subEntitySortFormatArr[type] ?: unknownTypeWeight--)
                     )
                 }
             }

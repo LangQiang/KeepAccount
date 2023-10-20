@@ -39,6 +39,11 @@ class BillUpdateVm {
             json.putOpt("total", billInfo.total)
             val array = JSONArray()
 
+            val payOutMTExtJson = JSONObject()
+            payOutMTExtJson.putOpt("type", "美团扣点")
+            payOutMTExtJson.putOpt("amount", billInfo.payOutMTExt)
+            array.put(payOutMTExtJson)
+
             val payOutMaterialsJson = JSONObject()
             payOutMaterialsJson.putOpt("type", "食材")
             payOutMaterialsJson.putOpt("amount", billInfo.payOutMaterials)
@@ -98,6 +103,16 @@ class BillUpdateVm {
             mtJson.putOpt("type", "美团")
             mtJson.putOpt("amount", billInfo.meituanAmount)
             array.put(mtJson)
+
+            val mtVoucherJson = JSONObject()
+            mtVoucherJson.putOpt("type", "美团代金券")
+            mtVoucherJson.putOpt("amount", billInfo.meituanVoucherAmount)
+            array.put(mtVoucherJson)
+
+            val mtPackageJson = JSONObject()
+            mtPackageJson.putOpt("type", "美团套餐")
+            mtPackageJson.putOpt("amount", billInfo.meituanPackageAmount)
+            array.put(mtPackageJson)
 
             val dyJson = JSONObject()
             dyJson.putOpt("type", "抖音")

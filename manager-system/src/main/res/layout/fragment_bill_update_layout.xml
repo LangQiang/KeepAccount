@@ -301,6 +301,76 @@
                         android:gravity="center"
                         android:textSize="18dp"
                         android:textColor="@color/black80"
+                        android:text="美团代金券"
+                        tools:text="美团代金券"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.billInfo.meituanVoucherAmount}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入金额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="美团套餐"
+                        tools:text="美团套餐"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.billInfo.meituanPackageAmount}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入金额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
                         android:text="抖音"
                         tools:text="抖音"
                         android:layout_width="0dp"
@@ -450,6 +520,41 @@
                     <EditText
                         android:inputType="numberDecimal"
                         android:text="@={vm.billInfo.payOut}"
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:hint="输入金额"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/mgr_line_divider_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <TextView
+                        android:gravity="center"
+                        android:textSize="18dp"
+                        android:textColor="@color/black80"
+                        android:text="支出-美团扣点"
+                        tools:text="支出-美团扣点"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.billInfo.payOutMTExt}"
                         android:gravity="center"
                         android:textSize="18dp"
                         android:textColor="@color/black80"

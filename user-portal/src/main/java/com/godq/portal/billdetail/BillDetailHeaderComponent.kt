@@ -1,7 +1,6 @@
 package com.godq.portal.billdetail
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.databinding.ObservableField
@@ -15,8 +14,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.math.BigDecimal
 
 
 /**

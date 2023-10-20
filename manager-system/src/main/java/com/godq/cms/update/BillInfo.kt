@@ -3,7 +3,7 @@ package com.godq.cms.update
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.godq.cms.BR
-import java.lang.Exception
+import kotlin.Exception
 
 class BillInfo: BaseObservable() {
 
@@ -64,6 +64,20 @@ class BillInfo: BaseObservable() {
         }
 
     @get:Bindable
+    var meituanVoucherAmount: String? = ""
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.meituanVoucherAmount)
+        }
+
+    @get:Bindable
+    var meituanPackageAmount: String? = ""
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.meituanPackageAmount)
+        }
+
+    @get:Bindable
     var douyinAmount: String? = "0"
         set(value) {
             field = value
@@ -96,6 +110,13 @@ class BillInfo: BaseObservable() {
         set(value) {
             field = value
             notifyPropertyChanged(BR.payOut)
+        }
+
+    @get:Bindable
+    var payOutMTExt: String? = "0"
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.payOutMTExt)
         }
 
     @get:Bindable
@@ -165,11 +186,14 @@ class BillInfo: BaseObservable() {
         this.wxAmount = info.wxAmount
         this.cashAmount = info.cashAmount
         this.meituanAmount = info.meituanAmount
+        this.meituanVoucherAmount = info.meituanVoucherAmount
+        this.meituanPackageAmount = info.meituanPackageAmount
         this.douyinAmount = info.douyinAmount
         this.waimaiAmount = info.waimaiAmount
         this.otherAmount = info.otherAmount
         this.freeAmount = info.freeAmount
         this.payOut = info.payOut
+        this.payOutMTExt = info.payOutMTExt
         this.payOutMaterials = info.payOutMaterials
         this.payOutLabor = info.payOutLabor
         this.payOutWater = info.payOutWater
@@ -229,11 +253,14 @@ class BillInfo: BaseObservable() {
             wxAmount=$wxAmount, 
             cashAmount=$cashAmount, 
             meituanAmount=$meituanAmount, 
+            meituanVoucherAmount=$meituanVoucherAmount, 
+            meituanPackageAmount=$meituanPackageAmount, 
             douyinAmount=$douyinAmount, 
             waimaiAmount=$waimaiAmount, 
             otherAmount=${otherAmount}, 
             freeAmount=$freeAmount, 
             payOut=$payOut, 
+            payOutMTExt=$payOutMTExt, 
             payOutMaterials=$payOutMaterials, 
             payOutLabor=$payOutLabor, 
             payOutWater=$payOutWater, 
