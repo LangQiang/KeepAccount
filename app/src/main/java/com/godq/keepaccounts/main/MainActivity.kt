@@ -102,8 +102,8 @@ class MainActivity : AppCompatActivity() {
             ),this))
         }
 
-        MainLinkHelper.getProcureFragment()?.apply {
-            data.add(Pair(BottomItemData("清单", R.string.bottom_index_select_icon,
+        MainLinkHelper.getProductHomeFragment()?.apply {
+            data.add(Pair(BottomItemData("商品", R.string.bottom_index_select_icon,
                 R.string.bottom_index_normal_icon
             ),this))
         }

@@ -6,137 +6,153 @@
     <data>
         <import type="com.godq.portal.utils.GlobalConstantRes"/>
         <import type="com.godq.portal.billdetail.BillEntity"/>
+        <import type="android.view.View"/>
         <variable
             name="itemData"
             type="com.godq.portal.billdetail.BillEntity" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        app:setBillItemBg="@{itemData}"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
-
-        <ImageView
-            android:alpha="0.4"
-            app:setWeatherIcon="@{itemData}"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_width="60dp"
-            android:layout_height="60dp"/>
+        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/date_tv"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/opt_tv"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="15dp"
-            android:textStyle="bold"
-            android:textSize="18dp"
-            android:textColor="@color/black80"
-            android:text="@{itemData.date}"
-            tools:text="2022-09-17"
+            android:visibility="@{itemData.bonus == 0f ? View.GONE : View.VISIBLE}"
+            android:layout_gravity="center_horizontal"
+            android:text='@{"分红" + itemData.bonus + "元"}'
+            android:textColor="#ff3e54"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <TextView
-            app:layout_constraintStart_toEndOf="@+id/week_tv"
-            app:layout_constraintBottom_toBottomOf="@+id/date_tv"
-            app:layout_constraintTop_toTopOf="@+id/date_tv"
-            android:layout_marginStart="5dp"
-            android:textSize="12dp"
-            android:textColor="@color/black60"
-            android:text='@{"(" + String.valueOf(itemData.tableTimes) + ")桌"}'
-            tools:text="(16)桌"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            app:setBillItemBg="@{itemData}"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
 
-        <TextView
-            android:id="@+id/week_tv"
-            app:layout_constraintStart_toEndOf="@+id/date_tv"
-            app:layout_constraintBottom_toBottomOf="@+id/date_tv"
-            app:layout_constraintTop_toTopOf="@+id/date_tv"
-            android:layout_marginStart="5dp"
-            android:textSize="12dp"
-            android:textColor="@color/black60"
-            android:text='@{"[" + String.valueOf(itemData.week) + "]"}'
-            tools:text="[星期一]"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <ImageView
+                android:alpha="0.4"
+                app:setWeatherIcon="@{itemData}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
 
-        <TextView
-            android:id="@+id/opt_tv"
-            android:textSize="12dp"
-            android:textColor="@color/black60"
-            android:text='@{"录入:" + itemData.optBy}'
-            tools:text="录入:GodQ"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/date_tv"
-            app:layout_constraintStart_toStartOf="@+id/date_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/date_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/opt_tv"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="15dp"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:textColor="@color/black80"
+                android:text="@{itemData.date}"
+                tools:text="2022-09-17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/focus_total_tv"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginEnd="50dp"
-            android:textStyle="bold"
-            tools:text="2333"
-            android:textSize="24dp"
-            android:textColor="#ff5400"
-            android:text='@{String.format("¥%.1f",itemData.total - itemData.payOut)}'
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <TextView
+                app:layout_constraintStart_toEndOf="@+id/week_tv"
+                app:layout_constraintBottom_toBottomOf="@+id/date_tv"
+                app:layout_constraintTop_toTopOf="@+id/date_tv"
+                android:layout_marginStart="5dp"
+                android:textSize="12dp"
+                android:textColor="@color/black60"
+                android:text='@{"(" + String.valueOf(itemData.tableTimes) + ")桌"}'
+                tools:text="(16)桌"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-        <TextView
-            app:layout_constraintEnd_toStartOf="@+id/total_tv"
-            app:layout_constraintTop_toTopOf="@+id/total_tv"
-            app:layout_constraintBottom_toBottomOf="@+id/total_tv"
-            android:layout_marginEnd="10dp"
-            tools:text="客单价:200"
-            android:textSize="12dp"
-            android:textColor="@color/black60"
-            android:text='@{String.format("客单价:%.1f",itemData.total / itemData.tableTimes)}'
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/week_tv"
+                app:layout_constraintStart_toEndOf="@+id/date_tv"
+                app:layout_constraintBottom_toBottomOf="@+id/date_tv"
+                app:layout_constraintTop_toTopOf="@+id/date_tv"
+                android:layout_marginStart="5dp"
+                android:textSize="12dp"
+                android:textColor="@color/black60"
+                android:text='@{"[" + String.valueOf(itemData.week) + "]"}'
+                tools:text="[星期一]"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/total_tv"
-            app:layout_constraintEnd_toStartOf="@+id/payout_tv"
-            app:layout_constraintTop_toTopOf="@+id/payout_tv"
-            app:layout_constraintBottom_toBottomOf="@+id/payout_tv"
-            android:layout_marginEnd="10dp"
-            tools:text="流水:2333"
-            android:textSize="12dp"
-            android:textColor="@color/black80"
-            android:text='@{String.format("流水:%.1f",itemData.total)}'
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/opt_tv"
+                android:textSize="12dp"
+                android:textColor="@color/black60"
+                android:text='@{"录入:" + itemData.optBy}'
+                tools:text="录入:GodQ"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/date_tv"
+                app:layout_constraintStart_toStartOf="@+id/date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/payout_tv"
-            android:layout_marginTop="2dp"
-            app:layout_constraintEnd_toEndOf="@+id/focus_total_tv"
-            app:layout_constraintTop_toBottomOf="@+id/focus_total_tv"
-            tools:text="支出:2333"
-            android:textSize="12dp"
-            android:textColor="#458d35"
-            android:text='@{String.format("支出:%.1f",itemData.payOut)}'
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/focus_total_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginEnd="50dp"
+                android:textStyle="bold"
+                tools:text="2333"
+                android:textSize="24dp"
+                android:textColor="#ff5400"
+                android:text='@{String.format("¥%.1f",itemData.total - itemData.payOut)}'
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-        <ImageView
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginEnd="15dp"
-            android:src="@{itemData.expand ? @drawable/to_collapse_arrow:@drawable/to_expand_arrow}"
-            android:layout_width="20dp"
-            android:layout_height="20dp"/>
+            <TextView
+                app:layout_constraintEnd_toStartOf="@+id/total_tv"
+                app:layout_constraintTop_toTopOf="@+id/total_tv"
+                app:layout_constraintBottom_toBottomOf="@+id/total_tv"
+                android:layout_marginEnd="10dp"
+                tools:text="客单价:200"
+                android:textSize="12dp"
+                android:textColor="@color/black60"
+                android:text='@{String.format("客单价:%.1f",itemData.total / itemData.tableTimes)}'
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/total_tv"
+                app:layout_constraintEnd_toStartOf="@+id/payout_tv"
+                app:layout_constraintTop_toTopOf="@+id/payout_tv"
+                app:layout_constraintBottom_toBottomOf="@+id/payout_tv"
+                android:layout_marginEnd="10dp"
+                tools:text="流水:2333"
+                android:textSize="12dp"
+                android:textColor="@color/black80"
+                android:text='@{String.format("流水:%.1f",itemData.total)}'
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/payout_tv"
+                android:layout_marginTop="2dp"
+                app:layout_constraintEnd_toEndOf="@+id/focus_total_tv"
+                app:layout_constraintTop_toBottomOf="@+id/focus_total_tv"
+                tools:text="支出:2333"
+                android:textSize="12dp"
+                android:textColor="#458d35"
+                android:text='@{String.format("支出:%.1f",itemData.payOut)}'
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginEnd="15dp"
+                android:src="@{itemData.expand ? @drawable/to_collapse_arrow:@drawable/to_expand_arrow}"
+                android:layout_width="20dp"
+                android:layout_height="20dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
 </layout>

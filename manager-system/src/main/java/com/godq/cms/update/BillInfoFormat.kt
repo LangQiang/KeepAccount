@@ -217,14 +217,6 @@ fun formatBillInfoFromClipBoard(clipboardText: String): BillInfo? {
             }
         }
 
-        //分红
-        val payOutDividendsPattern = Pattern.compile("(?<=分红\\s{0,10}[:：])[\\d.,，。\\s]+(?=[元块圆])")
-        payOutDividendsPattern.matcher(clipboardText).apply {
-            if (find()) {
-                info.payOutDividends = group().trim().replace("[,，。\\s]+".toRegex(), "")
-            }
-        }
-
         //其他支出
         val payOutOtherPattern = Pattern.compile("(?<=其他支出\\s{0,10}[:：])[\\d.,，。\\s]+(?=[元块圆])")
         payOutOtherPattern.matcher(clipboardText).apply {
@@ -238,6 +230,14 @@ fun formatBillInfoFromClipBoard(clipboardText: String): BillInfo? {
         totalPattern.matcher(clipboardText).apply {
             if (find()) {
                 info.total = group().trim().replace("[,，。\\s]+".toRegex(), "")
+            }
+        }
+
+        //分红
+        val bonusPattern = Pattern.compile("(?<=分红\\s{0,10}[:：])[\\d.,，。\\s]+(?=[元块圆])")
+        bonusPattern.matcher(clipboardText).apply {
+            if (find()) {
+                info.bonus = group().trim().replace("[,，。\\s]+".toRegex(), "")
             }
         }
 

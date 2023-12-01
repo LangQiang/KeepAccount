@@ -37,6 +37,8 @@ class BillUpdateVm {
             json.putOpt("table_times", billInfo.tableTimes)
             json.putOpt("pay_out", billInfo.payOut)
             json.putOpt("total", billInfo.total)
+            json.putOpt("bonus", billInfo.bonus)
+
             val array = JSONArray()
 
             val payOutMTExtJson = JSONObject()
@@ -68,11 +70,6 @@ class BillUpdateVm {
             payOutGasJson.putOpt("type", "燃气")
             payOutGasJson.putOpt("amount", billInfo.payOutGas)
             array.put(payOutGasJson)
-
-            val payOutDividendsJson = JSONObject()
-            payOutDividendsJson.putOpt("type", "分红")
-            payOutDividendsJson.putOpt("amount", billInfo.payOutDividends)
-            array.put(payOutDividendsJson)
 
             val payOutOtherJson = JSONObject()
             payOutOtherJson.putOpt("type", "其他支出")

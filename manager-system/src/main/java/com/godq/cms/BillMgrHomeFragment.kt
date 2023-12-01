@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import com.godq.cms.asset.AssetListFragment
 import com.godq.cms.common.SimpleBaseFragment
 import com.godq.cms.databinding.FragmentBgMgrHomeLayoutBinding
+import com.godq.cms.procure.ProcureHomeFragment
 import com.godq.deeplink.DeepLinkUtils
 import com.lazylite.mod.fragmentmgr.FragmentOperation
 import com.lazylite.mod.http.mgr.KwHttpMgr
 import com.lazylite.mod.http.mgr.model.RequestInfo
-import com.lazylite.mod.widget.BaseFragment
 import org.json.JSONObject
 import timber.log.Timber
 
@@ -48,4 +48,9 @@ class BillMgrHomeFragment: SimpleBaseFragment() {
     fun clickAssetBtn() {
         FragmentOperation.getInstance().showFullFragment(AssetListFragment())
     }
+
+    fun clickProcure() {
+        FragmentOperation.getInstance().showFullFragment(ProcureHomeFragment())
+    }
+
 }

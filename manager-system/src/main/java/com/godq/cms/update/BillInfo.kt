@@ -64,14 +64,14 @@ class BillInfo: BaseObservable() {
         }
 
     @get:Bindable
-    var meituanVoucherAmount: String? = ""
+    var meituanVoucherAmount: String? = "0"
         set(value) {
             field = value
             notifyPropertyChanged(BR.meituanVoucherAmount)
         }
 
     @get:Bindable
-    var meituanPackageAmount: String? = ""
+    var meituanPackageAmount: String? = "0"
         set(value) {
             field = value
             notifyPropertyChanged(BR.meituanPackageAmount)
@@ -154,12 +154,6 @@ class BillInfo: BaseObservable() {
             notifyPropertyChanged(BR.payOutGas)
         }
 
-    @get:Bindable
-    var payOutDividends: String? = "0"
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.payOutDividends)
-        }
 
     @get:Bindable
     var payOutOther: String? = "0"
@@ -173,6 +167,13 @@ class BillInfo: BaseObservable() {
         set(value) {
             field = value
             notifyPropertyChanged(BR.total)
+        }
+
+    @get:Bindable
+    var bonus: String? = "0"
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.bonus)
         }
 
     fun setInfo(info: BillInfo, withoutId: Boolean = false) {
@@ -199,7 +200,7 @@ class BillInfo: BaseObservable() {
         this.payOutWater = info.payOutWater
         this.payOutElectricity = info.payOutElectricity
         this.payOutGas = info.payOutGas
-        this.payOutDividends = info.payOutDividends
+        this.bonus = info.bonus
         this.payOutOther = info.payOutOther
         this.total = info.total
     }
@@ -223,7 +224,7 @@ class BillInfo: BaseObservable() {
                 || payOutWater.isNullOrEmpty()
                 || payOutElectricity.isNullOrEmpty()
                 || payOutGas.isNullOrEmpty()
-                || payOutDividends.isNullOrEmpty()
+                || bonus.isNullOrEmpty()
                 || payOutOther.isNullOrEmpty()
                 || total.isNullOrEmpty()
 
@@ -266,7 +267,7 @@ class BillInfo: BaseObservable() {
             payOutWater=$payOutWater, 
             payOutElectricity=$payOutElectricity, 
             payOutGas=$payOutGas, 
-            payOutDividends=$payOutDividends, 
+            bonus=$bonus, 
             payOutOther=$payOutOther, 
             total=$total)"""
 

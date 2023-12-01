@@ -32,8 +32,8 @@ object MainLinkHelper {
         return userPortalService?.getShopListFragment()
     }
 
-    fun getProcureFragment(): Fragment? {
-        return mgrService?.getProcureHomeFragment()
+    fun getProductHomeFragment(): Fragment? {
+        return mgrService?.getProductHomeFragment()
     }
 
     fun getMgrFragment(): Fragment? {

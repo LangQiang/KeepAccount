@@ -97,6 +97,7 @@ fun parseBillDetailList(jsonData: String?): List<BillEntity>? {
                     itemObj.optString("bill_opt_by").let { if (TextUtils.isEmpty(it)) "未知" else it },
                     week,
                     itemObj.optDouble("bill_pay_out", 0.0),
+                    itemObj.optDouble("bill_bonus", 0.0),
                     subList.toList()
                 )
             )

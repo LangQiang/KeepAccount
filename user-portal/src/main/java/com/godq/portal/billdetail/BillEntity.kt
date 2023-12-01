@@ -12,6 +12,7 @@ class BillEntity(
     val optBy: String,
     val week: String,
     val payOut: Double,
+    val bonus: Double,
     val subList:List<BillSubEntity>) : MultiItemEntity, IHistogramEntity {
 
     companion object {

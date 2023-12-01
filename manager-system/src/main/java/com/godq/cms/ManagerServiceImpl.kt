@@ -2,6 +2,7 @@ package com.godq.cms
 
 import androidx.fragment.app.Fragment
 import com.godq.cms.procure.ProcureHomeFragment
+import com.godq.cms.product.ProductHomeFragment
 import com.godq.msa.IManagerService
 
 
@@ -16,5 +17,9 @@ class ManagerServiceImpl: IManagerService {
 
     override fun getProcureHomeFragment(): Fragment {
         return ProcureHomeFragment()
+    }
+
+    override fun getProductHomeFragment(): Fragment {
+        return ProductHomeFragment()
     }
 }
