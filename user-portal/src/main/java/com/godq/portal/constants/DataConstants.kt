@@ -6,4 +6,4 @@ package com.godq.portal.constants
  * @date  2023/11/12 22:42
  */
 
-const val BILL_TOTAL_DIFF: Float = 95008.47f
+const val BILL_TOTAL_DIFF: Float = 95008.47f - 100000f
