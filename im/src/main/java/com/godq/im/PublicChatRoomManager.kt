@@ -17,7 +17,7 @@ import java.net.URISyntaxException
 
 object PublicChatRoomManager {
 
-    val HOST: String = UrlEntrustUtils.entrustHost("http://43.138.100.114", "http://43.138.100.114")
+    val HOST: String = UrlEntrustUtils.entrustHost("http://49.232.151.23", "http://49.232.151.23")
 
 
     private var connected = false

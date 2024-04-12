@@ -1,5 +1,5 @@
 //        DeepLinkUtils.load("test://open/account?type=register").execute()
-        //curl -d '{"shop_name":"双门洞的夏天-2","shop_img":"https://img2.baidu.com/it/u=3876889557,2331082860&fm=253&fmt=auto&app=120&f=PNG?w=1422&h=800","shop_desc":"韩式烤肉","shop_addr":"哈西万达底商","shop_phone":"13312345678"}' -H 'Content-Type: application/json' http://43.138.100.114/shop/create -i
+        //curl -d '{"shop_name":"双门洞的夏天-2","shop_img":"https://img2.baidu.com/it/u=3876889557,2331082860&fm=253&fmt=auto&app=120&f=PNG?w=1422&h=800","shop_desc":"韩式烤肉","shop_addr":"哈西万达底商","shop_phone":"13312345678"}' -H 'Content-Type: application/json' http://49.232.151.23/shop/create -i
 //        val header = HashMap<String, String>()
 //        header["Content-Type"] = "application/json"
 //        val json = JSONObject()
@@ -9,7 +9,7 @@
 //        json.putOpt("shop_addr", "哈西万达底商")
 //        json.putOpt("shop_phone", "13312345678")
 //
-//        val req = RequestInfo.newPost("http://43.138.100.114/shop/create", header, json.toString().toByteArray())
+//        val req = RequestInfo.newPost("http://49.232.151.23/shop/create", header, json.toString().toByteArray())
 //
 //
 //        KwHttpMgr.getInstance().kwHttpFetch.asyncPost(req) {
@@ -18,7 +18,7 @@
 
 
 //apk包上传后通知服务
-curl http://43.138.100.114/config/upgrade/create?channel=personal&user_id=52484086&version=1.0.3.1 -X POST -H 'content-type:application/json' -H 'nonce:CPt3bU' -H 'sign:2161bfcbdb31b1162e2ca25329afc277' -H 'timestamp:1685011980782' -H 'token:0967d03585b34b3d926642b46209e301' -H 'x-auth-sign:892b04882f939673f8b40db66771cc4c' -d '{"upgrade_version":"1.0.4.3","upgrade_url":"https://godq-1307306000.cos.ap-beijing.myqcloud.com/app-smd-release-1043.apk","upgrade_channel": "ab"}'
+curl http://49.232.151.23/config/upgrade/create?channel=personal&user_id=52484086&version=1.0.3.1 -X POST -H 'content-type:application/json' -H 'nonce:CPt3bU' -H 'sign:2161bfcbdb31b1162e2ca25329afc277' -H 'timestamp:1685011980782' -H 'token:0967d03585b34b3d926642b46209e301' -H 'x-auth-sign:892b04882f939673f8b40db66771cc4c' -d '{"upgrade_version":"1.0.4.3","upgrade_url":"https://godq-1307306000.cos.ap-beijing.myqcloud.com/app-smd-release-1043.apk","upgrade_channel": "ab"}'
 
 https://godq-1307306000.cos.ap-beijing.myqcloud.com/app-smd-release-1041.apk
 

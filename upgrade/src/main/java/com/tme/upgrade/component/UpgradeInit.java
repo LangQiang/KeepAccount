@@ -24,7 +24,7 @@ import timber.log.Timber;
 @AutoInit
 public class UpgradeInit extends Init {
 
-    private static final String HOST = UrlEntrustUtils.entrustHost("http://43.138.100.114", "http://43.138.100.114");
+    private static final String HOST = UrlEntrustUtils.entrustHost("http://49.232.151.23", "http://49.232.151.23");
 
     @Override
     public void init(Context context) {

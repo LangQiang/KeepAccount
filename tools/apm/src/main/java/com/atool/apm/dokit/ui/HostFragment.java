@@ -35,7 +35,7 @@ public class HostFragment extends BaseFragment {
     private List<SelectModel> hosts = new ArrayList<>();
 
     private void initHosts() {
-        hosts.add(new SelectModel("http://43.138.100.114", "http://150.158.55.208", "测试"));
+        hosts.add(new SelectModel("http://49.232.151.23", "http://150.158.55.208", "测试"));
     }
 
     @Override
