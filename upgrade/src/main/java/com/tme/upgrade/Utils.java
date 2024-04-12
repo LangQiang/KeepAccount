@@ -83,8 +83,8 @@ public class Utils {
                 upgradeInfo.title = "升级提示";
             }
             upgradeInfo.tip = dataObj.optString("upgrade_tip");
-            if (upgradeInfo.tip.isEmpty()) {
-                upgradeInfo.tip = "麻溜的";
+            if (upgradeInfo.tip.isEmpty() || "null".equals(upgradeInfo.tip)) {
+                upgradeInfo.tip = "升级哦";
             }
             upgradeInfo.upgrade = dataObj.optBoolean("upgrade", true);
             upgradeInfo.force = !(dataObj.optInt("force") == 0);
