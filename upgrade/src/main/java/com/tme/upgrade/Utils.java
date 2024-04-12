@@ -82,7 +82,7 @@ public class Utils {
             if (upgradeInfo.title.isEmpty()) {
                 upgradeInfo.title = "升级提示";
             }
-            upgradeInfo.tip = dataObj.optString("tips");
+            upgradeInfo.tip = dataObj.optString("upgrade_tip");
             if (upgradeInfo.tip.isEmpty()) {
                 upgradeInfo.tip = "麻溜的";
             }
