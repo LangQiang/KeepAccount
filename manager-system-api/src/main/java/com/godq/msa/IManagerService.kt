@@ -10,5 +10,4 @@ import androidx.fragment.app.Fragment
 interface IManagerService {
     fun getMgrHomeFragment(): Fragment
     fun getProcureHomeFragment(): Fragment
-    fun getProductHomeFragment(): Fragment
 }

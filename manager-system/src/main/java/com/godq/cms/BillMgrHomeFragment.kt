@@ -30,8 +30,12 @@ class BillMgrHomeFragment: SimpleBaseFragment() {
     }
 
 
-    fun update() {
-        DeepLinkUtils.load("test://open/cms/update").execute()
+    fun upload() {
+        DeepLinkUtils.load("test://open/cms/upload").execute()
+    }
+
+    fun productUpload() {
+        DeepLinkUtils.load("test://open/cms/productUpload").execute()
     }
 
     fun delete() {

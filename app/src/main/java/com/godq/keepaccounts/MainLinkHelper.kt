@@ -9,6 +9,7 @@ import com.godq.msa.IManagerService
 import com.godq.ulda.IUploadService
 import com.godq.upa.IUserPortalService
 import com.lazylite.bridge.router.ServiceImpl
+import com.lq.product_api.IProductService
 import timber.log.Timber
 import java.security.MessageDigest
 
@@ -19,6 +20,7 @@ object MainLinkHelper {
     private var uploadService: IUploadService? = null
     private var mgrService: IManagerService? = null
     private var iUpgradeService: IUpgradeService? = null
+    private var iProductService: IProductService? = null
 
     init {
         userPortalService = ServiceImpl.getInstance().getService(IUserPortalService::class.java.name) as? IUserPortalService
@@ -26,6 +28,7 @@ object MainLinkHelper {
         uploadService = ServiceImpl.getInstance().getService(IUploadService::class.java.name) as? IUploadService
         mgrService = ServiceImpl.getInstance().getService(IManagerService::class.java.name) as? IManagerService
         iUpgradeService = ServiceImpl.getInstance().getService(IUpgradeService::class.java.name) as? IUpgradeService
+        iProductService = ServiceImpl.getInstance().getService(IProductService::class.java.name) as? IProductService
     }
 
     fun getUserHomeFragment(): Fragment? {
@@ -33,7 +36,7 @@ object MainLinkHelper {
     }
 
     fun getProductHomeFragment(): Fragment? {
-        return mgrService?.getProductHomeFragment()
+        return iProductService?.getProductHomeFragment()
     }
 
     fun getMgrFragment(): Fragment? {
