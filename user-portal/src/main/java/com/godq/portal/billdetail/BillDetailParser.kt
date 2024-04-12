@@ -21,6 +21,7 @@ val subEntitySortFormatArr = mapOf(
     "其他" to 80,
     "支出" to 90,
     "美团扣点" to 95,
+    "抖音扣点" to 96,
     "食材" to 100,
     "人工" to 110,
     "水费" to 120,
@@ -32,6 +33,7 @@ val subEntitySortFormatArr = mapOf(
 val subEntityAmountForceNegativeSet = setOf(
     "支出",
     "美团扣点",
+    "抖音扣点",
     "食材",
     "人工",
     "水费",

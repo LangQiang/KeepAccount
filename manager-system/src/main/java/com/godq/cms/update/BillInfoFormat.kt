@@ -27,6 +27,15 @@ fun calculateMTExtPayout(billInfo: BillInfo): String {
     return "%.1f".format((mtVoucher * 0.03f + mtPackage * 0.04f))
 }
 
+fun calculateDYExtPayout(billInfo: BillInfo): String {
+    val dYAmount = try {
+        billInfo.douyinAmount?.toFloat() ?: 0f
+    } catch (e: Exception) {
+        0f
+    }
+    return "%.1f".format(dYAmount * 0.026f)
+}
+
 fun formatBillInfoFromClipBoard(clipboardText: String): BillInfo? {
 
     return try {
@@ -177,6 +186,14 @@ fun formatBillInfoFromClipBoard(clipboardText: String): BillInfo? {
             }
         }
 
+        //抖音扣点
+        val payOutDYExtPattern = Pattern.compile("(?<=抖音扣点\\s{0,10}[:：])[\\d.,，。\\s]+(?=[元块圆])")
+        payOutDYExtPattern.matcher(clipboardText).apply {
+            if (find()) {
+                info.payOutDYExt = group().trim().replace("[,，。\\s]+".toRegex(), "")
+            }
+        }
+
         //食材
         val payOutMaterialsPattern = Pattern.compile("(?<=食材\\s{0,10}[:：])[\\d.,，。\\s]+(?=[元块圆])")
         payOutMaterialsPattern.matcher(clipboardText).apply {
@@ -243,7 +260,8 @@ fun formatBillInfoFromClipBoard(clipboardText: String): BillInfo? {
 
         /*
         * 如果没有解析到美团扣点，美团扣点需要在这里算出来，然后修改总支出
-        * 这里有个bug暂时先不管（bug：应该根据是否解析到美团扣点字段来决定是否计算，因为人工上传也可能美团就是不扣点）
+        * 这里有个bug暂时先不管（bug：应该根据是否解析到美团扣点字段来决定是否计算，因为人工上传也可能传0，美团没有扣点）
+        * 需要修改isZero这个函数->isNotExist()
         * */
         if (info.payOutMTExt.isZero()) {
             info.payOutMTExt = calculateMTExtPayout(info)
@@ -251,6 +269,17 @@ fun formatBillInfoFromClipBoard(clipboardText: String): BillInfo? {
                 val payOut = info.payOut?.toBigDecimal()
                 val mtExt = info.payOutMTExt?.toBigDecimal()
                 info.payOut = (payOut?.add(mtExt))?.toString() ?: "0.0"
+            } catch (e: Exception) {
+                //
+            }
+        }
+
+        if (info.payOutDYExt.isZero()) {
+            info.payOutDYExt = calculateDYExtPayout(info)
+            try {
+                val payOut = info.payOut?.toBigDecimal()
+                val dyExt = info.payOutDYExt?.toBigDecimal()
+                info.payOut = (payOut?.add(dyExt))?.toString() ?: "0.0"
             } catch (e: Exception) {
                 //
             }

@@ -5,6 +5,11 @@ import androidx.databinding.Bindable
 import com.godq.cms.BR
 import kotlin.Exception
 
+
+/**
+ * 这个数据类 添加字段一定注意要更新 setInfo()方法 和 toString() 方法
+ *
+ * */
 class BillInfo: BaseObservable() {
 
     @get:Bindable
@@ -119,6 +124,14 @@ class BillInfo: BaseObservable() {
             notifyPropertyChanged(BR.payOutMTExt)
         }
 
+    //抖音扣点
+    @get:Bindable
+    var payOutDYExt: String? = "0"
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.payOutDYExt)
+        }
+
     @get:Bindable
     var payOutMaterials: String? = "0"
         set(value) {
@@ -195,6 +208,7 @@ class BillInfo: BaseObservable() {
         this.freeAmount = info.freeAmount
         this.payOut = info.payOut
         this.payOutMTExt = info.payOutMTExt
+        this.payOutDYExt = info.payOutDYExt
         this.payOutMaterials = info.payOutMaterials
         this.payOutLabor = info.payOutLabor
         this.payOutWater = info.payOutWater
@@ -262,6 +276,7 @@ class BillInfo: BaseObservable() {
             freeAmount=$freeAmount, 
             payOut=$payOut, 
             payOutMTExt=$payOutMTExt, 
+            payOutDYExt=$payOutDYExt, 
             payOutMaterials=$payOutMaterials, 
             payOutLabor=$payOutLabor, 
             payOutWater=$payOutWater, 

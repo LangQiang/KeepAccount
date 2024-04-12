@@ -46,6 +46,11 @@ class BillUpdateVm {
             payOutMTExtJson.putOpt("amount", billInfo.payOutMTExt)
             array.put(payOutMTExtJson)
 
+            val payOutDYExtJson = JSONObject()
+            payOutDYExtJson.putOpt("type", "抖音扣点")
+            payOutDYExtJson.putOpt("amount", billInfo.payOutDYExt)
+            array.put(payOutDYExtJson)
+
             val payOutMaterialsJson = JSONObject()
             payOutMaterialsJson.putOpt("type", "食材")
             payOutMaterialsJson.putOpt("amount", billInfo.payOutMaterials)
