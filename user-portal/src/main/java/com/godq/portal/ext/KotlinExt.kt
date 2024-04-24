@@ -9,3 +9,11 @@ package com.godq.portal.ext
 fun Float.scale(digits: Int): Float {
     return "%.${digits}f".format(this).toFloat()
 }
+
+fun String.safeToDouble(): Double {
+    return try {
+        this.toDouble()
+    } catch (e: Exception) {
+        0.0
+    }
+}

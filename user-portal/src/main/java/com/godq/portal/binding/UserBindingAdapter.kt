@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.godq.portal.R
 import com.godq.portal.billdetail.BillEntity
+import com.godq.portal.billdetail.BillMonthEntity
 import com.godq.portal.billdetail.BillTableListView
 import com.godq.portal.billdetail.BillWeekEntity
 import com.godq.portal.ext.scale
@@ -63,5 +64,27 @@ fun setWeekTableCount(view: TextView, weekEntity: BillWeekEntity) {
     val weekTableCountText = (weekEntity.totalTablesCount.toFloat() / weekEntity.daysOfThisWeek).scale(2).toString() + "\n(" + weekEntity.totalTablesCount + ")桌"
     view.text = weekTableCountText
 }
+
+@BindingAdapter("setAverageTableCountOfMonth")
+fun setAverageTableCountOfMonth(view: TextView, monthEntity: BillMonthEntity) {
+    if (monthEntity.daysCountOfMonth == 0) return
+    val text = "平均:" + String.format("%.1f",  monthEntity.totalTablesCount.toDouble() / monthEntity.daysCountOfMonth) + "桌"
+    view.text = text
+}
+
+@BindingAdapter("setAverageTurnoverOfMonth")
+fun setAverageTurnoverOfMonth(view: TextView, monthEntity: BillMonthEntity) {
+    if (monthEntity.daysCountOfMonth == 0) return
+    val text = "日均:" + String.format("%.1f",  monthEntity.total / monthEntity.daysCountOfMonth)
+    view.text = text
+}
+
+@BindingAdapter("setCostOfOneTableForMonth")
+fun setCostOfOneTableForMonth(view: TextView, monthEntity: BillMonthEntity) {
+    if (monthEntity.totalTablesCount == 0) return
+    val text = "客单价:" + String.format("%.1f",  monthEntity.total / monthEntity.totalTablesCount)
+    view.text = text
+}
+
 
 

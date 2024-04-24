@@ -17,7 +17,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="140dp">
 
         <com.godq.portal.billdetail.BillTableListView
             setTableListView="@{itemData.tableList}"
@@ -39,14 +39,25 @@
             android:layout_height="wrap_content"/>
 
         <TextView
-            app:layout_constraintStart_toEndOf="@+id/week_tv"
-            app:layout_constraintBottom_toBottomOf="@+id/date_tv"
-            app:layout_constraintTop_toTopOf="@+id/date_tv"
-            android:layout_marginStart="5dp"
+            android:id="@+id/table_count_of_month"
+            app:layout_constraintStart_toStartOf="@+id/date_tv"
+            app:layout_constraintTop_toBottomOf="@+id/date_tv"
+            android:layout_marginTop="8dp"
             android:textSize="12dp"
             android:textColor="@color/black60"
-            android:text='@{"(" + String.valueOf(itemData.totalTablesCount) + ")桌"}'
-            tools:text="(16)桌"
+            android:text='@{"总计:" + String.valueOf(itemData.totalTablesCount) + "桌"}'
+            tools:text="总计:16桌"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            app:layout_constraintStart_toStartOf="@+id/table_count_of_month"
+            app:layout_constraintTop_toBottomOf="@+id/table_count_of_month"
+            android:layout_marginTop="3dp"
+            android:textSize="12dp"
+            android:textColor="@color/black60"
+            setAverageTableCountOfMonth="@{itemData}"
+            tools:text="平均:16桌"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -80,6 +91,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="20dp"
             android:layout_marginEnd="20dp"
             android:textStyle="bold"
             tools:text="2333"
@@ -90,14 +102,38 @@
             android:layout_height="wrap_content"/>
 
         <TextView
+            android:id="@+id/turnover_tv"
             app:layout_constraintEnd_toStartOf="@+id/payout_tv"
             app:layout_constraintTop_toTopOf="@+id/payout_tv"
             app:layout_constraintBottom_toBottomOf="@+id/payout_tv"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="12dp"
             tools:text="流水:2333"
             android:textSize="12dp"
             android:textColor="@color/black60"
             android:text='@{String.format("流水:%.1f",itemData.total)}'
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/average_turnover_tv"
+            app:layout_constraintStart_toStartOf="@+id/turnover_tv"
+            app:layout_constraintTop_toBottomOf="@+id/turnover_tv"
+            tools:text="日均:2333"
+            android:textSize="12dp"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/black60"
+            setAverageTurnoverOfMonth="@{itemData}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            app:layout_constraintStart_toStartOf="@+id/average_turnover_tv"
+            app:layout_constraintTop_toBottomOf="@+id/average_turnover_tv"
+            tools:text="客单价:2333"
+            android:textSize="12dp"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/black60"
+            setCostOfOneTableForMonth="@{itemData}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -110,6 +146,18 @@
             android:textSize="12dp"
             android:textColor="#458d35"
             android:text='@{String.format("支出:%.1f",itemData.payOut)}'
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/payout_for_labor_tv"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toStartOf="@+id/payout_tv"
+            app:layout_constraintTop_toBottomOf="@+id/payout_tv"
+            tools:text="人工:2333"
+            android:textSize="12dp"
+            android:textColor="#458d35"
+            android:text='@{String.format("人工:%.1f",itemData.payOutForLabor)}'
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

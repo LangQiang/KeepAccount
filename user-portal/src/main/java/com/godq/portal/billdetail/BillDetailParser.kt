@@ -2,10 +2,12 @@ package com.godq.portal.billdetail
 
 import android.text.TextUtils
 import com.chad.library.adapter.base.entity.MultiItemEntity
+import com.godq.portal.ext.safeToDouble
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.absoluteValue
 
 val subEntitySortFormatArr = mapOf(
     "银行卡" to 0,
@@ -140,17 +142,29 @@ private fun transformToMonthList(billDetailList: List<BillEntity>): List<MultiIt
         if (itemMonth != month) {
             month = itemMonth
             billMonthEntity = BillMonthEntity(BillMonthEntity.TYPE_MONTH, month, 0.0, 0.0, 0)
+            billMonthEntity.daysCountOfMonth++
             billMonthEntity.totalTablesCount += billEntity.tableTimes
             billMonthEntity.total += billEntity.total
             billMonthEntity.payOut += billEntity.payOut
+            for (billSubEntity in billEntity.subList) {
+                if (billSubEntity.payType == "人工") {
+                    billMonthEntity.payOutForLabor += billSubEntity.payAmount.safeToDouble().absoluteValue
+                }
+            }
             billMonthEntity.tableList.add(billEntity.tableTimes)
             monthList.add(billMonthEntity)
         } else {
             billMonthEntity?: continue
+            billMonthEntity.daysCountOfMonth++
             billMonthEntity.totalTablesCount += billEntity.tableTimes
             billMonthEntity.tableList.add(billEntity.tableTimes)
             billMonthEntity.total += billEntity.total
             billMonthEntity.payOut += billEntity.payOut
+            for (billSubEntity in billEntity.subList) {
+                if (billSubEntity.payType == "人工") {
+                    billMonthEntity.payOutForLabor += billSubEntity.payAmount.safeToDouble().absoluteValue
+                }
+            }
         }
     }
     return monthList

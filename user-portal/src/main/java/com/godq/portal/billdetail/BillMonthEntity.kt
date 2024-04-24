@@ -11,6 +11,11 @@ class BillMonthEntity(
 
     var tableList = ArrayList<Int>()
 
+    //月内真实营运天数
+    var daysCountOfMonth: Int = 0
+    //月内人工费用
+    var payOutForLabor: Double = 0.0
+
     companion object {
         const val TYPE_MONTH = 102
     }
