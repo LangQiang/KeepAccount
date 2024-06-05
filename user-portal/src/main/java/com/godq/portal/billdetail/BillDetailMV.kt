@@ -35,7 +35,7 @@ class BillDetailMV {
             }
             if (billDetailList.isNullOrEmpty()) return@launch
             cacheList = billDetailList
-            val finalList = transformByListType(billDetailList, listType)
+            val finalList = transformByListType(billDetailList.toMutableList(), listType)
             onBillListDataCallback?.invoke(finalList)
 
             //获取holiday信息
@@ -55,14 +55,13 @@ class BillDetailMV {
     }
 
     fun changeListType(shopId: String?, listType: String) {
-        val list = cacheList
+        val list = cacheList?.toMutableList()
         if (list == null) {
             requestShopList(shopId, listType)
         } else {
             onBillListDataCallback?.invoke(transformByListType(list, listType))
         }
     }
-
 
     fun onItemClick(adapter: BaseQuickAdapter<Any, BaseViewHolder>?, position: Int) {
         val dataList = adapter?.data ?: return

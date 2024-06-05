@@ -17,7 +17,7 @@
 //        }
 
 
-//apk包上传后通知服务
+//apk包上传后通知服务 需要 1.更改apk url  2.修改版本号 3.修改更新说明
 curl http://49.232.151.23/config/upgrade/create?channel=personal&user_id=52484086&version=1.0.3.1 -X POST -H 'content-type:application/json' -H 'nonce:CPt3bU' -H 'sign:2161bfcbdb31b1162e2ca25329afc277' -H 'timestamp:1685011980782' -H 'token:0967d03585b34b3d926642b46209e301' -H 'x-auth-sign:892b04882f939673f8b40db66771cc4c' -d '{"upgrade_version":"1.0.6.5","upgrade_url":"https://godq-1307306000.cos.ap-beijing.myqcloud.com/apk/app-smd-release-1065.apk","upgrade_channel": "ab","upgrade_tip": "1.聊天室字体颜色修正"}'
 https://godq-1307306000.cos.ap-beijing.myqcloud.com/app-smd-release-1041.apk
 

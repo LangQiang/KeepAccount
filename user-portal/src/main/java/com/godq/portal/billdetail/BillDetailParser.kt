@@ -119,7 +119,7 @@ fun transformByListType(
 ): List<MultiItemEntity> {
     return when (listType) {
         BillDetailFragment.LIST_TYPE_DAY -> {
-            billDetailList
+            resetBillDetailList(billDetailList)
         }
         BillDetailFragment.LIST_TYPE_MONTH -> {
             transformToMonthList(billDetailList)
@@ -131,6 +131,13 @@ fun transformByListType(
             billDetailList
         }
     }
+}
+
+private fun resetBillDetailList(billDetailList: List<BillEntity>): List<MultiItemEntity> {
+    for (billEntity in billDetailList) {
+        billEntity.expand = false
+    }
+    return billDetailList
 }
 
 private fun transformToMonthList(billDetailList: List<BillEntity>): List<MultiItemEntity> {
