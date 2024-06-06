@@ -6,4 +6,7 @@ interface IAccountInfo {
     fun getToken(): String
     fun getAvatarUrl(): String
     fun isLogin(): Boolean
+
+    fun toJson(): String
+    fun updateInfo(nickName: String?, avatarUrl: String?)
 }

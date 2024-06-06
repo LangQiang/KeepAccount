@@ -2,6 +2,7 @@ package com.godq.portal.mine.setting
 
 import com.godq.deeplink.DeepLinkUtils
 import com.godq.portal.UserPortalLinkHelper
+import com.godq.portal.utils.jumpToUserProfileFragment
 import com.godq.threadpool.ThreadPool
 import com.lazylite.mod.App
 import com.lazylite.mod.fragmentmgr.FragmentOperation
@@ -11,7 +12,7 @@ import com.lazylite.mod.utils.toast.KwToast
 class SettingVM {
 
     fun onUserInfoClick() {
-
+        jumpToUserProfileFragment()
     }
 
     fun onMgrCtrlClick() {

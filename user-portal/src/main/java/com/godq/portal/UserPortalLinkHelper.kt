@@ -24,6 +24,10 @@ object UserPortalLinkHelper {
 
     fun getAccountInfo(): IAccountInfo? = accountService?.getAccountInfo()
 
+    fun saveLocalLoginData(accountInfo: IAccountInfo?) {
+        accountService?.saveLocalAccountInfo(accountInfo)
+    }
+
     fun upload(path: String, onUploadCallback: IUploadService.OnUploadCallback?) {
         uploadService?.upload(path, onUploadCallback)
     }

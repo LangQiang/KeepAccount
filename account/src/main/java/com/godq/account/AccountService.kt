@@ -20,5 +20,9 @@ class AccountService : IAccountService{
         RepositorySFactory.getLoginRepository().logout()
     }
 
+    override fun saveLocalAccountInfo(accountInfo: IAccountInfo?) {
+        RepositorySFactory.getLoginRepository().saveLocalLoginData(accountInfo)
+    }
+
 
 }

@@ -27,6 +27,14 @@ class AccountInfo: IAccountInfo {
     }
 
     override fun isLogin(): Boolean = mUserId.isNotEmpty() && mToken.isNotEmpty()
+    override fun updateInfo(nickName: String?, avatarUrl: String?) {
+        if (nickName != null) {
+            this.mNickname = nickName
+        }
+        if (avatarUrl != null) {
+            this.mAvatarUrl = avatarUrl
+        }
+    }
 
     fun set(accountInfo: AccountInfo) {
         this.mToken = accountInfo.mToken
@@ -45,11 +53,11 @@ class AccountInfo: IAccountInfo {
                 mAvatarUrl = optString("user_avatar")
             }
         } catch (e: Exception) {
-
+            //
         }
     }
 
-    fun toJson(): String {
+    override fun toJson(): String {
         val json = JSONObject()
         json.putOpt("token", mToken)
         json.putOpt("nick_name", mNickname)

@@ -21,6 +21,8 @@ interface IAccountService {
 //        fun stateChanged(state: Int)
 //    }
 
+    fun saveLocalAccountInfo(accountInfo: IAccountInfo?)
+
     interface IAccountObserver: IObserverBase {
         companion object {
             val EVENT_ID = EventId { IAccountObserver::class.java}

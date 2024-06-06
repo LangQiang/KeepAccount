@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">user-portal</string>
 
-    <string name="mine_info_sec">个人资料-TODO</string>
+    <string name="mine_info_sec">个人资料</string>
     <string name="mine_mgr_ctrl">管理后台</string>
     <string name="mine_safe_sec">账户与安全</string>
     <string name="mine_help_sec">帮助与反馈</string>
@@ -14,4 +14,6 @@
     <string name="base_error">数据错误，请重试</string>
     <string name="tip_not_login_desc_str">当前未登录，无法拉取数据</string>
     <string name="tip_not_login_btn_str">去登录</string>
+    <string name="user_profile_nick_name">昵称:</string>
+    <string name="user_profile_nick_name_change">编辑昵称</string>
 </resources>

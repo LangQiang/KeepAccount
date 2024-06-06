@@ -2,6 +2,7 @@ package com.godq.account.login.repository.inject
 
 import com.godq.account.AccountInfo
 import com.godq.account.login.repository.LoginLocalDataSource
+import com.godq.accountsa.IAccountInfo
 import com.lazylite.mod.config.ConfMgr
 
 class LoginLocalApiImpl: LoginLocalDataSource.ILoginApi {
@@ -13,7 +14,7 @@ class LoginLocalApiImpl: LoginLocalDataSource.ILoginApi {
         }
     }
 
-    override fun save(accountInfo: AccountInfo) {
+    override fun save(accountInfo: IAccountInfo) {
         ConfMgr.setStringValue("", "account_info", accountInfo.toJson(), false)
     }
 }

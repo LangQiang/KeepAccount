@@ -45,6 +45,7 @@
             app:set_title_bold="true" />
 
         <com.lazylite.mod.widget.KwSettingItem
+            android:visibility="gone"
             android:id="@+id/item_mgr_ctrl"
             android:onClick="@{()->vm.onMgrCtrlClick()}"
             android:layout_width="match_parent"

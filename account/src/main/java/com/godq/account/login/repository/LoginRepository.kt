@@ -3,6 +3,7 @@ package com.godq.account.login.repository
 import com.godq.account.AccountInfo
 import com.godq.account.AccountCommonParamProvider
 import com.godq.account.getUpdateUrl
+import com.godq.accountsa.IAccountInfo
 import com.godq.accountsa.IAccountService
 import com.lazylite.mod.http.mgr.KwHttpMgr
 import com.lazylite.mod.http.mgr.model.RequestInfo
@@ -49,7 +50,7 @@ class LoginRepository (
             //设置通用queryParam
             AccountCommonParamProvider.updateQueryParam("user_id", accountInfo.mUserId)
             //本地持久化
-            loginLocalDataSource.save(accountInfo)
+            saveLocalLoginData(accountInfo)
             //全局广播登录消息
             MessageManager.getInstance().asyncNotify(
                 IAccountService.IAccountObserver.EVENT_ID,
@@ -73,7 +74,7 @@ class LoginRepository (
             //更新缓存
             accountInfo.mAvatarUrl = avatarUrl
             //本地持久化
-            loginLocalDataSource.save(accountInfo)
+            saveLocalLoginData(accountInfo)
             //全局广播登录消息
             MessageManager.getInstance().asyncNotify(
                 IAccountService.IAccountObserver.EVENT_ID,
@@ -85,10 +86,15 @@ class LoginRepository (
         }
     }
 
+    fun saveLocalLoginData(info: IAccountInfo?) {
+        info?: return
+        loginLocalDataSource.save(info)
+    }
+
     fun logout() {
         accountInfo.reset()
         //本地持久化
-        loginLocalDataSource.save(accountInfo)
+        saveLocalLoginData(accountInfo)
         //全局广播登出消息
         MessageManager.getInstance().asyncNotify(
             IAccountService.IAccountObserver.EVENT_ID,
