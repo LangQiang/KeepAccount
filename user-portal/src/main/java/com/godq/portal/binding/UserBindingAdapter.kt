@@ -12,6 +12,7 @@ import com.godq.portal.billdetail.BillTableListView
 import com.godq.portal.billdetail.BillWeekEntity
 import com.godq.portal.ext.scale
 import com.godq.portal.utils.HolidayRepo
+import com.godq.portal.utils.ShopBillLatestDataRepo
 import com.godq.portal.utils.WeatherRepo
 import com.lazylite.mod.App
 
@@ -84,6 +85,12 @@ fun setCostOfOneTableForMonth(view: TextView, monthEntity: BillMonthEntity) {
     if (monthEntity.totalTablesCount == 0) return
     val text = "客单价:" + String.format("%.1f",  monthEntity.total / monthEntity.totalTablesCount)
     view.text = text
+}
+
+@BindingAdapter("setShopBillUpdateTip")
+fun setShopBillUpdateTip(view: TextView, shopId: String) {
+    val isLatestData = ShopBillLatestDataRepo.isLatestData(shopId)
+    view.visibility = if (isLatestData) View.GONE  else View.VISIBLE
 }
 
 

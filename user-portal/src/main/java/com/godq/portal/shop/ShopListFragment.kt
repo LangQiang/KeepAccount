@@ -10,6 +10,7 @@ import com.godq.deeplink.DeepLinkUtils
 import com.godq.portal.common.CommonTipView
 import com.godq.portal.common.DataLoadingStateVm
 import com.godq.portal.databinding.FragmentShopListLayoutBinding
+import com.godq.portal.utils.ShopBillLatestDataRepo
 import com.godq.resource.SkinTitleBarResDelegate
 import com.lazylite.mod.widget.BaseFragment
 
@@ -63,11 +64,21 @@ class ShopListFragment : BaseFragment() {
         }
 
         adapter.onItemClickListener =  BaseQuickAdapter.OnItemClickListener { adapter, _, position ->
-            vm.onItemClick(adapter?.data?.get(position) as? ShopEntity)
+            (adapter?.data?.get(position) as? ShopEntity)?.let {
+                vm.onItemClick(it)
+                if (!ShopBillLatestDataRepo.isLatestData(it.id)) {
+                    ShopBillLatestDataRepo.syncDataLatest(it.id)
+                    adapter.notifyItemChanged(position)
+                }
+            }
         }
 
         vm.onShopListDataCallback = {
             adapter.setNewData(it)
+        }
+
+        vm.onShopBillLatestDataCallback = {
+            adapter.notifyDataSetChanged()
         }
 
         vm.requestShopList()

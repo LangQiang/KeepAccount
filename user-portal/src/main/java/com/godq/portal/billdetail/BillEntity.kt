@@ -6,6 +6,7 @@ import com.godq.statisticwidget.histogram.IHistogramEntity
 class BillEntity(
     val type:Int,
     var expand:Boolean,
+    val shopId: String,
     val date: String,
     val total: Double,
     val tableTimes: Int,

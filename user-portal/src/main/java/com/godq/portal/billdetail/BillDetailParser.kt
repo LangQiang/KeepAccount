@@ -95,6 +95,7 @@ fun parseBillDetailList(jsonData: String?): List<BillEntity>? {
                 BillEntity(
                     BillEntity.TYPE_GENERAL,
                     false,
+                    itemObj.optString("bill_shop_id"),
                     date,
                     itemObj.optDouble("bill_total"),
                     itemObj.optInt("bill_table_times"),

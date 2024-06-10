@@ -33,3 +33,8 @@ fun getUpdateUrl(): String {
     return "$HOST/account/update"
 }
 
+
+fun getShopLatestDataListUrl(shopIds: Array<String>): String {
+    return "$HOST/shop/list/latest?shop_ids=${shopIds.joinToString(separator = ",")}"
+}
+
