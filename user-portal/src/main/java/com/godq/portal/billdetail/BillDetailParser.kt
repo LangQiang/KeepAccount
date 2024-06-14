@@ -26,6 +26,7 @@ val subEntitySortFormatArr = mapOf(
     "抖音扣点" to 96,
     "食材" to 100,
     "人工" to 110,
+    "房租" to 115,
     "水费" to 120,
     "电费" to 130,
     "燃气" to 140,
@@ -38,6 +39,7 @@ val subEntityAmountForceNegativeSet = setOf(
     "抖音扣点",
     "食材",
     "人工",
+    "房租",
     "水费",
     "电费",
     "燃气",
@@ -158,6 +160,13 @@ private fun transformToMonthList(billDetailList: List<BillEntity>): List<MultiIt
                 if (billSubEntity.payType == "人工") {
                     billMonthEntity.payOutForLabor += billSubEntity.payAmount.safeToDouble().absoluteValue
                 }
+                if (billSubEntity.payType == "水费" || billSubEntity.payType == "电费") {
+                    billMonthEntity.payOutForWEG += billSubEntity.payAmount.safeToDouble().absoluteValue
+                }
+                if (billSubEntity.payType == "房租") {
+                    billMonthEntity.payOutForRent += billSubEntity.payAmount.safeToDouble().absoluteValue
+                }
+
             }
             billMonthEntity.tableList.add(billEntity.tableTimes)
             monthList.add(billMonthEntity)
@@ -171,6 +180,12 @@ private fun transformToMonthList(billDetailList: List<BillEntity>): List<MultiIt
             for (billSubEntity in billEntity.subList) {
                 if (billSubEntity.payType == "人工") {
                     billMonthEntity.payOutForLabor += billSubEntity.payAmount.safeToDouble().absoluteValue
+                }
+                if (billSubEntity.payType == "水费" || billSubEntity.payType == "电费") {
+                    billMonthEntity.payOutForWEG += billSubEntity.payAmount.safeToDouble().absoluteValue
+                }
+                if (billSubEntity.payType == "房租") {
+                    billMonthEntity.payOutForRent += billSubEntity.payAmount.safeToDouble().absoluteValue
                 }
             }
         }

@@ -15,6 +15,10 @@ class BillMonthEntity(
     var daysCountOfMonth: Int = 0
     //月内人工费用
     var payOutForLabor: Double = 0.0
+    //月内水电气费用
+    var payOutForWEG: Double = 0.0
+    //月内房租费用
+    var payOutForRent: Double = 0.0
 
     companion object {
         const val TYPE_MONTH = 102

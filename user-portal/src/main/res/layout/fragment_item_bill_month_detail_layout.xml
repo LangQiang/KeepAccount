@@ -17,7 +17,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_width="match_parent"
-        android:layout_height="140dp">
+        android:layout_height="170dp">
 
         <com.godq.portal.billdetail.BillTableListView
             setTableListView="@{itemData.tableList}"
@@ -27,9 +27,9 @@
         <TextView
             android:id="@+id/date_tv"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/opt_tv"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/focus_total_tv"
             android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
             android:textStyle="bold"
             android:textSize="18dp"
             android:textColor="@color/black80"
@@ -91,7 +91,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="35dp"
             android:layout_marginEnd="20dp"
             android:textStyle="bold"
             tools:text="2333"
@@ -106,7 +106,7 @@
             app:layout_constraintEnd_toStartOf="@+id/payout_tv"
             app:layout_constraintTop_toTopOf="@+id/payout_tv"
             app:layout_constraintBottom_toBottomOf="@+id/payout_tv"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="18dp"
             tools:text="流水:2333"
             android:textSize="12dp"
             android:textColor="@color/black60"
@@ -150,14 +150,51 @@
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/payout_for_labor_tv"
+            android:id="@+id/payout_for_food"
+            android:visibility="gone"
             android:layout_marginTop="2dp"
             app:layout_constraintStart_toStartOf="@+id/payout_tv"
             app:layout_constraintTop_toBottomOf="@+id/payout_tv"
+            tools:text="食材:2333"
+            android:textSize="12dp"
+            android:textColor="#458d35"
+            android:text='@{String.format("食材:%.1f",itemData.payOutForLabor)}'
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/payout_for_labor_tv"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toStartOf="@+id/payout_for_food"
+            app:layout_constraintTop_toBottomOf="@+id/payout_for_food"
             tools:text="人工:2333"
             android:textSize="12dp"
             android:textColor="#458d35"
             android:text='@{String.format("人工:%.1f",itemData.payOutForLabor)}'
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/payout_for_weg"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toStartOf="@+id/payout_for_labor_tv"
+            app:layout_constraintTop_toBottomOf="@+id/payout_for_labor_tv"
+            tools:text="水电:2333"
+            android:textSize="12dp"
+            android:textColor="#458d35"
+            android:text='@{String.format("水电:%.1f",itemData.payOutForWEG)}'
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/payout_for_rent"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toStartOf="@+id/payout_for_weg"
+            app:layout_constraintTop_toBottomOf="@+id/payout_for_weg"
+            tools:text="房租:2333"
+            android:textSize="12dp"
+            android:textColor="#458d35"
+            android:text='@{String.format("房租:%.1f",itemData.payOutForRent)}'
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

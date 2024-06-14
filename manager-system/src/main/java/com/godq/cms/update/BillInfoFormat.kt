@@ -210,6 +210,14 @@ fun formatBillInfoFromClipBoard(clipboardText: String): BillInfo? {
             }
         }
 
+        //房租
+        val payOutRentPattern = Pattern.compile("(?<=房租\\s{0,10}[:：])[\\d.,，。\\s]+(?=[元块圆])")
+        payOutRentPattern.matcher(clipboardText).apply {
+            if (find()) {
+                info.payOutRent = group().trim().replace("[,，。\\s]+".toRegex(), "")
+            }
+        }
+
         //水费
         val payOutWaterPattern = Pattern.compile("(?<=水费\\s{0,10}[:：])[\\d.,，。\\s]+(?=[元块圆])")
         payOutWaterPattern.matcher(clipboardText).apply {

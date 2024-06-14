@@ -166,7 +166,12 @@ class BillInfo: BaseObservable() {
             field = value
             notifyPropertyChanged(BR.payOutGas)
         }
-
+    @get:Bindable
+    var payOutRent: String? = "0"
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.payOutRent)
+        }
 
     @get:Bindable
     var payOutOther: String? = "0"
@@ -211,6 +216,7 @@ class BillInfo: BaseObservable() {
         this.payOutDYExt = info.payOutDYExt
         this.payOutMaterials = info.payOutMaterials
         this.payOutLabor = info.payOutLabor
+        this.payOutRent = info.payOutRent
         this.payOutWater = info.payOutWater
         this.payOutElectricity = info.payOutElectricity
         this.payOutGas = info.payOutGas
@@ -235,6 +241,7 @@ class BillInfo: BaseObservable() {
                 || payOut.isNullOrEmpty()
                 || payOutMaterials.isNullOrEmpty()
                 || payOutLabor.isNullOrEmpty()
+                || payOutRent.isNullOrEmpty()
                 || payOutWater.isNullOrEmpty()
                 || payOutElectricity.isNullOrEmpty()
                 || payOutGas.isNullOrEmpty()
@@ -279,6 +286,7 @@ class BillInfo: BaseObservable() {
             payOutDYExt=$payOutDYExt, 
             payOutMaterials=$payOutMaterials, 
             payOutLabor=$payOutLabor, 
+            payOutRent=$payOutRent, 
             payOutWater=$payOutWater, 
             payOutElectricity=$payOutElectricity, 
             payOutGas=$payOutGas, 

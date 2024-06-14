@@ -61,6 +61,11 @@ class BillUpdateVm {
             payOutLaborJson.putOpt("amount", billInfo.payOutLabor)
             array.put(payOutLaborJson)
 
+            val payOutRentJson = JSONObject()
+            payOutRentJson.putOpt("type", "房租")
+            payOutRentJson.putOpt("amount", billInfo.payOutRent)
+            array.put(payOutRentJson)
+
             val payOutWaterJson = JSONObject()
             payOutWaterJson.putOpt("type", "水费")
             payOutWaterJson.putOpt("amount", billInfo.payOutWater)
