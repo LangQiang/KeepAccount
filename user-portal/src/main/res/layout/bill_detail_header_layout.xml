@@ -19,12 +19,111 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:textColor="@color/skin_text_primary"
                 android:onClick="@{() -> headerComponent.onBillTotalClick()}"
                 android:gravity="center_vertical"
                 tools:text="账面剩余：222"
                 android:text="@{`账面剩余：` + headerComponent.billTotal + `元`}"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="@color/black6"
+                android:layout_marginTop="12dp"
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textColor="@color/skin_text_primary"
+                        android:text="选择日期:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:onClick="@{() -> headerComponent.onStartDateClick()}"
+                        android:textColor="@color/skin_text_primary"
+                        android:padding="3dp"
+                        android:text="@{headerComponent.dateStart}"
+                        android:background="@color/black20"
+                        android:layout_marginStart="10dp"
+                        tools:text="2023-08-23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"/>
+
+                    <View
+                        android:background="@color/skin_text_primary"
+                        android:padding="3dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_width="6dp"
+                        android:layout_height="1dp"/>
+
+                    <TextView
+                        android:onClick="@{() -> headerComponent.onEndDateClick()}"
+                        android:text="@{headerComponent.dateEnd}"
+                        android:textColor="@color/skin_text_primary"
+                        android:padding="3dp"
+                        android:background="@color/black20"
+                        android:layout_marginStart="10dp"
+                        tools:text="2025-01-01"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_margin="5dp"
+                    android:background="@color/black16"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"/>
+
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp">
+                    <TextView
+                        tools:text="毛利:55.3%"
+                        android:text="@{headerComponent.grossProfit}"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text="@{headerComponent.foodPercent}"
+                        tools:text="食材:55.3%"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp">
+                    <TextView
+                        android:text="@{headerComponent.wEPercent}"
+                        tools:text="水电:55.3%"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text="@{headerComponent.otherPercent}"
+                        tools:text="其他:55.3%"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
         </LinearLayout>
     </FrameLayout>
 </layout>
