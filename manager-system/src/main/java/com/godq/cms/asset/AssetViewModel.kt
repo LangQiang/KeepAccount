@@ -129,14 +129,16 @@ class AssetViewModel: ViewModel(), LifecycleEventObserver {
 
     fun onItemClick(assetEntity: AssetEntity) {
         when (assetEntity.assetData.format) {
-            AssetData.FORMAT_PDF -> {
+            AssetData.FORMAT_PDF, AssetData.FORMAT_WORD, AssetData.FORMAT_EXCEL -> {
                 when (assetEntity.downloadState.value) {
                     "下载" -> {
                         currentItemInDownloading[assetEntity.assetData.id] = assetEntity
                         AssetDownloader.download(entity = assetEntity)
                     }
                     "查看" -> {
-                        App.getMainActivity()?.also { openPdfFile(it, AssetDownloader.getSavePath(assetEntity.assetData)) }
+                        App.getMainActivity()?.also {
+                            openFile(it, AssetDownloader.getSavePath(assetEntity.assetData), getTypeStr(assetEntity.assetData.format))
+                        }
                     }
                     else -> {}
                 }
@@ -149,10 +151,19 @@ class AssetViewModel: ViewModel(), LifecycleEventObserver {
 
     }
 
-    private fun openPdfFile(context: Context, file: File) {
+    private fun getTypeStr(format: String): String {
+        return when (format) {
+            AssetData.FORMAT_PDF -> "pdf"
+            AssetData.FORMAT_WORD -> "msword"
+            AssetData.FORMAT_EXCEL -> "vnd.ms-excel"
+            else -> "text"
+        }
+    }
+
+    private fun openFile(context: Context, file: File, type: String) {
         val uri = FileProvider.getUriForFile(context, "com.godq.keepaccounts.provider", file)
         val intent = Intent(Intent.ACTION_VIEW)
-        intent.setDataAndType(uri, "application/pdf")
+        intent.setDataAndType(uri, "application/$type")
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 

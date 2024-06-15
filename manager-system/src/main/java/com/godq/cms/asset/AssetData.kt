@@ -29,5 +29,6 @@ data class AssetData(
         const val FORMAT_PIC = "PIC"
         const val FORMAT_TEXT = "TEXT"
         const val FORMAT_WORD = "WORD"
+        const val FORMAT_EXCEL = "EXCEL"
     }
 }

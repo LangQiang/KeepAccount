@@ -122,7 +122,7 @@ fun Content(modifier: Modifier = Modifier, viewModel: AddAssetViewModel) {
                     OutlinedTextField(
                         value = title,
                         onValueChange = {viewModel.title.value = it},
-                        label = { Text(text = "Title") }
+                        label = { Text(text = "Title,不能包含/等特殊字符") }
                     )
                 }
 
@@ -140,7 +140,7 @@ fun Content(modifier: Modifier = Modifier, viewModel: AddAssetViewModel) {
                     OutlinedTextField(
                         value = format,
                         onValueChange = {viewModel.format.value = it},
-                        label = { Text(text = "Format(PDF/PIC)") }
+                        label = { Text(text = "Format(PDF/WORD/EXCEL/PIC)") }
                     )
                 }
 

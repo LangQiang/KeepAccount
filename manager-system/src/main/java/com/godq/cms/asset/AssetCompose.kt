@@ -137,10 +137,9 @@ fun AssetList(assets: List<AssetEntity>, onTodoClick: (AssetEntity) -> Unit) {
             val rememberAsset by remember { mutableStateOf(asset) }
 
             when (asset.assetData.format) {
-                AssetData.FORMAT_PDF -> { PDFAssetItem(assetEntity = rememberAsset) { onTodoClick(rememberAsset) } }
+                AssetData.FORMAT_PDF, AssetData.FORMAT_EXCEL, AssetData.FORMAT_WORD -> { PDFAssetItem(assetEntity = rememberAsset) { onTodoClick(rememberAsset) } }
                 AssetData.FORMAT_PIC -> { PicAssetItem(assetEntity = rememberAsset) { onTodoClick(rememberAsset) } }
                 AssetData.FORMAT_TEXT -> {}
-                AssetData.FORMAT_WORD -> {}
                 else -> {}
             }
         }
@@ -204,11 +203,17 @@ fun PDFAssetItem(assetEntity: AssetEntity, onClick: () -> Unit) {
                     .fillMaxSize()
                     .padding(horizontal = 10.dp)
             ) {
+                val painterResId = when (assetEntity.assetData.format) {
+                    AssetData.FORMAT_PDF -> R.drawable.pdf_icon
+                    AssetData.FORMAT_WORD -> R.drawable.word_icon
+                    AssetData.FORMAT_EXCEL -> R.drawable.excel_icon
+                    else -> R.drawable.pdf_icon
+                }
                 Image(modifier = Modifier
                     .height(50.dp)
                     .width(38.dp)
                     .align(Alignment.CenterVertically),
-                    painter = painterResource(id = R.drawable.pdf_icon),
+                    painter = painterResource(id = painterResId),
                     contentDescription = "pdf icon")
 
                 Box(modifier = Modifier
