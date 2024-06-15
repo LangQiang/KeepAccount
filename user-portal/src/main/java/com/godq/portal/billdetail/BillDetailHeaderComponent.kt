@@ -39,6 +39,7 @@ class BillDetailHeaderComponent(private val shopId: String?) {
     var grossProfit = ObservableField("毛利:0.0%")
     var foodPercent = ObservableField("食材:0.0%")
     var wEPercent = ObservableField("水电:0.0%")
+    var koudianPercent = ObservableField("扣点:0.0%")
     var otherPercent = ObservableField("其他:0.0%")
 
     fun getView(context: Context): View {
@@ -94,6 +95,14 @@ class BillDetailHeaderComponent(private val shopId: String?) {
                 val res = KwHttpMgr.getInstance().kwHttpFetch.get(RequestInfo.newGet(getBillTotal(shopId, subTypeName = "房租", startDate = startDate, endDate = endDate)))
                 parseBillTotal(res.dataToString())
             }
+            val mtKoudianDeferred = async(Dispatchers.IO) {
+                val res = KwHttpMgr.getInstance().kwHttpFetch.get(RequestInfo.newGet(getBillTotal(shopId, subTypeName = "美团扣点", startDate = startDate, endDate = endDate)))
+                parseBillTotal(res.dataToString())
+            }
+            val dyKoudianDeferred = async(Dispatchers.IO) {
+                val res = KwHttpMgr.getInstance().kwHttpFetch.get(RequestInfo.newGet(getBillTotal(shopId, subTypeName = "抖音扣点", startDate = startDate, endDate = endDate)))
+                parseBillTotal(res.dataToString())
+            }
             val otherDeferred = async(Dispatchers.IO) {
                 val res = KwHttpMgr.getInstance().kwHttpFetch.get(RequestInfo.newGet(getBillTotal(shopId, subTypeName = "其他支出", startDate = startDate, endDate = endDate)))
                 parseBillTotal(res.dataToString())
@@ -103,6 +112,8 @@ class BillDetailHeaderComponent(private val shopId: String?) {
             val shui = shuiDeferred.await()
             val dian = dianDeferred.await()
             val rent = rentDeferred.await()
+            val mtKoudian = mtKoudianDeferred.await()
+            val dyKoudian = dyKoudianDeferred.await()
             val other = otherDeferred.await()
             Timber.tag("wangshuo").e("total:$total food:$food  shui:$shui dian:$dian rent:$rent other:$other")
             if (total == 0f)
@@ -110,11 +121,13 @@ class BillDetailHeaderComponent(private val shopId: String?) {
             val foodNum = (food * 100 / total).scale(1)
             val wENum = ((shui + dian) * 100 / total).scale(1)
             val otherNum = (other * 100 / total).scale(1)
-            val grossProfitNum = (100 - foodNum - wENum - otherNum).scale(1)
+            val koudianNum = ((mtKoudian + dyKoudian) * 100 / total).scale(1)
+            val grossProfitNum = (100 - foodNum - wENum - otherNum - koudianNum).scale(1)
             foodPercent.set("食材:$foodNum%")
             wEPercent.set("水电:$wENum%")
             otherPercent.set("其他:$otherNum%")
             grossProfit.set("毛利:$grossProfitNum%")
+            koudianPercent.set("扣点:$koudianNum%")
         }
     }
 
