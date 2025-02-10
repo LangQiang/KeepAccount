@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">声播</string>
+
+    <string name="lrlite_media_subscribe">订阅</string>
+    <string name="lrlite_media_subscribed">已订阅</string>
+    <string name="lrlite_media_playpage_game_more">更多游戏&#xe6fd;</string>
+    <string name="lrlite_media_playpage_album_recommend_more">更多&#xe6fd;</string>
+    <string name="lrlite_media_playfail">播放失败,请重试</string>
+
+</resources>

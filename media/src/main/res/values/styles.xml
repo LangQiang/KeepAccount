@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="lrlite_media_SleepDialogCheckStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/lrlite_media_sleep_dialog_btn_selector</item>
+        <item name="android:button">@null</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/lrlite_media_dark0_white_selector</item>
+    </style>
+</resources>

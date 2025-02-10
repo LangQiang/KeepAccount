@@ -1,0 +1,4 @@
+-keep class com.lazylite.mod.bean.** { *; }
+-keep class com.lazylite.media.** { *;}
+-keep class com.lazylite.play.** { *;}
+-keep class com.lazylite.simpleplay.** { *;}

@@ -3,7 +3,6 @@ package com.godq.portal.billdetail
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
-import androidx.databinding.Observable
 import androidx.databinding.ObservableField
 import com.godq.portal.constants.BILL_TOTAL_DIFF
 import com.godq.portal.constants.getBillTotal
@@ -19,6 +18,9 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 
 /**
@@ -42,26 +44,36 @@ class BillDetailHeaderComponent(private val shopId: String?) {
     var koudianPercent = ObservableField("扣点:0.0%")
     var otherPercent = ObservableField("其他:0.0%")
 
+    var currentDate = "2025-01-01"
+
     fun getView(context: Context): View {
         val tBinding = BillDetailHeaderLayoutBinding.inflate(LayoutInflater.from(context))
         tBinding.headerComponent = this
         binding = tBinding
+        initCurrentDate()
         requestData()
         return tBinding.root
+    }
+
+    private fun initCurrentDate() {
+        val calendar = Calendar.getInstance()
+        val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        currentDate = formatter.format(calendar.time)
+        dateEnd.set(currentDate)
     }
 
     private fun requestData() {
         scope.launch {
             val totalDeferred = async(Dispatchers.IO) {
-                val res = KwHttpMgr.getInstance().kwHttpFetch.get(RequestInfo.newGet(getBillTotal(shopId, "bill_total")))
+                val res = KwHttpMgr.getInstance().kwHttpFetch.get(RequestInfo.newGet(getBillTotal(shopId, "bill_total", startDate = "2023-08-21", endDate = currentDate)))
                 parseBillTotal(res.dataToString())
             }
             val payoutDeferred = async(Dispatchers.IO) {
-                val res = KwHttpMgr.getInstance().kwHttpFetch.get(RequestInfo.newGet(getBillTotal(shopId, "bill_pay_out")))
+                val res = KwHttpMgr.getInstance().kwHttpFetch.get(RequestInfo.newGet(getBillTotal(shopId, "bill_pay_out", startDate = "2023-08-21", endDate = currentDate)))
                 parseBillTotal(res.dataToString())
             }
             val bonusDeferred = async(Dispatchers.IO) {
-                val res = KwHttpMgr.getInstance().kwHttpFetch.get(RequestInfo.newGet(getBillTotal(shopId, "bill_bonus")))
+                val res = KwHttpMgr.getInstance().kwHttpFetch.get(RequestInfo.newGet(getBillTotal(shopId, "bill_bonus", startDate = "2023-08-21", endDate = currentDate)))
                 parseBillTotal(res.dataToString())
             }
             val total = totalDeferred.await()

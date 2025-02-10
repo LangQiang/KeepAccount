@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/notificationbg"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/albumart"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:gravity="center" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/albumart"
+            android:layout_alignBottom="@+id/albumart"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/base_logo"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="0.0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="15dp"
+        android:layout_weight="1.0"
+        android:orientation="vertical"
+        android:paddingLeft="12dp">
+
+        <TextView
+            android:id="@+id/trackname"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ellipsize="end"
+            android:fadingEdge="horizontal"
+            android:focusable="true"
+            android:singleLine="true"
+            android:textColor="@color/black80"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:text="从前有座灵剑山 - 广播剧" />
+
+        <TextView
+            android:id="@+id/artistalbum"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:fadingEdge="horizontal"
+            android:maxLines="1"
+            android:textColor="@color/black40"
+            android:textSize="13sp"
+            tools:text="霜色微凉、假寐" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/playpause"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="9dp"
+        android:src="@drawable/media_notify_play_black" />
+
+    <ImageView
+        android:id="@+id/next"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:padding="7dp"
+        android:src="@drawable/media_notify_next_black" />
+
+
+    <ImageView
+        android:id="@+id/notification_exit_button"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginRight="8dp"
+        android:padding="7dp"
+        android:src="@drawable/media_notify_close_black" />
+
+</LinearLayout>

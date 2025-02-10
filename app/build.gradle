@@ -99,6 +99,8 @@ dependencies {
     implementation project(':upgrade-api')
     implementation project(':product')
     implementation project(':product-api')
+    implementation project(':media')
+    implementation project(':media-api')
 
 
     kapt rootProject.ext.base_core_processor

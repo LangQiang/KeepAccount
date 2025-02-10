@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#888888">
+
+    <com.lazylite.play.playpage.widget.PaletteBlurBgView
+        android:id="@+id/palette_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide_cover_top"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.12" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide_seek_top"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.66" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide_play_top"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.76" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide_bottomview_top"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.93" />
+
+            <com.lazylite.mod.widget.SquareRoundViewGroup
+                android:id="@+id/srg_cover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/guide_cover_top">
+
+                <com.lazylite.mod.widget.RoundCornerLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:round_layout_radius="14dp">
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/iv_cover"
+                        android:scaleType="centerCrop"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center" />
+                </com.lazylite.mod.widget.RoundCornerLayout>
+
+            </com.lazylite.mod.widget.SquareRoundViewGroup>
+
+            <com.lazylite.mod.widget.textview.ScrollForeverTextView
+                android:id="@+id/tv_chapter_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginRight="25dp"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/srg_cover" />
+
+            <TextView
+                app:layout_constrainedWidth="true"
+                android:id="@+id/tv_anchor_blog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="9dp"
+                android:ellipsize="end"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:textColor="@color/LRLiteBase_cl_white_alpha_60"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/iv_right"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintTop_toBottomOf="@+id/tv_chapter_title" />
+
+            <com.lazylite.play.playpage.widget.PlayIconView
+                android:id="@+id/iv_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="15dp"
+                android:text="@string/icon_right_arrow"
+                android:textColor="@color/white60"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_anchor_blog"
+                app:layout_constraintStart_toEndOf="@+id/tv_anchor_blog"
+                app:layout_constraintTop_toTopOf="@+id/tv_anchor_blog" />
+
+            <com.lazylite.play.playpage.widget.newseekbar.PlaySeekBar
+                android:id="@+id/music_seekbar"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                app:cacheColor="@color/LRLiteBase_cl_white_alpha_40"
+                app:gapMultiple="1"
+                app:layout_constraintTop_toBottomOf="@+id/guide_seek_top"
+                app:selectColor="@color/white"
+                app:unSelectColor="@color/LRLiteBase_cl_white_alpha_20" />
+
+            <TextView
+                android:id="@+id/tv_current_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="8dp"
+                android:includeFontPadding="false"
+                android:text="00:00"
+                android:textColor="@color/white70"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/music_seekbar" />
+
+            <TextView
+                android:id="@+id/tv_total_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="25dp"
+                android:includeFontPadding="false"
+                android:text="00:00"
+                android:textColor="@color/white70"
+                android:textSize="12sp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/music_seekbar" />
+
+            <RelativeLayout
+                android:id="@+id/rl_functional"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/lrlite_media_play_control_container_bg"
+                app:layout_constraintTop_toBottomOf="@+id/guide_play_top">
+
+                <com.lazylite.play.playpage.widget.PlayIconView
+                    android:id="@+id/playing_play"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:text="@string/icon_play_page_play"
+                    android:textColor="@color/white"
+                    android:textSize="35sp" />
+
+                <com.lazylite.mod.widget.SimpleLoading
+                    android:id="@+id/playing_loading"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/lrlite_media_player_bar_loading_icon"
+                    android:visibility="gone" />
+
+
+                <com.lazylite.play.playpage.widget.PlayIconView
+                    android:id="@+id/playing_pre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/playing_play"
+                    android:text="@string/icon_play_pre"
+                    android:textColor="@color/white"
+                    android:textSize="25sp" />
+
+                <com.lazylite.play.playpage.widget.PlayIconView
+                    android:id="@+id/playing_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toEndOf="@+id/playing_play"
+                    android:text="@string/icon_play_next"
+                    android:textColor="@color/white"
+                    android:textSize="25dp" />
+
+                <com.lazylite.play.playpage.widget.PlayIconView
+                    android:id="@+id/play_time_back_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/icon_playtime_back"
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
+
+                <com.lazylite.play.playpage.widget.PlayIconView
+                    android:id="@+id/play_time_forward_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20dp"
+                    android:text="@string/icon_playtime_forward"
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_playing_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/guide_bottomview_top">
+
+                <com.lazylite.play.playpage.widget.PlayIconView
+                    android:id="@+id/playing_timing_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:contentDescription="定时"
+                    android:text="@string/icon_play_page_timing"
+                    android:textColor="@color/white"
+                    android:textSize="23sp" />
+
+                <TextView
+                    android:id="@+id/playing_timing_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="开启定时"
+                    android:textColor="@color/white80"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/guide_bottomview_top">
+
+                <com.lazylite.play.playpage.widget.PlayIconView
+                    android:id="@+id/iv_speed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/icon_play_page_seep_1_0"
+                    android:textColor="@color/white"
+                    android:textSize="23sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:gravity="center_vertical"
+                    android:text="倍速播放"
+                    android:textColor="@color/white80"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_play_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/guide_bottomview_top">
+
+                <com.lazylite.play.playpage.widget.PlayIconView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/icon_play_page_playlist"
+                    android:textColor="@color/white"
+                    android:textSize="23sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:gravity="center_vertical"
+                    android:text="播放列表"
+                    android:textColor="@color/white80"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.lazylite.play.playpage.widget.PaletteBlurBgView>
+
+    <com.lazylite.mod.widget.textview.IconView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/icon_down_arrow"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</RelativeLayout>

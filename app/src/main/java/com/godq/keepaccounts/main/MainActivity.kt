@@ -16,6 +16,10 @@ import com.godq.deeplink.DeepLinkUtils
 import com.godq.keepaccounts.MainLinkHelper
 import com.godq.keepaccounts.R
 import com.godq.keepaccounts.decorate.DecorateController
+import com.godq.media_api.media.PlayStatus
+import com.godq.media_api.media.bean.BookBean
+import com.godq.media_api.media.bean.ChapterBean
+import com.lazylite.media.playctrl.PlayControllerImpl
 import com.lazylite.mod.App
 import com.lazylite.mod.fragmentmgr.FragmentOperation
 import com.lazylite.mod.fragmentmgr.IHostActivity
@@ -73,11 +77,36 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-//        findViewById<View>(R.id.main_test_btn)?.apply {
+        findViewById<View>(R.id.main_test_btn)?.apply {
 //            visibility = View.VISIBLE
-//            setOnClickListener {
-//            }
-//        }
+            setOnClickListener {
+                if (PlayControllerImpl.getInstance().playStatus == PlayStatus.STATUS_INIT || PlayControllerImpl.getInstance().playStatus == PlayStatus.STATUS_STOP) {
+                    val book = BookBean()
+                    book.mBookId = 1
+                    book.mArtist = "周杰伦"
+                    book.mImgUrl = "https://godq-1307306000.cos.ap-beijing.myqcloud.com/song/0885b348344f49d7812fc1085cc79230.jpeg"
+                    book.mDescription = "《叶惠美》是周杰伦于2003年发行的专辑，共收录了11首歌曲。2004年，该专辑获得了第15届金曲奖最佳流行音乐演唱专辑奖、新城国语力颁奖礼新城国语力亚洲大碟奖、第四届全球华语歌曲排行榜颁奖典礼年度最受欢迎专辑奖 。"
+                    book.mName = "叶惠美"
+                    book.mCount = 2
+                    val chapterBeans = ArrayList<ChapterBean>()
+
+                    val chapterBean2 = ChapterBean()
+                    chapterBean2.mName = "以父之名"
+                    chapterBean2.mRid = 2
+                    chapterBean2.resUrl = "https://godq-1307306000.cos.ap-beijing.myqcloud.com/song/%E5%91%A8%E6%9D%B0%E4%BC%A6-%E4%BB%A5%E7%88%B6%E4%B9%8B%E5%90%8D.mp3"
+                    chapterBeans.add(chapterBean2)
+
+                    val chapterBean = ChapterBean()
+                    chapterBean.mName = "晴天"
+                    chapterBean.mRid = 3
+                    chapterBean.resUrl = "https://godq-1307306000.cos.ap-beijing.myqcloud.com/song/%E6%99%B4%E5%A4%A9.mp3"
+                    chapterBeans.add(chapterBean)
+                    PlayControllerImpl.getInstance().play(book, chapterBeans, 0 , 0)
+                }
+
+                DeepLinkUtils.load("test://open/play").execute()
+            }
+        }
 
         MainLinkHelper.checkUpgrade(this)
     }

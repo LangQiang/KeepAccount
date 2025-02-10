@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="460dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="460dp"
+        android:orientation="vertical"
+        android:background="@color/kw_title_bar_bg">
+        <LinearLayout
+            android:id="@+id/ll_head"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/templist_album_cover_iv"
+                android:layout_width="28dp"
+                android:layout_height="28dp"/>
+
+
+            <com.lazylite.mod.widget.StackLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="8dp"
+                    android:includeFontPadding="false"
+                    android:singleLine="true"
+                    android:textColor="@color/LRLiteBase_cl_black_alpha_80"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    tools:text="郭德纲经典相声郭德纲经典相声郭德纲经典相声" />
+
+                <TextView
+                    android:id="@+id/tv_total"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/LRLiteBase_cl_black_alpha_40"
+                    android:textSize="17sp"
+                    android:layout_marginRight="15dp"
+                    tools:text="(48)" />
+            </com.lazylite.mod.widget.StackLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_sort"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingRight="20dp"
+                >
+
+                <com.lazylite.mod.widget.textview.IconView
+                    android:id="@+id/iv_sort"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="24dp"
+                    android:textColor="@color/LRLiteBase_cl_black_alpha_80"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_sort"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="正序"
+                    android:textSize="12sp"
+                    android:textColor="@color/LRLiteBase_cl_black_alpha_80"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/ts_color_ln"
+            />
+
+        <com.lazylite.mod.widget.pulltorefresh.PullToRefreshRecyclerView
+            android:id="@+id/pull_to_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/ts_color_ln"
+            />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="关闭"
+            android:textSize="16sp"
+            android:textColor="@color/LRLiteBase_cl_black_alpha_60"
+            android:gravity="center"
+            />
+    </LinearLayout>
+</FrameLayout>

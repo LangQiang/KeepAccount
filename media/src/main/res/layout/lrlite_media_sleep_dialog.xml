@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="26dp"
+            android:layout_marginTop="25dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="定时停止播放"
+                android:textColor="@color/white"
+                android:layout_marginRight="10dp"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/menu_sleep_tip"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="07:06后停止播放"
+                android:textColor="@color/white60"
+                android:textSize="14sp"
+                android:visibility="invisible"
+                tools:ignore="HardcodedText"
+                tools:visibility="visible" />
+
+
+            <com.lazylite.mod.widget.KuwoSwitch
+                android:id="@+id/menu_time_check"
+                style="@style/Switch_sleep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                />
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/menu_sleep_radio_group"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@null"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.lazylite.mod.widget.SquareViewGroup
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/menu_sleep_min_1"
+                        style="@style/lrlite_media_SleepDialogCheckStyle"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:minLines="2"
+                        android:text="10\n分钟" />
+                </com.lazylite.mod.widget.SquareViewGroup>
+
+                <com.lazylite.mod.widget.SquareViewGroup
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/menu_sleep_min_2"
+                        style="@style/lrlite_media_SleepDialogCheckStyle"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="20\n分钟" />
+                </com.lazylite.mod.widget.SquareViewGroup>
+
+                <com.lazylite.mod.widget.SquareViewGroup
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/menu_sleep_min_3"
+                        style="@style/lrlite_media_SleepDialogCheckStyle"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="30\n分钟" />
+
+                </com.lazylite.mod.widget.SquareViewGroup>
+
+                <com.lazylite.mod.widget.SquareViewGroup
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/menu_sleep_min_4"
+                        style="@style/lrlite_media_SleepDialogCheckStyle"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="45\n分钟" />
+
+                </com.lazylite.mod.widget.SquareViewGroup>
+
+                <com.lazylite.mod.widget.SquareViewGroup
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/menu_sleep_min_5"
+                        style="@style/lrlite_media_SleepDialogCheckStyle"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="1\n小时" />
+
+                </com.lazylite.mod.widget.SquareViewGroup>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.lazylite.mod.widget.SquareViewGroup
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/menu_sleep_min_6"
+                        style="@style/lrlite_media_SleepDialogCheckStyle"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="1.5\n小时" />
+
+                </com.lazylite.mod.widget.SquareViewGroup>
+
+                <com.lazylite.mod.widget.SquareViewGroup
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/menu_sleep_min_7"
+                        style="@style/lrlite_media_SleepDialogCheckStyle"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="2\n小时" />
+
+                </com.lazylite.mod.widget.SquareViewGroup>
+
+                <com.lazylite.mod.widget.SquareViewGroup
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/menu_sleep_min_8"
+                        style="@style/lrlite_media_SleepDialogCheckStyle"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="2.5\n小时" />
+
+                </com.lazylite.mod.widget.SquareViewGroup>
+
+                <com.lazylite.mod.widget.SquareViewGroup
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/menu_sleep_min_9"
+                        style="@style/lrlite_media_SleepDialogCheckStyle"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="3\n小时" />
+
+                </com.lazylite.mod.widget.SquareViewGroup>
+
+                <com.lazylite.mod.widget.SquareViewGroup
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/menu_sleep_min_10"
+                        style="@style/lrlite_media_SleepDialogCheckStyle"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="4\n小时" />
+                </com.lazylite.mod.widget.SquareViewGroup>
+
+            </LinearLayout>
+
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="26dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="定集停止播放"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <com.lazylite.mod.widget.KuwoSwitch
+                android:id="@+id/menu_num_check"
+                style="@style/Switch_sleep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                skin:isHighColor="true" />
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@null"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.lazylite.mod.widget.SquareViewGroup
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/menu_sets_1"
+                        style="@style/lrlite_media_SleepDialogCheckStyle"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="1\n集数" />
+
+                </com.lazylite.mod.widget.SquareViewGroup>
+
+                <com.lazylite.mod.widget.SquareViewGroup
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/menu_sets_2"
+                        style="@style/lrlite_media_SleepDialogCheckStyle"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="2\n集数" />
+
+                </com.lazylite.mod.widget.SquareViewGroup>
+
+                <com.lazylite.mod.widget.SquareViewGroup
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/menu_sets_3"
+                        style="@style/lrlite_media_SleepDialogCheckStyle"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="3\n集数" />
+
+                </com.lazylite.mod.widget.SquareViewGroup>
+
+                <com.lazylite.mod.widget.SquareViewGroup
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/menu_sets_4"
+                        style="@style/lrlite_media_SleepDialogCheckStyle"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="4\n集数" />
+
+                </com.lazylite.mod.widget.SquareViewGroup>
+
+                <com.lazylite.mod.widget.SquareViewGroup
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/menu_sets_5"
+                        style="@style/lrlite_media_SleepDialogCheckStyle"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="5\n集数" />
+                </com.lazylite.mod.widget.SquareViewGroup>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <com.lazylite.mod.widget.SquareViewGroup
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/menu_sets_6"
+                        style="@style/lrlite_media_SleepDialogCheckStyle"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="6\n集数" />
+
+                </com.lazylite.mod.widget.SquareViewGroup>
+
+                <com.lazylite.mod.widget.SquareViewGroup
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/menu_sets_7"
+                        style="@style/lrlite_media_SleepDialogCheckStyle"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="7\n集数" />
+
+                </com.lazylite.mod.widget.SquareViewGroup>
+
+                <com.lazylite.mod.widget.SquareViewGroup
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/menu_sets_8"
+                        style="@style/lrlite_media_SleepDialogCheckStyle"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="8\n集数" />
+
+                </com.lazylite.mod.widget.SquareViewGroup>
+
+                <com.lazylite.mod.widget.SquareViewGroup
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/menu_sets_9"
+                        style="@style/lrlite_media_SleepDialogCheckStyle"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="9\n集数" />
+
+                </com.lazylite.mod.widget.SquareViewGroup>
+
+                <com.lazylite.mod.widget.SquareViewGroup
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/menu_sets_10"
+                        style="@style/lrlite_media_SleepDialogCheckStyle"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="10\n集数" />
+                </com.lazylite.mod.widget.SquareViewGroup>
+
+            </LinearLayout>
+        </RadioGroup>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="25dp"
+            android:background="@color/black6" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@null"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/btn_mode_one"
+                style="@style/SkipCheckStyle"
+                android:textColor="@color/white60"
+                android:layout_width="140dp"
+                android:paddingLeft="25dp"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:gravity="center_vertical"
+                android:text="仅一次" />
+
+
+            <RadioButton
+                android:id="@+id/btn_mode_always"
+                style="@style/SkipCheckStyle"
+                android:textColor="@color/white60"
+                android:layout_width="140dp"
+                android:paddingLeft="25dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="以后总是" />
+
+        </RadioGroup>
+    </LinearLayout>
+</ScrollView>
